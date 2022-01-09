@@ -1271,7 +1271,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffbe3b;
+  background: #6c61a6;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2773,6 +2773,20 @@ ul.breadcrumb li + li:last-child {
     margin: 8px 0 0;
   }
 }
+.links-of-recent-posts {
+  font-size: 0.8125em;
+  margin-top: 10px;
+}
+.links-of-recent-posts-title {
+  font-size: 1.03em;
+  font-weight: 600;
+  margin-top: 0;
+}
+.links-of-recent-posts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 body {
   background: url("../images/road.jpg") no-repeat;
   background-size: 100%;
@@ -2788,4 +2802,12 @@ body {
 }
 .popup {
   opacity: 0.9;
+}
+li.my-links-of-blogroll-item {
+  text-align: cengter;
+  display: block;
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
