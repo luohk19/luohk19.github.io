@@ -9,6 +9,17 @@
       </categories>
   </entry>
   <entry>
+    <title>docker使用</title>
+    <url>/2022/01/12/docker/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>bash</title>
     <url>/2022/01/10/bash/</url>
     <content><![CDATA[<h4 id="1-Hello-World"><a href="#1-Hello-World" class="headerlink" title="1. Hello World"></a>1. Hello World</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world&quot;</span> <span class="comment">#双引号表示执行，单引号表示单纯输出</span></span><br><span class="line"></span><br><span class="line">chmod +x xxx.sh <span class="comment">#使xxx.sh脚本具有执行能力</span></span><br></pre></td></tr></table></figure>
@@ -43,17 +54,6 @@
       </categories>
       <tags>
         <tag>bash</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker使用</title>
-    <url>/2022/01/12/docker/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -92,7 +92,7 @@
 </ul>
 <h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
 <p>到install Docker Engine第一步结束就可</p>
-<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不用每次都输入sudo</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
 
 
 
