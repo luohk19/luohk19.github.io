@@ -115,7 +115,7 @@
 <li><p>选择ubuntu20.04，支持后续docker</p>
 </li>
 <li><p>安全组控制能访问那些端口（起码要有22端口）ssh，在sshconfig修改允许登录</p>
-</li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">sudo vim sshd_config</span><br></pre></td></tr></table></figure></li>
 <li><p>创建非root用户，给予sudo权限</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
 </ul>
