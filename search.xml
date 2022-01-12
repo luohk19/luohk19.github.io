@@ -46,6 +46,17 @@
       </tags>
   </entry>
   <entry>
+    <title>docker使用</title>
+    <url>/2022/01/12/docker/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2022/01/08/hello-world/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
@@ -62,6 +73,37 @@
 <script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
         <tag>private</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>租服务器的环境配置</title>
+    <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
+<li><p>内存不需要买太大（1核2G），后期动态扩容</p>
+</li>
+<li><p>不用买最大带宽，按量付费更实惠</p>
+</li>
+<li><p>选择ubuntu20.04，支持后续docker</p>
+</li>
+<li><p>安全组控制能访问那些端口（起码要有22端口）ssh</p>
+</li>
+<li><p>创建非root用户，给予sudo权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
+<p>到install Docker Engine第一步结束就可</p>
+<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
       </tags>
   </entry>
 </search>
