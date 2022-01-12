@@ -9,25 +9,6 @@
       </categories>
   </entry>
   <entry>
-    <title>linux常用命令</title>
-    <url>/2022/01/12/Linux%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h4 id="1-系统状况"><a href="#1-系统状况" class="headerlink" title="1.系统状况"></a>1.系统状况</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top # 查看所有进程的信息，M按内存排序，p按cpu排序</span><br><span class="line">df -h # 查看硬盘使用情况</span><br><span class="line">free -h # 查看内存使用情况</span><br><span class="line">du -sh # 查看当前目录占用的硬盘空间</span><br><span class="line">ps aux # 查看所有进程</span><br><span class="line">kill -9 pid # 杀死编号pid的进程</span><br><span class="line">netstat -nt #查看所有网络连接</span><br><span class="line">w #列出当前登录的用户</span><br><span class="line">ping www.baidu.com # 检查是否联网</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-文件权限"><a href="#2-文件权限" class="headerlink" title="2.文件权限"></a>2.文件权限</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x xxx <span class="comment">#添加可执行权限</span></span><br><span class="line">chmod +x xxx -R <span class="comment">#递归地修改整个文件</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-文件"><a href="#3-文件" class="headerlink" title="3.文件"></a>3.文件</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find path -name <span class="string">&#x27;*.py&#x27;</span> <span class="comment">#搜索某个路径下的.py文件</span></span><br><span class="line">grep xxx <span class="comment"># stdin读入若干行数据</span></span><br><span class="line">wc <span class="comment"># 统计行数等 -l 行数 -w 单词数 -c 字节数</span></span><br><span class="line">tree <span class="comment">#展示文件结构，-a展示隐藏文件</span></span><br><span class="line">ag xxx <span class="comment">#搜索当前目录下的所有文件，检索xxx字符</span></span><br><span class="line">cut -d <span class="string">&#x27;分割符&#x27;</span> -f 3,5 <span class="comment">#分割符分开的第3，第5列</span></span><br><span class="line">sort <span class="comment">#按字典序排序</span></span><br><span class="line">xargs <span class="comment">#将stdin数据分割成命令</span></span><br><span class="line">head -3 xxx <span class="comment">#展示前三行内容，tail是尾部</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="4-工具"><a href="#4-工具" class="headerlink" title="4.工具"></a>4.工具</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">time <span class="built_in">command</span> <span class="comment">#统计command的执行时间</span></span><br><span class="line">ipython3 <span class="comment">#小型jupyter</span></span><br><span class="line">tar -zcvf xxx.tar.gz path <span class="comment">#压缩至</span></span><br><span class="line">tar -zxvf xxx.tar.gz <span class="comment">#解压</span></span><br><span class="line">diff xxx yyy <span class="comment">#查找两个文件的不同点</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux命令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bash</title>
     <url>/2022/01/10/bash/</url>
     <content><![CDATA[<h4 id="1-Hello-World"><a href="#1-Hello-World" class="headerlink" title="1. Hello World"></a>1. Hello World</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world&quot;</span> <span class="comment">#双引号表示执行，单引号表示单纯输出</span></span><br><span class="line"></span><br><span class="line">chmod +x xxx.sh <span class="comment">#使xxx.sh脚本具有执行能力</span></span><br></pre></td></tr></table></figure>
@@ -65,6 +46,44 @@
       </tags>
   </entry>
   <entry>
+    <title>linux常用命令</title>
+    <url>/2022/01/12/Linux%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h4 id="1-系统状况"><a href="#1-系统状况" class="headerlink" title="1.系统状况"></a>1.系统状况</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top # 查看所有进程的信息，M按内存排序，p按cpu排序</span><br><span class="line">df -h # 查看硬盘使用情况</span><br><span class="line">free -h # 查看内存使用情况</span><br><span class="line">du -sh # 查看当前目录占用的硬盘空间</span><br><span class="line">ps aux # 查看所有进程</span><br><span class="line">kill -9 pid # 杀死编号pid的进程</span><br><span class="line">netstat -nt #查看所有网络连接</span><br><span class="line">w #列出当前登录的用户</span><br><span class="line">ping www.baidu.com # 检查是否联网</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-文件权限"><a href="#2-文件权限" class="headerlink" title="2.文件权限"></a>2.文件权限</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x xxx <span class="comment">#添加可执行权限</span></span><br><span class="line">chmod +x xxx -R <span class="comment">#递归地修改整个文件</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-文件"><a href="#3-文件" class="headerlink" title="3.文件"></a>3.文件</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find path -name <span class="string">&#x27;*.py&#x27;</span> <span class="comment">#搜索某个路径下的.py文件</span></span><br><span class="line">grep xxx <span class="comment"># stdin读入若干行数据</span></span><br><span class="line">wc <span class="comment"># 统计行数等 -l 行数 -w 单词数 -c 字节数</span></span><br><span class="line">tree <span class="comment">#展示文件结构，-a展示隐藏文件</span></span><br><span class="line">ag xxx <span class="comment">#搜索当前目录下的所有文件，检索xxx字符</span></span><br><span class="line">cut -d <span class="string">&#x27;分割符&#x27;</span> -f 3,5 <span class="comment">#分割符分开的第3，第5列</span></span><br><span class="line">sort <span class="comment">#按字典序排序</span></span><br><span class="line">xargs <span class="comment">#将stdin数据分割成命令</span></span><br><span class="line">head -3 xxx <span class="comment">#展示前三行内容，tail是尾部</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-工具"><a href="#4-工具" class="headerlink" title="4.工具"></a>4.工具</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">time <span class="built_in">command</span> <span class="comment">#统计command的执行时间</span></span><br><span class="line">ipython3 <span class="comment">#小型jupyter</span></span><br><span class="line">tar -zcvf xxx.tar.gz path <span class="comment">#压缩至</span></span><br><span class="line">tar -zxvf xxx.tar.gz <span class="comment">#解压</span></span><br><span class="line">diff xxx yyy <span class="comment">#查找两个文件的不同点</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/01/08/hello-world/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
+  <script id="hbeData" type="hbeData" data-hmacdigest="60d335b7180a6957abe64f977aafef3d3a993b5bff30507ffd9f3e75ef7790de">10d79030e8222445804370796b90fca1fcf46a07b5ecf341c635269a7fe842f80cf07e697ff3618a365f409d43ee2a0b71169e7502cdfd2ac90458dd940f8bc9dffd4520316db24d3e303037ca2d5032e72bf872f07e40dbb3cf3ace773ac1c9</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>private</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker使用</title>
     <url>/2022/01/12/docker/</url>
     <content><![CDATA[<h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
@@ -86,25 +105,6 @@
       </categories>
       <tags>
         <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/01/08/hello-world/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
-  <script id="hbeData" type="hbeData" data-hmacdigest="60d335b7180a6957abe64f977aafef3d3a993b5bff30507ffd9f3e75ef7790de">10d79030e8222445804370796b90fca1fcf46a07b5ecf341c635269a7fe842f80cf07e697ff3618a365f409d43ee2a0b71169e7502cdfd2ac90458dd940f8bc9dffd4520316db24d3e303037ca2d5032e72bf872f07e40dbb3cf3ace773ac1c9</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>private</tag>
       </tags>
   </entry>
   <entry>
