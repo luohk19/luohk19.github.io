@@ -335,7 +335,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-01-12 11:57:32 / 修改时间：13:45:24" itemprop="dateCreated datePublished" datetime="2022-01-12T11:57:32+08:00">2022-01-12</time>
+              <time title="创建时间：2022-01-12 11:57:32 / 修改时间：14:43:41" itemprop="dateCreated datePublished" datetime="2022-01-12T11:57:32+08:00">2022-01-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -353,7 +353,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -372,7 +372,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a target="_blank" rel="noopener" href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
+<h4 id="2-Docker概念"><a href="#2-Docker概念" class="headerlink" title="2.Docker概念"></a>2.Docker概念</h4><h5 id="2-1-Docker的结构"><a href="#2-1-Docker的结构" class="headerlink" title="2.1 Docker的结构"></a>2.1 Docker的结构</h5><p>$$<br>docker\begin{cases}image \begin{cases}container \cr container \cr … \end{cases}   \cr image \cr …\end{cases}<br>$$</p>
+<h5 id="2-2-Docker的小概念"><a href="#2-2-Docker的小概念" class="headerlink" title="2.2 Docker的小概念"></a>2.2 Docker的小概念</h5><p>采用相同的image（镜像）生成的container（容器）配置都相同。</p>
+<p>每个container都是完全独立的云端服务器，docker管理image时会采取空间优化。</p>
+<p>未来如果需要迁移container，可以先生成image（可下载到其他服务器加载）</p>
+<h4 id="3-Docker-Images"><a href="#3-Docker-Images" class="headerlink" title="3.Docker Images"></a>3.Docker Images</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:20.04 <span class="comment">#可以拉取一个镜像 name:tag</span></span><br><span class="line"></span><br><span class="line">docker images <span class="comment">#查看目前存在的image</span></span><br><span class="line"></span><br><span class="line">docker rmi &lt;imageName&gt; <span class="comment">#便可删除对应镜像</span></span><br><span class="line"></span><br><span class="line">docker save -o ubuntu_20_04.tar ubuntu:20.04 <span class="comment">#保存镜像,可以用ls -l查看权限</span></span><br><span class="line"><span class="comment"># 查看权限后发现仅自己有可读写权限，因此需要添加权限</span></span><br><span class="line"></span><br><span class="line">docker load -i ubuntu_20_04.tar <span class="comment">#读取生成镜像</span></span><br><span class="line"><span class="comment">#可以将原镜像删去再检验</span></span><br></pre></td></tr></table></figure>
+
+<p>自此通过scp命令可以实现不同服务器的镜像迁移</p>
+<h4 id="4-Docker-Container"><a href="#4-Docker-Container" class="headerlink" title="4.Docker Container"></a>4.Docker Container</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">docker create -it ubuntu:20.04 <span class="comment">#利用image生成container</span></span><br><span class="line"></span><br><span class="line">docker ps -a <span class="comment">#查看创建了的容器，无a则展示正在运行的</span></span><br><span class="line"></span><br><span class="line">docker start CONTAINER_ID <span class="comment">#启动容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker stop CONTAINER_ID <span class="comment">#停止容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker restart CONTAINER_ID <span class="comment">#重启</span></span><br><span class="line"></span><br><span class="line">docker run -itd ubuntu:20.04 <span class="comment">#创建并启动container</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#CONTAINER_ID 与 CONTAINER_NAME 都可以，下面用CONTAINER代替</span></span><br><span class="line"></span><br><span class="line">docker attach CONTAINER <span class="comment">#进入容器，前提是已启动，默认root</span></span><br><span class="line"><span class="comment">#想退出？ ctrl+p 再 ctrl+q, ctrl+q是用于挂起，否则直接关闭</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> CONTAINER COMMAND <span class="comment">#在某容器内执行命令，!!!容器必须运行</span></span><br><span class="line"></span><br><span class="line">docker rm CONTAINER <span class="comment">#删除容器，注意rmi与rm的区别</span></span><br><span class="line"><span class="comment">#删除前要停止容器，全删除已停止的容器为docker container prune</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> -o xxx.tar CONTAINER <span class="comment">#不保存历史记录等，占用内存比save更少</span></span><br><span class="line"><span class="comment">#注意添加可读权限</span></span><br><span class="line"></span><br><span class="line">docker import xxx.tar ubuntu:20.04 <span class="comment">#导入，实现容器到其他服务器镜像的迁移</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#剩下的都是一些小操作</span></span><br><span class="line">docker top CONTAINER <span class="comment">#查看容器的的所有进程</span></span><br><span class="line">docker stats <span class="comment">#查看所有容器的信息cpu等</span></span><br><span class="line">docker cp xxx CONTAINER:XXX <span class="comment">#本地与容器之间传递信息</span></span><br><span class="line">docker rename CONTAINER1 CONTAINER2 <span class="comment">#重命名</span></span><br><span class="line">docker update CONTAINER --XXX XXX <span class="comment">#更新各种参数</span></span><br></pre></td></tr></table></figure>
+
+
       
     </div>
 
@@ -822,13 +832,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">3k</span>
+    <span title="站点总字数">4k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3 分钟</span>
+    <span title="站点阅读时长">4 分钟</span>
 </div>
 
         
