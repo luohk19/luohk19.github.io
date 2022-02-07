@@ -1271,7 +1271,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #74ff5b;
+  background: #ff79ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2795,7 +2795,7 @@ mjx-container + br {
   padding: 0;
 }
 body {
-  background: url("../images/road.jpg") no-repeat;
+  background: url("../images/road.jpg") fixed;
   background-size: 100%;
 }
 .content-wrap {
