@@ -1271,7 +1271,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #941f9c;
+  background: #ffd028;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2795,7 +2795,7 @@ mjx-container + br {
   padding: 0;
 }
 body {
-  background: url("../images/road.jpg") fixed cover;
+  background: url("../images/road.jpg") fixed;
   background-position: 50% 50%;
 }
 .content-wrap {
@@ -2811,7 +2811,7 @@ body {
   opacity: 0.9;
 }
 li.my-links-of-blogroll-item {
-  text-align: cengter;
+  text-align: center;
   display: block;
   word-break: keep-all;
   white-space: nowrap;
