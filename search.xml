@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>firstOne</title>
+    <url>/2022/01/09/1/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+  </entry>
+  <entry>
     <title>linux常用命令</title>
     <url>/2022/01/12/Linux%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h4 id="1-系统状况"><a href="#1-系统状况" class="headerlink" title="1.系统状况"></a>1.系统状况</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top # 查看所有进程的信息，M按内存排序，p按cpu排序</span><br><span class="line">df -h # 查看硬盘使用情况</span><br><span class="line">free -h # 查看内存使用情况</span><br><span class="line">du -sh # 查看当前目录占用的硬盘空间</span><br><span class="line">ps aux # 查看所有进程</span><br><span class="line">kill -9 pid # 杀死编号pid的进程</span><br><span class="line">netstat -nt #查看所有网络连接</span><br><span class="line">w #列出当前登录的用户</span><br><span class="line">ping www.baidu.com # 检查是否联网</span><br></pre></td></tr></table></figure>
@@ -18,14 +26,6 @@
       <tags>
         <tag>linux命令</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>firstOne</title>
-    <url>/2022/01/09/1/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
   </entry>
   <entry>
     <title>bash</title>
@@ -65,6 +65,49 @@
       </tags>
   </entry>
   <entry>
+    <title>django后端AI训练</title>
+    <url>/2022/01/12/django/</url>
+    <content><![CDATA[<h4 id="1-初始配置"><a href="#1-初始配置" class="headerlink" title="1.初始配置"></a>1.初始配置</h4><p>如果想完美贴合本次教程的环境，可以联系作者发送docker文件以确保环境相同。</p>
+<p>在此之前若未安装docker可以先安装，安装教程<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">如此</a>，docker的使用教程[如此](<a href="https://luohk19.github.io/2022/01/12/docker/">docker使用 | luohk19</a>)。</p>
+<p>安装镜像后，创建容器，开启项目，配置git</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">django-admin --version #检查是否安装</span><br><span class="line"></span><br><span class="line">django-admin startproject mysite #创建项目 xxx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看目录</span></span><br><span class="line">mysite/ #项目容器，可以随时改名</span><br><span class="line">	manage.py/ # 管理项目的命令行工具</span><br><span class="line">	mysite/ </span><br><span class="line">		__init__.py # 告诉python这个目录要被认为是一个包</span><br><span class="line">		settings.py # 配置文件</span><br><span class="line">		urls.py	# 路由文件</span><br><span class="line">		asgi.py # asgi在web服务器上的入口</span><br><span class="line">		wsgi.py # wsgi在web服务器上的入口</span><br><span class="line"></span><br><span class="line">git init #创建git环境</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-开始"><a href="#2-开始" class="headerlink" title="2.开始"></a>2.开始</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#初始运行</span></span><br><span class="line">python3 manage.py runserver <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">8000</span></span><br><span class="line"><span class="comment">#当用本地的host访问时会报错，需要在/acapp/settings.py内添加对应的allowed_hosts</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建app</span></span><br><span class="line">python3 manage.py startapp game</span><br><span class="line"></span><br><span class="line"><span class="comment">#及时更新</span></span><br><span class="line">python3 manage.py migrate</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建管理员用户</span></span><br><span class="line">python3 manage.py createsuperuser <span class="comment">#随后打开host:port/admin登录</span></span><br><span class="line"><span class="comment">#随后创建urls.py,templates文件夹</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建路由"><a href="#3-创建路由" class="headerlink" title="3.创建路由"></a>3.创建路由</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在game app内创建的urls.py 中仿照总acapp内的urls.py 写url</span></span><br><span class="line"><span class="comment"># 最后在总的urls内添加对应的path</span></span><br><span class="line">```game/urls.py</span><br><span class="line"><span class="keyword">import</span> game.views <span class="keyword">import</span> index</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, index, name=<span class="string">&quot;index&quot;</span>)</span><br><span class="line">]</span><br><span class="line">```</span><br><span class="line">```game/views.py</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;hello World!&#x27;</span>)</span><br><span class="line">```</span><br><span class="line">```acapp/urls.py</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;game/&#x27;</span>, include(<span class="string">&#x27;game.urls&#x27;</span>)), <span class="comment">#当只有一个app时不需要写&#x27;game/&#x27;</span></span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-储存数据"><a href="#4-储存数据" class="headerlink" title="4.储存数据"></a>4.储存数据</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要在mysite的settings.py文件夹中加入，指示静态数据的位置</span></span><br><span class="line">STATIC_ROOT = os.path.join(BASE_DIR, <span class="string">&#x27;static&#x27;</span>) <span class="comment">#在lenet下创建static文件夹</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">&#x27;media&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>django</tag>
+        <tag>后端</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/01/08/hello-world/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
+  <script id="hbeData" type="hbeData" data-hmacdigest="60d335b7180a6957abe64f977aafef3d3a993b5bff30507ffd9f3e75ef7790de">10d79030e8222445804370796b90fca1fcf46a07b5ecf341c635269a7fe842f80cf07e697ff3618a365f409d43ee2a0b71169e7502cdfd2ac90458dd940f8bc9dffd4520316db24d3e303037ca2d5032e72bf872f07e40dbb3cf3ace773ac1c9</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>private</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker使用</title>
     <url>/2022/01/12/docker/</url>
     <content><![CDATA[<h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
@@ -89,22 +132,14 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/01/08/hello-world/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
-  <script id="hbeData" type="hbeData" data-hmacdigest="60d335b7180a6957abe64f977aafef3d3a993b5bff30507ffd9f3e75ef7790de">10d79030e8222445804370796b90fca1fcf46a07b5ecf341c635269a7fe842f80cf07e697ff3618a365f409d43ee2a0b71169e7502cdfd2ac90458dd940f8bc9dffd4520316db24d3e303037ca2d5032e72bf872f07e40dbb3cf3ace773ac1c9</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    <title>汇编第一天</title>
+    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day1/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
       <tags>
-        <tag>private</tag>
+        <tag>汇编</tag>
       </tags>
   </entry>
   <entry>
@@ -136,30 +171,6 @@
       </categories>
       <tags>
         <tag>server</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>django后端AI训练</title>
-    <url>/2022/01/12/django/</url>
-    <content><![CDATA[<h4 id="1-初始配置"><a href="#1-初始配置" class="headerlink" title="1.初始配置"></a>1.初始配置</h4><p>如果想完美贴合本次教程的环境，可以联系作者发送docker文件以确保环境相同。</p>
-<p>在此之前若未安装docker可以先安装，安装教程<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">如此</a>，docker的使用教程[如此](<a href="https://luohk19.github.io/2022/01/12/docker/">docker使用 | luohk19</a>)。</p>
-<p>安装镜像后，创建容器，开启项目，配置git</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">django-admin --version #检查是否安装</span><br><span class="line"></span><br><span class="line">django-admin startproject mysite #创建项目 xxx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看目录</span></span><br><span class="line">mysite/ #项目容器，可以随时改名</span><br><span class="line">	manage.py/ # 管理项目的命令行工具</span><br><span class="line">	mysite/ </span><br><span class="line">		__init__.py # 告诉python这个目录要被认为是一个包</span><br><span class="line">		settings.py # 配置文件</span><br><span class="line">		urls.py	# 路由文件</span><br><span class="line">		asgi.py # asgi在web服务器上的入口</span><br><span class="line">		wsgi.py # wsgi在web服务器上的入口</span><br><span class="line"></span><br><span class="line">git init #创建git环境</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-开始"><a href="#2-开始" class="headerlink" title="2.开始"></a>2.开始</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#初始运行</span></span><br><span class="line">python3 manage.py runserver <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">8000</span></span><br><span class="line"><span class="comment">#当用本地的host访问时会报错，需要在/acapp/settings.py内添加对应的allowed_hosts</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建app</span></span><br><span class="line">python3 manage.py startapp game</span><br><span class="line"></span><br><span class="line"><span class="comment">#及时更新</span></span><br><span class="line">python3 manage.py migrate</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建管理员用户</span></span><br><span class="line">python3 manage.py createsuperuser <span class="comment">#随后打开host:port/admin登录</span></span><br><span class="line"><span class="comment">#随后创建urls.py,templates文件夹</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-创建路由"><a href="#3-创建路由" class="headerlink" title="3.创建路由"></a>3.创建路由</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在game app内创建的urls.py 中仿照总acapp内的urls.py 写url</span></span><br><span class="line"><span class="comment"># 最后在总的urls内添加对应的path</span></span><br><span class="line">```game/urls.py</span><br><span class="line"><span class="keyword">import</span> game.views <span class="keyword">import</span> index</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, index, name=<span class="string">&quot;index&quot;</span>)</span><br><span class="line">]</span><br><span class="line">```</span><br><span class="line">```game/views.py</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;hello World!&#x27;</span>)</span><br><span class="line">```</span><br><span class="line">```acapp/urls.py</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;game/&#x27;</span>, include(<span class="string">&#x27;game.urls&#x27;</span>)), <span class="comment">#当只有一个app时不需要写&#x27;game/&#x27;</span></span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-储存数据"><a href="#4-储存数据" class="headerlink" title="4.储存数据"></a>4.储存数据</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要在mysite的settings.py文件夹中加入，指示静态数据的位置</span></span><br><span class="line">STATIC_ROOT = os.path.join(BASE_DIR, <span class="string">&#x27;static&#x27;</span>) <span class="comment">#在lenet下创建static文件夹</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">&#x27;media&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>django</tag>
-        <tag>后端</tag>
-        <tag>docker</tag>
       </tags>
   </entry>
 </search>
