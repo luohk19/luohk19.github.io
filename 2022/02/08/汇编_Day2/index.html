@@ -36,16 +36,17 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="今后本博客将会记载学习笔记、科研感想等">
+  <meta name="description" content="1. Direct Memory Operand12345.datavar1 BYTE 10h.codemov al, var1mov al, [var1]  1.1 mov instruction12345678.datacount BYTE 100wVal WORD 2.code	mov bl, count	mov ax, wVal	mov count, al; 需要控制大小  为解决以上需要">
 <meta property="og:type" content="article">
-<meta property="og:title" content="luohk19">
+<meta property="og:title" content="汇编第二天">
 <meta property="og:url" content="http://example.com/2022/02/08/%E6%B1%87%E7%BC%96_Day2/index.html">
 <meta property="og:site_name" content="luohk19">
-<meta property="og:description" content="今后本博客将会记载学习笔记、科研感想等">
+<meta property="og:description" content="1. Direct Memory Operand12345.datavar1 BYTE 10h.codemov al, var1mov al, [var1]  1.1 mov instruction12345678.datacount BYTE 100wVal WORD 2.code	mov bl, count	mov ax, wVal	mov count, al; 需要控制大小  为解决以上需要">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-08T06:17:05.309Z">
-<meta property="article:modified_time" content="2022-02-08T06:17:05.309Z">
+<meta property="article:modified_time" content="2022-02-08T07:55:40.553Z">
 <meta property="article:author" content="luohk">
+<meta property="article:tag" content="汇编">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/2022/02/08/%E6%B1%87%E7%BC%96_Day2/">
@@ -61,7 +62,7 @@
   };
 </script>
 
-  <title> | luohk19</title>
+  <title>汇编第二天 | luohk19</title>
   
 
 
@@ -225,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          汇编第二天
         </h1>
 
         <div class="post-meta">
@@ -234,8 +235,18 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-02-08 14:17:05" itemprop="dateCreated datePublished" datetime="2022-02-08T14:17:05+08:00">2022-02-08</time>
+              <time title="创建时间：2022-02-08 14:17:05 / 修改时间：15:55:40" itemprop="dateCreated datePublished" datetime="2022-02-08T14:17:05+08:00">2022-02-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B1%87%E7%BC%96/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a>
+                </span>
             </span>
 
           
@@ -251,14 +262,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>2.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -270,7 +281,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h2 id="1-Direct-Memory-Operand"><a href="#1-Direct-Memory-Operand" class="headerlink" title="1. Direct Memory Operand"></a>1. Direct Memory Operand</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">var1 BYTE 10h</span><br><span class="line">.code</span><br><span class="line">mov al, var1</span><br><span class="line">mov al, [var1]</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-mov-instruction"><a href="#1-1-mov-instruction" class="headerlink" title="1.1 mov instruction"></a>1.1 mov instruction</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">count BYTE 100</span><br><span class="line">wVal WORD 2</span><br><span class="line">.code</span><br><span class="line">	mov bl, count</span><br><span class="line">	mov ax, wVal</span><br><span class="line">	mov count, al</span><br><span class="line">; 需要控制大小</span><br></pre></td></tr></table></figure>
+
+<p>为解决以上需要控制大小的问题，引入了以下两种操作：</p>
+<ol>
+<li>movzx 用0填补空缺</li>
+<li>movsx 用1填补空缺</li>
+</ol>
+<h4 id="1-2-xchg-instruction"><a href="#1-2-xchg-instruction" class="headerlink" title="1.2 xchg instruction"></a>1.2 xchg instruction</h4><p>至少有一个register</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">var1 WORD 1000h</span><br><span class="line">var2 WORD 2000h</span><br><span class="line">.code</span><br><span class="line">xchg ax, bx</span><br><span class="line">xchg var1, bx</span><br><span class="line">xchg ah, al</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Direct-Offset-Operands"><a href="#2-Direct-Offset-Operands" class="headerlink" title="2. Direct-Offset Operands"></a>2. Direct-Offset Operands</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayB BYTE 10h, 20h, 30h, 40h</span><br><span class="line">.code</span><br><span class="line">mov al, arrayB+1 ; al = 20h</span><br><span class="line">mov al, [arrayB + 1] ; al = 20h</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-addition-and-subtraction"><a href="#3-addition-and-subtraction" class="headerlink" title="3. addition and subtraction"></a>3. addition and subtraction</h2><h4 id="3-1-inc-and-dec"><a href="#3-1-inc-and-dec" class="headerlink" title="3.1    inc and dec"></a>3.1    inc and dec</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">	myWord WORD 1000h</span><br><span class="line">	myDword DWORD 10000000h</span><br><span class="line">.code</span><br><span class="line">	inc myWord	;1001h</span><br><span class="line">	dec myWord	;1000h</span><br><span class="line">	inc myDword ;10000001h</span><br><span class="line">	</span><br><span class="line">	mov ax, 00FFh</span><br><span class="line">	inc ax ; ax = 0100h</span><br><span class="line">	mov ax, 00FFh</span><br><span class="line">	inc al ; ax = 0000h</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-add-and-sub"><a href="#3-2-add-and-sub" class="headerlink" title="3.2    add and sub"></a>3.2    add and sub</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">	var1 DWORD 10000h</span><br><span class="line">	var2 DWORD 20000h</span><br><span class="line">.code				; ---EAX---</span><br><span class="line">	mov eax, var1	; 10000h</span><br><span class="line">	add eax, var2	; 30000h</span><br><span class="line">	add ax, 0FFFFh	; 3FFFFh</span><br><span class="line">	add eax, 1		; 40000h</span><br><span class="line">	sub ax, 1		; 4FFFFh</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-neg-instruction"><a href="#3-3-neg-instruction" class="headerlink" title="3.3    neg instruction"></a>3.3    neg instruction</h4><p>to reverse the sign of an operand</p>
+<h4 id="3-4-flags"><a href="#3-4-flags" class="headerlink" title="3.4    flags"></a>3.4    flags</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">; zero flag (ZF), when ans = 0, ZF = 1</span><br><span class="line">; sign flag (SF), When ans &lt; 0, SF = 1</span><br><span class="line">; carry flag (CF), when ans generates an unsigned value that&#x27;s out of range.</span><br><span class="line">; overflow flag (OF), change above unsigned to signed</span><br><span class="line"></span><br><span class="line">overflow flag changes when two positives or negatives add together.</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Data-Related-Operators-and-Directives"><a href="#4-Data-Related-Operators-and-Directives" class="headerlink" title="4. Data-Related Operators and Directives"></a>4. Data-Related Operators and Directives</h2><h4 id="4-1-offset-operator"><a href="#4-1-offset-operator" class="headerlink" title="4.1    offset operator"></a>4.1    offset operator</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">; example of offset</span><br><span class="line">.data</span><br><span class="line">bVal BYTE ?</span><br><span class="line">wVal BYTE ?</span><br><span class="line">dVal BYTE ?</span><br><span class="line">dVal2 BYTE ?</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET bVal	; ESI = 00404000h</span><br><span class="line">mov esi, OFFSET wVal	; ESI = 00404001h</span><br><span class="line">mov esi, OFFSET dVal	; ESI = 00404003h</span><br><span class="line">mov esi, OFFSET dVal2	; ESI = 00404007h</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-PTR-Operator"><a href="#4-2-PTR-Operator" class="headerlink" title="4.2    PTR Operator"></a>4.2    PTR Operator</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">myDouble DWORD 12345678h</span><br><span class="line">.code</span><br><span class="line">mov ax, myDouble	; error</span><br><span class="line">mov ax, WORD PTR myDouble	; loads 5678h</span><br><span class="line">mov WORD PTR myDouble, 4321h; saves 4321h</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">myDouble DWORD 12345678h</span><br><span class="line">,code</span><br><span class="line">mov al, BYTE PTR myDouble	; AL = </span><br><span class="line">mov al, BYTE PTR [myDouble + 1] ; +1是按byte加的, 与array区分开来</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-LENGTHOF-Operator"><a href="#4-3-LENGTHOF-Operator" class="headerlink" title="4.3    LENGTHOF Operator"></a>4.3    LENGTHOF Operator</h4><p>计算元素的个数，而非字节数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">byte1 BYTE 10,20,30</span><br><span class="line">array1 WORD 30 DUP(?), 0, 0</span><br><span class="line">.code</span><br><span class="line">mov ecx, LENGTHOF array1 ;32</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-SIZEOF-Operator"><a href="#4-4-SIZEOF-Operator" class="headerlink" title="4.4    SIZEOF Operator"></a>4.4    SIZEOF Operator</h4><p>计算的字节数大小</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">byte1 BYTE 10,20,30</span><br><span class="line">array1 WORD 30 DUP(?), 0, 0</span><br><span class="line">.code</span><br><span class="line">mov ecx, SIZEOF array1 ;64</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-LABEL-Directive"><a href="#4-5-LABEL-Directive" class="headerlink" title="4.5 LABEL Directive"></a>4.5 LABEL Directive</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">dwList LABEL DWORD</span><br><span class="line">wordList LABEL WORD</span><br><span class="line">intList BYTE 00h, 10h, 00h, 20h</span><br><span class="line">.code</span><br><span class="line">mov eax, dwList</span><br><span class="line">mov cx, wordList</span><br><span class="line">mov dl, intList</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Indirect-Addressing"><a href="#5-Indirect-Addressing" class="headerlink" title="5. Indirect Addressing"></a>5. Indirect Addressing</h2><h4 id="5-1-使用-来间接寻址"><a href="#5-1-使用-来间接寻址" class="headerlink" title="5.1 使用[]来间接寻址"></a>5.1 使用[]来间接寻址</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">val1 BYTE 10h, 20h, 30h</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET val1</span><br><span class="line">mov al, [esi]</span><br><span class="line">inc esi</span><br><span class="line">mov al, [esi]</span><br><span class="line">inc esi</span><br><span class="line">mov al, [esi]</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-使用PTR来确定"><a href="#5-2-使用PTR来确定" class="headerlink" title="5.2 使用PTR来确定"></a>5.2 使用PTR来确定</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">myCount WORD 0</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET myCount</span><br><span class="line">inc [esi] ;error: ambiguous</span><br><span class="line">inc WORD PTR [esi] ;ok</span><br></pre></td></tr></table></figure>
+
+<p>example</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayW WORD 1000h, 2000h, 3000h</span><br><span class="line">.code</span><br><span class="line">mov esi, 0</span><br><span class="line">mov ax, [arrayW + esi]</span><br><span class="line">mov ax, arrayW[esi]		;alternate format</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-Index-Scaling"><a href="#5-3-Index-Scaling" class="headerlink" title="5.3 Index Scaling"></a>5.3 Index Scaling</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayB BYTE 0,1,2,3,4,5</span><br><span class="line">arrayW WORD 0,1,2,3,4,5</span><br><span class="line">arrayD DWORD 0,1,2,3,4,5</span><br><span class="line">.code</span><br><span class="line">mov esi, 4</span><br><span class="line">mov al, arrayB[esi * TYPE arrayB]</span><br><span class="line">mov ax, arrayW[esi * TYPE arrayW]</span><br><span class="line">mov eax, arrayD[esi * TYPE arrayD]</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-4-pointers"><a href="#5-4-pointers" class="headerlink" title="5.4 pointers"></a>5.4 pointers</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayW WORD 1000h, 2000h, 3000h</span><br><span class="line">ptrW DWORD arrayD ; ptrW DWORD OFFSET arrayD an alternate format</span><br><span class="line">.code</span><br><span class="line">mov esi, ptrW</span><br><span class="line">mov ax, [esi]</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-JMP-and-Loop-Instructions"><a href="#6-JMP-and-Loop-Instructions" class="headerlink" title="6. JMP and Loop Instructions"></a>6. JMP and Loop Instructions</h2><h4 id="6-1-JMP-Instruction"><a href="#6-1-JMP-Instruction" class="headerlink" title="6.1 JMP Instruction"></a>6.1 JMP Instruction</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">top:</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	jmp top</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-Loop-Instruction"><a href="#6-2-Loop-Instruction" class="headerlink" title="6.2 Loop Instruction"></a>6.2 Loop Instruction</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	mov ax, 0</span><br><span class="line">	mov ecx, 5</span><br><span class="line">L1: add ax, cx</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></figure>
+
+<p>关注ecx寄存器，当其为0时退出</p>
+<h4 id="6-3-Nested-Loop"><a href="#6-3-Nested-Loop" class="headerlink" title="6.3 Nested Loop"></a>6.3 Nested Loop</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">count DWORD ?</span><br><span class="line">.code</span><br><span class="line">	mov ecx, 100</span><br><span class="line">L1:</span><br><span class="line">	mov count, ecx</span><br><span class="line">	mov ecx, 20</span><br><span class="line">L2:	.</span><br><span class="line">	.</span><br><span class="line">	loop L2</span><br><span class="line">	mov ecx, count</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></figure>
+
+
     </div>
 
     
@@ -288,6 +350,9 @@
       </div>
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B1%87%E7%BC%96/" rel="tag"># 汇编</a>
+          </div>
 
         
 
@@ -357,6 +422,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Direct-Memory-Operand"><span class="nav-number">1.</span> <span class="nav-text">1. Direct Memory Operand</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-mov-instruction"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.1 mov instruction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-xchg-instruction"><span class="nav-number">1.0.2.</span> <span class="nav-text">1.2 xchg instruction</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Direct-Offset-Operands"><span class="nav-number">2.</span> <span class="nav-text">2. Direct-Offset Operands</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-addition-and-subtraction"><span class="nav-number">3.</span> <span class="nav-text">3. addition and subtraction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-inc-and-dec"><span class="nav-number">3.0.1.</span> <span class="nav-text">3.1    inc and dec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-add-and-sub"><span class="nav-number">3.0.2.</span> <span class="nav-text">3.2    add and sub</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-neg-instruction"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.3    neg instruction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-flags"><span class="nav-number">3.0.4.</span> <span class="nav-text">3.4    flags</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Data-Related-Operators-and-Directives"><span class="nav-number">4.</span> <span class="nav-text">4. Data-Related Operators and Directives</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-offset-operator"><span class="nav-number">4.0.1.</span> <span class="nav-text">4.1    offset operator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-PTR-Operator"><span class="nav-number">4.0.2.</span> <span class="nav-text">4.2    PTR Operator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-LENGTHOF-Operator"><span class="nav-number">4.0.3.</span> <span class="nav-text">4.3    LENGTHOF Operator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-SIZEOF-Operator"><span class="nav-number">4.0.4.</span> <span class="nav-text">4.4    SIZEOF Operator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-LABEL-Directive"><span class="nav-number">4.0.5.</span> <span class="nav-text">4.5 LABEL Directive</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Indirect-Addressing"><span class="nav-number">5.</span> <span class="nav-text">5. Indirect Addressing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E4%BD%BF%E7%94%A8-%E6%9D%A5%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="nav-number">5.0.1.</span> <span class="nav-text">5.1 使用[]来间接寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E4%BD%BF%E7%94%A8PTR%E6%9D%A5%E7%A1%AE%E5%AE%9A"><span class="nav-number">5.0.2.</span> <span class="nav-text">5.2 使用PTR来确定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-Index-Scaling"><span class="nav-number">5.0.3.</span> <span class="nav-text">5.3 Index Scaling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-pointers"><span class="nav-number">5.0.4.</span> <span class="nav-text">5.4 pointers</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-JMP-and-Loop-Instructions"><span class="nav-number">6.</span> <span class="nav-text">6. JMP and Loop Instructions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-JMP-Instruction"><span class="nav-number">6.0.1.</span> <span class="nav-text">6.1 JMP Instruction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-Loop-Instruction"><span class="nav-number">6.0.2.</span> <span class="nav-text">6.2 Loop Instruction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-Nested-Loop"><span class="nav-number">6.0.3.</span> <span class="nav-text">6.3 Nested Loop</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -408,8 +474,8 @@
 	</div>
 	<ul class="links-of-blogroll-list recent-posts-list">
 	        <li class="my-links-of-blogroll-item">
-		    <a href="/2022/02/08/%E6%B1%87%E7%BC%96_Day2/" title="" target="">
-		    
+		    <a href="/2022/02/08/%E6%B1%87%E7%BC%96_Day2/" title="汇编第二天" target="">
+		    汇编第二天
 		    </a>
 		</li>
 	        <li class="my-links-of-blogroll-item">
@@ -465,13 +531,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">9k</span>
+    <span title="站点总字数">11k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8 分钟</span>
+    <span title="站点阅读时长">10 分钟</span>
 </div>
 
         
