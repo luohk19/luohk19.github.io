@@ -65,30 +65,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker使用</title>
-    <url>/2022/01/12/docker/</url>
-    <content><![CDATA[<h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
-<h4 id="2-Docker概念"><a href="#2-Docker概念" class="headerlink" title="2.Docker概念"></a>2.Docker概念</h4><h5 id="2-1-Docker的结构"><a href="#2-1-Docker的结构" class="headerlink" title="2.1 Docker的结构"></a>2.1 Docker的结构</h5><p>$docker\begin{cases}image \begin{cases}container \cr container \cr … \end{cases}   \cr image \cr …\end{cases}$</p>
-<h5 id="2-2-Docker的小概念"><a href="#2-2-Docker的小概念" class="headerlink" title="2.2 Docker的小概念"></a>2.2 Docker的小概念</h5><p>采用相同的image（镜像）生成的container（容器）配置都相同。</p>
-<p>每个container都是完全独立的云端服务器，docker管理image时会采取空间优化。</p>
-<p>未来如果需要迁移container，可以先生成image（可下载到其他服务器加载）</p>
-<h4 id="3-Docker-Images"><a href="#3-Docker-Images" class="headerlink" title="3.Docker Images"></a>3.Docker Images</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu:20.04 <span class="comment">#可以拉取一个镜像 name:tag</span></span><br><span class="line"></span><br><span class="line">docker images <span class="comment">#查看目前存在的image</span></span><br><span class="line"></span><br><span class="line">docker rmi &lt;imageName&gt; <span class="comment">#便可删除对应镜像</span></span><br><span class="line"></span><br><span class="line">docker save -o ubuntu_20_04.tar ubuntu:20.04 <span class="comment">#保存镜像,可以用ls -l查看权限</span></span><br><span class="line"><span class="comment"># 查看权限后发现仅自己有可读写权限，因此需要添加权限</span></span><br><span class="line"></span><br><span class="line">docker load -i ubuntu_20_04.tar <span class="comment">#读取生成镜像</span></span><br><span class="line"><span class="comment">#可以将原镜像删去再检验</span></span><br></pre></td></tr></table></figure>
-
-<p>自此通过scp命令可以实现不同服务器的镜像迁移</p>
-<h4 id="4-Docker-Container"><a href="#4-Docker-Container" class="headerlink" title="4.Docker Container"></a>4.Docker Container</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create -it ubuntu:20.04 <span class="comment">#利用image生成container</span></span><br><span class="line"></span><br><span class="line">docker ps -a <span class="comment">#查看创建了的容器，无a则展示正在运行的</span></span><br><span class="line"></span><br><span class="line">docker start CONTAINER_ID <span class="comment">#启动容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker stop CONTAINER_ID <span class="comment">#停止容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker restart CONTAINER_ID <span class="comment">#重启</span></span><br><span class="line"></span><br><span class="line">docker run -itd ubuntu:20.04 <span class="comment">#创建并启动container</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#CONTAINER_ID 与 CONTAINER_NAME 都可以，下面用CONTAINER代替</span></span><br><span class="line"></span><br><span class="line">docker attach CONTAINER <span class="comment">#进入容器，前提是已启动，默认root</span></span><br><span class="line"><span class="comment">#想退出？ ctrl+p 再 ctrl+q, ctrl+q是用于挂起，否则直接关闭</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> CONTAINER COMMAND <span class="comment">#在某容器内执行命令，!!!容器必须运行</span></span><br><span class="line"></span><br><span class="line">docker rm CONTAINER <span class="comment">#删除容器，注意rmi与rm的区别</span></span><br><span class="line"><span class="comment">#删除前要停止容器，全删除已停止的容器为docker container prune</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> -o xxx.tar CONTAINER <span class="comment">#不保存历史记录等，占用内存比save更少</span></span><br><span class="line"><span class="comment">#注意添加可读权限</span></span><br><span class="line"></span><br><span class="line">docker import xxx.tar ubuntu:20.04 <span class="comment">#导入，实现容器到其他服务器镜像的迁移</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#剩下的都是一些小操作</span></span><br><span class="line">docker top CONTAINER <span class="comment">#查看容器的的所有进程</span></span><br><span class="line">docker stats <span class="comment">#查看所有容器的信息cpu等</span></span><br><span class="line">docker cp xxx CONTAINER:XXX <span class="comment">#本地与容器之间传递信息</span></span><br><span class="line">docker rename CONTAINER1 CONTAINER2 <span class="comment">#重命名</span></span><br><span class="line">docker update CONTAINER --XXX XXX <span class="comment">#更新各种参数</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="5-对于vscode"><a href="#5-对于vscode" class="headerlink" title="5.对于vscode"></a>5.对于vscode</h4><p>在docker挂起时，可能会发生vscode的快捷键冲突，因此需要找到左下角设置-&gt;快捷键</p>
-<p>再查找ctrl+q的快捷方式，将视图的when条件加上 !terminalFocus 便可</p>
-<p>解决方法来源于stackOverFlow</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>django后端AI训练</title>
     <url>/2022/01/12/django/</url>
     <content><![CDATA[<h4 id="1-初始配置"><a href="#1-初始配置" class="headerlink" title="1.初始配置"></a>1.初始配置</h4><p>如果想完美贴合本次教程的环境，可以联系作者发送docker文件以确保环境相同。</p>
@@ -110,6 +86,30 @@
         <tag>django</tag>
         <tag>后端</tag>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker使用</title>
+    <url>/2022/01/12/docker/</url>
+    <content><![CDATA[<h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
+<h4 id="2-Docker概念"><a href="#2-Docker概念" class="headerlink" title="2.Docker概念"></a>2.Docker概念</h4><h5 id="2-1-Docker的结构"><a href="#2-1-Docker的结构" class="headerlink" title="2.1 Docker的结构"></a>2.1 Docker的结构</h5><p>$docker\begin{cases}image \begin{cases}container \cr container \cr … \end{cases}   \cr image \cr …\end{cases}$</p>
+<h5 id="2-2-Docker的小概念"><a href="#2-2-Docker的小概念" class="headerlink" title="2.2 Docker的小概念"></a>2.2 Docker的小概念</h5><p>采用相同的image（镜像）生成的container（容器）配置都相同。</p>
+<p>每个container都是完全独立的云端服务器，docker管理image时会采取空间优化。</p>
+<p>未来如果需要迁移container，可以先生成image（可下载到其他服务器加载）</p>
+<h4 id="3-Docker-Images"><a href="#3-Docker-Images" class="headerlink" title="3.Docker Images"></a>3.Docker Images</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu:20.04 <span class="comment">#可以拉取一个镜像 name:tag</span></span><br><span class="line"></span><br><span class="line">docker images <span class="comment">#查看目前存在的image</span></span><br><span class="line"></span><br><span class="line">docker rmi &lt;imageName&gt; <span class="comment">#便可删除对应镜像</span></span><br><span class="line"></span><br><span class="line">docker save -o ubuntu_20_04.tar ubuntu:20.04 <span class="comment">#保存镜像,可以用ls -l查看权限</span></span><br><span class="line"><span class="comment"># 查看权限后发现仅自己有可读写权限，因此需要添加权限</span></span><br><span class="line"></span><br><span class="line">docker load -i ubuntu_20_04.tar <span class="comment">#读取生成镜像</span></span><br><span class="line"><span class="comment">#可以将原镜像删去再检验</span></span><br></pre></td></tr></table></figure>
+
+<p>自此通过scp命令可以实现不同服务器的镜像迁移</p>
+<h4 id="4-Docker-Container"><a href="#4-Docker-Container" class="headerlink" title="4.Docker Container"></a>4.Docker Container</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create -it ubuntu:20.04 <span class="comment">#利用image生成container</span></span><br><span class="line"></span><br><span class="line">docker ps -a <span class="comment">#查看创建了的容器，无a则展示正在运行的</span></span><br><span class="line"></span><br><span class="line">docker start CONTAINER_ID <span class="comment">#启动容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker stop CONTAINER_ID <span class="comment">#停止容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker restart CONTAINER_ID <span class="comment">#重启</span></span><br><span class="line"></span><br><span class="line">docker run -itd ubuntu:20.04 <span class="comment">#创建并启动container</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#CONTAINER_ID 与 CONTAINER_NAME 都可以，下面用CONTAINER代替</span></span><br><span class="line"></span><br><span class="line">docker attach CONTAINER <span class="comment">#进入容器，前提是已启动，默认root</span></span><br><span class="line"><span class="comment">#想退出？ ctrl+p 再 ctrl+q, ctrl+q是用于挂起，否则直接关闭</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> CONTAINER COMMAND <span class="comment">#在某容器内执行命令，!!!容器必须运行</span></span><br><span class="line"></span><br><span class="line">docker rm CONTAINER <span class="comment">#删除容器，注意rmi与rm的区别</span></span><br><span class="line"><span class="comment">#删除前要停止容器，全删除已停止的容器为docker container prune</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> -o xxx.tar CONTAINER <span class="comment">#不保存历史记录等，占用内存比save更少</span></span><br><span class="line"><span class="comment">#注意添加可读权限</span></span><br><span class="line"></span><br><span class="line">docker import xxx.tar ubuntu:20.04 <span class="comment">#导入，实现容器到其他服务器镜像的迁移</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#剩下的都是一些小操作</span></span><br><span class="line">docker top CONTAINER <span class="comment">#查看容器的的所有进程</span></span><br><span class="line">docker stats <span class="comment">#查看所有容器的信息cpu等</span></span><br><span class="line">docker cp xxx CONTAINER:XXX <span class="comment">#本地与容器之间传递信息</span></span><br><span class="line">docker rename CONTAINER1 CONTAINER2 <span class="comment">#重命名</span></span><br><span class="line">docker update CONTAINER --XXX XXX <span class="comment">#更新各种参数</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-对于vscode"><a href="#5-对于vscode" class="headerlink" title="5.对于vscode"></a>5.对于vscode</h4><p>在docker挂起时，可能会发生vscode的快捷键冲突，因此需要找到左下角设置-&gt;快捷键</p>
+<p>再查找ctrl+q的快捷方式，将视图的when条件加上 !terminalFocus 便可</p>
+<p>解决方法来源于stackOverFlow</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -161,37 +161,6 @@
       </categories>
       <tags>
         <tag>汇编</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>租服务器的环境配置</title>
-    <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
-<li><p>内存不需要买太大（1核2G），后期动态扩容</p>
-</li>
-<li><p>不用买最大带宽，按量付费更实惠</p>
-</li>
-<li><p>选择ubuntu20.04，支持后续docker</p>
-</li>
-<li><p>安全组控制能访问那些端口（起码要有22端口）ssh，在sshconfig修改允许登录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">sudo vim sshd_config</span><br></pre></td></tr></table></figure></li>
-<li><p>创建非root用户，给予sudo权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
-<p>到install Docker Engine第一步结束就可</p>
-<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不用每次都输入sudo</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>server</tag>
       </tags>
   </entry>
   <entry>
@@ -247,6 +216,61 @@
 
 <p>关注ecx寄存器，当其为0时退出</p>
 <h4 id="6-3-Nested-Loop"><a href="#6-3-Nested-Loop" class="headerlink" title="6.3 Nested Loop"></a>6.3 Nested Loop</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">count DWORD ?</span><br><span class="line">.code</span><br><span class="line">	mov ecx, 100</span><br><span class="line">L1:</span><br><span class="line">	mov count, ecx</span><br><span class="line">	mov ecx, 20</span><br><span class="line">L2:	.</span><br><span class="line">	.</span><br><span class="line">	loop L2</span><br><span class="line">	mov ecx, count</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>租服务器的环境配置</title>
+    <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
+<li><p>内存不需要买太大（1核2G），后期动态扩容</p>
+</li>
+<li><p>不用买最大带宽，按量付费更实惠</p>
+</li>
+<li><p>选择ubuntu20.04，支持后续docker</p>
+</li>
+<li><p>安全组控制能访问那些端口（起码要有22端口）ssh，在sshconfig修改允许登录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">sudo vim sshd_config</span><br></pre></td></tr></table></figure></li>
+<li><p>创建非root用户，给予sudo权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
+<p>到install Docker Engine第一步结束就可</p>
+<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不用每次都输入sudo</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编第三天</title>
+    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day3/</url>
+    <content><![CDATA[<h2 id="1-Stack-Operation"><a href="#1-Stack-Operation" class="headerlink" title="1. Stack Operation"></a>1. Stack Operation</h2><h4 id="1-1-Runtime-Stack"><a href="#1-1-Runtime-Stack" class="headerlink" title="1.1    Runtime Stack"></a>1.1    Runtime Stack</h4><ol>
+<li>top的地址大于buttom的地址</li>
+<li>受两个register管控，ss（stack segment）、esp（stack pointer）</li>
+</ol>
+<h4 id="1-2-Push-Operation"><a href="#1-2-Push-Operation" class="headerlink" title="1.2    Push Operation"></a>1.2    Push Operation</h4><p><a href="https://imgtu.com/i/H10nZ8"><img src="https://s4.ax1x.com/2022/02/08/H10nZ8.png" alt="H10nZ8.png"></a></p>
+<p>减4，即4*8=32，再÷4=8，即剩余8位，正好32位。乘8是因为1byte=8bit</p>
+<h4 id="1-3-Pop-Operation"><a href="#1-3-Pop-Operation" class="headerlink" title="1.3    Pop Operation"></a>1.3    Pop Operation</h4><p>add n to esp, 2 or 4 depends on the attribute of the operand</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">push esi</span><br><span class="line">push ecx</span><br><span class="line">push ebx</span><br><span class="line"></span><br><span class="line">mov esi, OFFSET dwordVal	; display some memory</span><br><span class="line">mov ecx, LENGTHOF dwordVal</span><br><span class="line">mov ebx, TYPE dwordVal</span><br><span class="line">call DumpMem</span><br><span class="line"></span><br><span class="line">pop	ebx</span><br><span class="line">pop exc</span><br><span class="line">pop esi</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-defining-and-using-procedures"><a href="#2-defining-and-using-procedures" class="headerlink" title="2. defining and using procedures"></a>2. defining and using procedures</h2><h4 id="2-1-creating-procedure"><a href="#2-1-creating-procedure" class="headerlink" title="2.1    creating procedure"></a>2.1    creating procedure</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
 
 ]]></content>
       <categories>
