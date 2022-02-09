@@ -232,10 +232,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-02-08 15:55:52 / 修改时间：23:20:31" itemprop="dateCreated datePublished" datetime="2022-02-08T15:55:52+08:00">2022-02-08</time>
+              <time title="创建时间：2022-02-08 15:55:52" itemprop="dateCreated datePublished" datetime="2022-02-08T15:55:52+08:00">2022-02-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-09 12:22:09" itemprop="dateModified" datetime="2022-02-09T12:22:09+08:00">2022-02-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -252,14 +258,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -306,6 +312,18 @@
 <h2 id="7-Conditional-Loop-Instruction"><a href="#7-Conditional-Loop-Instruction" class="headerlink" title="7. Conditional Loop Instruction"></a>7. Conditional Loop Instruction</h2><h4 id="LOOPZ-and-LOOPE"><a href="#LOOPZ-and-LOOPE" class="headerlink" title="LOOPZ and LOOPE"></a>LOOPZ and LOOPE</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">; if ecx &gt; 0 and ZF = 1, jump to destination</span><br><span class="line">LOOPE destination</span><br><span class="line">LOOPZ destination</span><br><span class="line">; if ecx &gt; 0 and ZF = 0, jump to destination</span><br><span class="line">LOOPNE destination</span><br><span class="line">LOOPNZ destination</span><br><span class="line"></span><br><span class="line">; Example</span><br><span class="line">.data</span><br><span class="line">array SWORD -3,-6,-1,-10,10,30,4-,4</span><br><span class="line">sentinel SWORD 0</span><br><span class="line">.code</span><br><span class="line">	mov esi, OFFSET array</span><br><span class="line">	mov ecx, LENGTHOF array</span><br><span class="line">next:</span><br><span class="line">	test WORD PTR [esi], 8000h</span><br><span class="line">	pushfd</span><br><span class="line">	add esi, TYPE array</span><br><span class="line">	popfd</span><br><span class="line">	loopnz next</span><br><span class="line">	jecxz quit</span><br><span class="line">	sub esi, TYPE array</span><br><span class="line">quit:</span><br></pre></td></tr></table></figure>
 
 <h2 id="8-Conditional-Structures"><a href="#8-Conditional-Structures" class="headerlink" title="8. Conditional Structures"></a>8. Conditional Structures</h2><h4 id="8-1-Block-Structured-IF-Statement"><a href="#8-1-Block-Structured-IF-Statement" class="headerlink" title="8.1    Block-Structured IF Statement"></a>8.1    Block-Structured IF Statement</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (op1 == op2)			</span><br><span class="line">	x = 1;					</span><br><span class="line">else						</span><br><span class="line">	x = 2;					</span><br><span class="line">.code</span><br><span class="line">	mov eax, op1</span><br><span class="line">	cmp eax, op2</span><br><span class="line">	jne L1</span><br><span class="line">	mov x, 1</span><br><span class="line">	jmp L2</span><br><span class="line">L1: mov x, 2</span><br><span class="line">L2:</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-2-Compound-Expression-with-AND"><a href="#8-2-Compound-Expression-with-AND" class="headerlink" title="8.2    Compound Expression with AND"></a>8.2    Compound Expression with AND</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">if (al &gt; bl) and (bl &gt; cl)</span><br><span class="line">	x = 1;</span><br><span class="line">; one implementation</span><br><span class="line">	cmp al, bl</span><br><span class="line">	ja L1</span><br><span class="line">	jmp next</span><br><span class="line">L1:</span><br><span class="line">	cmp bl, cl</span><br><span class="line">	ja L2</span><br><span class="line">	jmp next</span><br><span class="line">L2:</span><br><span class="line">	mov x, 1</span><br><span class="line">next:</span><br><span class="line"></span><br><span class="line">; the other implementation</span><br><span class="line">	cmp al, bl</span><br><span class="line">	jbe next</span><br><span class="line">	cmp bl, cl</span><br><span class="line">	jbe next</span><br><span class="line">	mov x, 1</span><br><span class="line">next:</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-Creating-IF-Statement"><a href="#9-Creating-IF-Statement" class="headerlink" title="9. Creating IF Statement"></a>9. Creating IF Statement</h2><h4 id="9-1-Runtime-Expression"><a href="#9-1-Runtime-Expression" class="headerlink" title="9.1    Runtime Expression"></a>9.1    Runtime Expression</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.if eax &gt; ebx &amp;&amp; eax &gt; ecx</span><br><span class="line">	mov edx, 1</span><br><span class="line">.else</span><br><span class="line">	mov edx, 2</span><br><span class="line">.endif</span><br><span class="line"></span><br><span class="line">; if 自动生成相反的命令jmp</span><br><span class="line">.data</span><br><span class="line">result DWORD ?</span><br><span class="line">.code</span><br><span class="line">mov ebx, 5</span><br><span class="line">mov eax, 6</span><br><span class="line">.if eax &gt; ebx</span><br><span class="line">	mov result, 1</span><br><span class="line">.endif</span><br><span class="line"></span><br><span class="line">	mov ebx, 5</span><br><span class="line">	mov eax, 6</span><br><span class="line">	cmp eax, ebx</span><br><span class="line">	jle @c0001</span><br><span class="line">	mov result, 1</span><br><span class="line">@c0001:</span><br><span class="line"></span><br><span class="line">; you can also prefix one of your register with the SDWORD PTR operator.</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-2-repeat-directive"><a href="#9-2-repeat-directive" class="headerlink" title="9.2    .repeat directive"></a>9.2    .repeat directive</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">; Display integers 1 - 10</span><br><span class="line">mov eax, 0</span><br><span class="line">.repeat</span><br><span class="line">	inc eax</span><br><span class="line">	call WriteDec</span><br><span class="line">	call Crlf</span><br><span class="line">.until eax == 10</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-3-while-directive"><a href="#9-3-while-directive" class="headerlink" title="9.3    .while directive"></a>9.3    .while directive</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mov eax, 0</span><br><span class="line">.while eax &lt; 10</span><br><span class="line">	inc eax</span><br><span class="line">	call WriteDec</span><br><span class="line">	call Crlf</span><br><span class="line">.endw</span><br></pre></td></tr></table></figure>
+
+
+
+
 
 
 
@@ -1383,7 +1401,7 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">14k</span>
+    <span title="站点总字数">15k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
