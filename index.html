@@ -234,7 +234,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-02-08 15:55:52 / 修改时间：17:23:05" itemprop="dateCreated datePublished" datetime="2022-02-08T15:55:52+08:00">2022-02-08</time>
+              <time title="创建时间：2022-02-08 15:55:52 / 修改时间：23:20:31" itemprop="dateCreated datePublished" datetime="2022-02-08T15:55:52+08:00">2022-02-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +252,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>976</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -292,7 +292,32 @@
 
 <h2 id="4-64bit-assembly-programming"><a href="#4-64bit-assembly-programming" class="headerlink" title="4. 64bit assembly programming"></a>4. 64bit assembly programming</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExitProcess PROTO</span><br><span class="line">WriteHex64 PROTO</span><br></pre></td></tr></table></figure>
 
-<h2 id="5-boolean-and-comparison-instruction"><a href="#5-boolean-and-comparison-instruction" class="headerlink" title="5. boolean and comparison instruction"></a>5. boolean and comparison instruction</h2>
+<h2 id="5-boolean-and-comparison-instruction"><a href="#5-boolean-and-comparison-instruction" class="headerlink" title="5. boolean and comparison instruction"></a>5. boolean and comparison instruction</h2><p>AND, OR, XOR, NOT,</p>
+<h4 id="5-1-Using-Bit-Mapped-Sets"><a href="#5-1-Using-Bit-Mapped-Sets" class="headerlink" title="5.1    Using Bit-Mapped Sets"></a>5.1    Using Bit-Mapped Sets</h4><p>like bit vectors</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">; set complement</span><br><span class="line">mov eax, SetX</span><br><span class="line">not eax</span><br><span class="line">; set Intersection</span><br><span class="line">mov eax, SetX</span><br><span class="line">and eax, SetY</span><br><span class="line">; set Union</span><br><span class="line">mov eax, setX</span><br><span class="line">or eax, setY</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-Test-Instruction"><a href="#5-2-Test-Instruction" class="headerlink" title="5.2    Test Instruction"></a>5.2    Test Instruction</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test al, 00000011b</span><br><span class="line">jz ValueNotFound</span><br><span class="line">; neither bit0 and bit1 is set</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-CMP-Instruction"><a href="#5-3-CMP-Instruction" class="headerlink" title="5.3    CMP Instruction"></a>5.3    CMP Instruction</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">; nondestructive subtraction of source from destination</span><br><span class="line">mov al, 5</span><br><span class="line">cmp al, 5 ; zero flag is set</span><br><span class="line"></span><br><span class="line">mov al, 4</span><br><span class="line">cmp al, 5 ; carry flag is set</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Conditional-Jumps"><a href="#6-Conditional-Jumps" class="headerlink" title="6. Conditional Jumps"></a>6. Conditional Jumps</h2><p>jumps based on specific flags, equality, unsigned comparisons, signed comparisons</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">; JB, JC jumps to a label if carry flag is set</span><br><span class="line">; JE, JZ jumps to a label if zero flag is set</span><br><span class="line">; JS jumps to a label if sign flag is set</span><br><span class="line">; JNE, JNZ jump to a label if zero flag is clear</span><br><span class="line">; JECXZ jumps to a label if ECX equals to zero</span><br><span class="line">; Example BT Instruction</span><br><span class="line">; copy bit n to the carry flag</span><br><span class="line">; Task: jump to label L1 if bit 9 is set</span><br><span class="line"></span><br><span class="line">bt ax, 9</span><br><span class="line">jc L1</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-Conditional-Loop-Instruction"><a href="#7-Conditional-Loop-Instruction" class="headerlink" title="7. Conditional Loop Instruction"></a>7. Conditional Loop Instruction</h2><h4 id="LOOPZ-and-LOOPE"><a href="#LOOPZ-and-LOOPE" class="headerlink" title="LOOPZ and LOOPE"></a>LOOPZ and LOOPE</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">; if ecx &gt; 0 and ZF = 1, jump to destination</span><br><span class="line">LOOPE destination</span><br><span class="line">LOOPZ destination</span><br><span class="line">; if ecx &gt; 0 and ZF = 0, jump to destination</span><br><span class="line">LOOPNE destination</span><br><span class="line">LOOPNZ destination</span><br><span class="line"></span><br><span class="line">; Example</span><br><span class="line">.data</span><br><span class="line">array SWORD -3,-6,-1,-10,10,30,4-,4</span><br><span class="line">sentinel SWORD 0</span><br><span class="line">.code</span><br><span class="line">	mov esi, OFFSET array</span><br><span class="line">	mov ecx, LENGTHOF array</span><br><span class="line">next:</span><br><span class="line">	test WORD PTR [esi], 8000h</span><br><span class="line">	pushfd</span><br><span class="line">	add esi, TYPE array</span><br><span class="line">	popfd</span><br><span class="line">	loopnz next</span><br><span class="line">	jecxz quit</span><br><span class="line">	sub esi, TYPE array</span><br><span class="line">quit:</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-Conditional-Structures"><a href="#8-Conditional-Structures" class="headerlink" title="8. Conditional Structures"></a>8. Conditional Structures</h2><h4 id="8-1-Block-Structured-IF-Statement"><a href="#8-1-Block-Structured-IF-Statement" class="headerlink" title="8.1    Block-Structured IF Statement"></a>8.1    Block-Structured IF Statement</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (op1 == op2)			</span><br><span class="line">	x = 1;					</span><br><span class="line">else						</span><br><span class="line">	x = 2;					</span><br><span class="line">.code</span><br><span class="line">	mov eax, op1</span><br><span class="line">	cmp eax, op2</span><br><span class="line">	jne L1</span><br><span class="line">	mov x, 1</span><br><span class="line">	jmp L2</span><br><span class="line">L1: mov x, 2</span><br><span class="line">L2:</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
       
     </div>
 
@@ -1358,13 +1383,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">13k</span>
+    <span title="站点总字数">14k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">11 分钟</span>
+    <span title="站点阅读时长">13 分钟</span>
 </div>
 
         

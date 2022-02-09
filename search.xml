@@ -9,30 +9,6 @@
       </categories>
   </entry>
   <entry>
-    <title>django后端AI训练</title>
-    <url>/2022/01/12/django/</url>
-    <content><![CDATA[<h4 id="1-初始配置"><a href="#1-初始配置" class="headerlink" title="1.初始配置"></a>1.初始配置</h4><p>如果想完美贴合本次教程的环境，可以联系作者发送docker文件以确保环境相同。</p>
-<p>在此之前若未安装docker可以先安装，安装教程<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">如此</a>，docker的使用教程[如此](<a href="https://luohk19.github.io/2022/01/12/docker/">docker使用 | luohk19</a>)。</p>
-<p>安装镜像后，创建容器，开启项目，配置git</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">django-admin --version #检查是否安装</span><br><span class="line"></span><br><span class="line">django-admin startproject mysite #创建项目 xxx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看目录</span></span><br><span class="line">mysite/ #项目容器，可以随时改名</span><br><span class="line">	manage.py/ # 管理项目的命令行工具</span><br><span class="line">	mysite/ </span><br><span class="line">		__init__.py # 告诉python这个目录要被认为是一个包</span><br><span class="line">		settings.py # 配置文件</span><br><span class="line">		urls.py	# 路由文件</span><br><span class="line">		asgi.py # asgi在web服务器上的入口</span><br><span class="line">		wsgi.py # wsgi在web服务器上的入口</span><br><span class="line"></span><br><span class="line">git init #创建git环境</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-开始"><a href="#2-开始" class="headerlink" title="2.开始"></a>2.开始</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#初始运行</span></span><br><span class="line">python3 manage.py runserver <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">8000</span></span><br><span class="line"><span class="comment">#当用本地的host访问时会报错，需要在/acapp/settings.py内添加对应的allowed_hosts</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建app</span></span><br><span class="line">python3 manage.py startapp game</span><br><span class="line"></span><br><span class="line"><span class="comment">#及时更新</span></span><br><span class="line">python3 manage.py migrate</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建管理员用户</span></span><br><span class="line">python3 manage.py createsuperuser <span class="comment">#随后打开host:port/admin登录</span></span><br><span class="line"><span class="comment">#随后创建urls.py,templates文件夹</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-创建路由"><a href="#3-创建路由" class="headerlink" title="3.创建路由"></a>3.创建路由</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在game app内创建的urls.py 中仿照总acapp内的urls.py 写url</span></span><br><span class="line"><span class="comment"># 最后在总的urls内添加对应的path</span></span><br><span class="line">```game/urls.py</span><br><span class="line"><span class="keyword">import</span> game.views <span class="keyword">import</span> index</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, index, name=<span class="string">&quot;index&quot;</span>)</span><br><span class="line">]</span><br><span class="line">```</span><br><span class="line">```game/views.py</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;hello World!&#x27;</span>)</span><br><span class="line">```</span><br><span class="line">```acapp/urls.py</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;game/&#x27;</span>, include(<span class="string">&#x27;game.urls&#x27;</span>)), <span class="comment">#当只有一个app时不需要写&#x27;game/&#x27;</span></span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-储存数据"><a href="#4-储存数据" class="headerlink" title="4.储存数据"></a>4.储存数据</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要在mysite的settings.py文件夹中加入，指示静态数据的位置</span></span><br><span class="line">STATIC_ROOT = os.path.join(BASE_DIR, <span class="string">&#x27;static&#x27;</span>) <span class="comment">#在lenet下创建static文件夹</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">&#x27;media&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>django</tag>
-        <tag>后端</tag>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>linux常用命令</title>
     <url>/2022/01/12/Linux%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h4 id="1-系统状况"><a href="#1-系统状况" class="headerlink" title="1.系统状况"></a>1.系统状况</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top # 查看所有进程的信息，M按内存排序，p按cpu排序</span><br><span class="line">df -h # 查看硬盘使用情况</span><br><span class="line">free -h # 查看内存使用情况</span><br><span class="line">du -sh # 查看当前目录占用的硬盘空间</span><br><span class="line">ps aux # 查看所有进程</span><br><span class="line">kill -9 pid # 杀死编号pid的进程</span><br><span class="line">netstat -nt #查看所有网络连接</span><br><span class="line">w #列出当前登录的用户</span><br><span class="line">ping www.baidu.com # 检查是否联网</span><br></pre></td></tr></table></figure>
@@ -89,6 +65,30 @@
       </tags>
   </entry>
   <entry>
+    <title>django后端AI训练</title>
+    <url>/2022/01/12/django/</url>
+    <content><![CDATA[<h4 id="1-初始配置"><a href="#1-初始配置" class="headerlink" title="1.初始配置"></a>1.初始配置</h4><p>如果想完美贴合本次教程的环境，可以联系作者发送docker文件以确保环境相同。</p>
+<p>在此之前若未安装docker可以先安装，安装教程<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">如此</a>，docker的使用教程[如此](<a href="https://luohk19.github.io/2022/01/12/docker/">docker使用 | luohk19</a>)。</p>
+<p>安装镜像后，创建容器，开启项目，配置git</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">django-admin --version #检查是否安装</span><br><span class="line"></span><br><span class="line">django-admin startproject mysite #创建项目 xxx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看目录</span></span><br><span class="line">mysite/ #项目容器，可以随时改名</span><br><span class="line">	manage.py/ # 管理项目的命令行工具</span><br><span class="line">	mysite/ </span><br><span class="line">		__init__.py # 告诉python这个目录要被认为是一个包</span><br><span class="line">		settings.py # 配置文件</span><br><span class="line">		urls.py	# 路由文件</span><br><span class="line">		asgi.py # asgi在web服务器上的入口</span><br><span class="line">		wsgi.py # wsgi在web服务器上的入口</span><br><span class="line"></span><br><span class="line">git init #创建git环境</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-开始"><a href="#2-开始" class="headerlink" title="2.开始"></a>2.开始</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#初始运行</span></span><br><span class="line">python3 manage.py runserver <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">8000</span></span><br><span class="line"><span class="comment">#当用本地的host访问时会报错，需要在/acapp/settings.py内添加对应的allowed_hosts</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建app</span></span><br><span class="line">python3 manage.py startapp game</span><br><span class="line"></span><br><span class="line"><span class="comment">#及时更新</span></span><br><span class="line">python3 manage.py migrate</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建管理员用户</span></span><br><span class="line">python3 manage.py createsuperuser <span class="comment">#随后打开host:port/admin登录</span></span><br><span class="line"><span class="comment">#随后创建urls.py,templates文件夹</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建路由"><a href="#3-创建路由" class="headerlink" title="3.创建路由"></a>3.创建路由</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在game app内创建的urls.py 中仿照总acapp内的urls.py 写url</span></span><br><span class="line"><span class="comment"># 最后在总的urls内添加对应的path</span></span><br><span class="line">```game/urls.py</span><br><span class="line"><span class="keyword">import</span> game.views <span class="keyword">import</span> index</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, index, name=<span class="string">&quot;index&quot;</span>)</span><br><span class="line">]</span><br><span class="line">```</span><br><span class="line">```game/views.py</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>(<span class="params">request</span>):</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&#x27;hello World!&#x27;</span>)</span><br><span class="line">```</span><br><span class="line">```acapp/urls.py</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;game/&#x27;</span>, include(<span class="string">&#x27;game.urls&#x27;</span>)), <span class="comment">#当只有一个app时不需要写&#x27;game/&#x27;</span></span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-储存数据"><a href="#4-储存数据" class="headerlink" title="4.储存数据"></a>4.储存数据</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要在mysite的settings.py文件夹中加入，指示静态数据的位置</span></span><br><span class="line">STATIC_ROOT = os.path.join(BASE_DIR, <span class="string">&#x27;static&#x27;</span>) <span class="comment">#在lenet下创建static文件夹</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">&#x27;media&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>django</tag>
+        <tag>后端</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker使用</title>
     <url>/2022/01/12/docker/</url>
     <content><![CDATA[<h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
@@ -129,101 +129,6 @@
 <script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
         <tag>private</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>汇编第一天</title>
-    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day1/</url>
-    <content><![CDATA[<h2 id="1-General-Purpose-Registers"><a href="#1-General-Purpose-Registers" class="headerlink" title="1. General Purpose Registers"></a>1. General Purpose Registers</h2><p>1.1. 32bit寄存器为4bytes，即xxxxh。</p>
-<p>1.2. 以32位寄存器eax举例，内部还有低16bit[ax]，在ax内还分为高八位ah与低八位al</p>
-<p>1.3. 对于64bit-Processors，将前面的e改成r或删去最后的D</p>
-<p><a href="https://imgtu.com/i/H1pd6e"><img src="https://s4.ax1x.com/2022/02/08/H1pd6e.png" alt="寄存器" style="zoom: 80%;" /></a></p>
-<p>1.3. 之所以为general purpose register，作用如下：</p>
-<p><a href="https://imgtu.com/i/H19F1O"><img src="https://s4.ax1x.com/2022/02/08/H19F1O.png" alt="H19F1O.png"></a></p>
-<h2 id="2-计算地址偏移量"><a href="#2-计算地址偏移量" class="headerlink" title="2. 计算地址偏移量"></a>2. 计算地址偏移量</h2><p>example:  08F1:0100的实际地址为08F10+0100=09010，即起始地址*16</p>
-<p>？可能是由于地址范围大，需要用更少的位数表达更大的地址</p>
-<h2 id="3-汇编程序的一般格式"><a href="#3-汇编程序的一般格式" class="headerlink" title="3. 汇编程序的一般格式"></a>3. 汇编程序的一般格式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">ExitProcess PROTO, dwExitCode:DWORD</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">; declare variables here, ; leads comment</span><br><span class="line">COMMENT !</span><br><span class="line">	;multi-lines comments</span><br><span class="line">!</span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	; write your code here</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line"></span><br><span class="line">; insert additional procedures here</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-汇编的常见元素"><a href="#4-汇编的常见元素" class="headerlink" title="4. 汇编的常见元素"></a>4. 汇编的常见元素</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 进制</span><br><span class="line">h hexadecimal</span><br><span class="line">d decimal</span><br><span class="line">b binary</span><br><span class="line">o octal</span><br><span class="line"></span><br><span class="line">; 操作</span><br><span class="line">stc ; set carry flag, no operands</span><br><span class="line"></span><br><span class="line">inc eax ; register</span><br><span class="line">inc myByte ; memory one operand</span><br><span class="line"></span><br><span class="line">add ebx, ecx ; register register</span><br><span class="line">sub myByte, 25 ; memory constant</span><br><span class="line">add eax, 36*25 ; register constant-expression</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-一个简单汇编例子"><a href="#5-一个简单汇编例子" class="headerlink" title="5. 一个简单汇编例子"></a>5. 一个简单汇编例子</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TITLE add and subtract</span><br><span class="line"></span><br><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line"></span><br><span class="line">ExitProcess PROTO. dwExitCode:DWORD</span><br><span class="line">DumpRegs PROTO</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	mov eax, 10000h	; eax = 10000h</span><br><span class="line">	add eax, 40000h ; eax = 50000h</span><br><span class="line">	sub eax, 20000h ; eax = 30000h</span><br><span class="line">	call DumpRegs</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-汇编过程"><a href="#6-汇编过程" class="headerlink" title="6.汇编过程"></a>6.汇编过程</h2><p><a href="https://imgtu.com/i/H1Pq9P"><img src="https://s4.ax1x.com/2022/02/08/H1Pq9P.png" alt="H1Pq9P.png"></a></p>
-<h2 id="7-数据类型"><a href="#7-数据类型" class="headerlink" title="7. 数据类型"></a>7. 数据类型</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; integer</span><br><span class="line">BYTE, SBYTE ; 8bit unsigned and signed</span><br><span class="line">WORD, SWORD ; 16it</span><br><span class="line">DWORD, SDWORD ; 32bit</span><br><span class="line">QWORD ; 64bit</span><br><span class="line">TBYTE ; 80bit integer</span><br><span class="line"></span><br><span class="line">; real</span><br><span class="line">REAL4 ; 4byte IEEE short real</span><br><span class="line">REAL8 ; 8byte long</span><br><span class="line">REAL10 ; 10byte extended</span><br><span class="line"></span><br><span class="line">; define variables</span><br><span class="line">val1 BYTE &#x27;A&#x27;</span><br><span class="line">val2 SBYTE +127 ; largest signed byte</span><br><span class="line">list1 BYTE 10, 20, 30, 40 ; list</span><br><span class="line">str1 BYTE &quot;enter your name&quot;, 0 ; null-terminated</span><br><span class="line"></span><br><span class="line">; 如果想实现回车，需要在末尾加入0dh,0ah</span><br><span class="line">; 0dh = carriage return</span><br><span class="line">; 0ah = line feed</span><br><span class="line">; 一个是回车，一个是换行</span><br><span class="line"></span><br><span class="line">; Using DUP operator</span><br><span class="line">var1 BYTE 20 DUP(0) ; 20 bytes, all equal to 0</span><br><span class="line">var2 BYTE 20 DUP(?) ; 20 bytes, uninitialized</span><br></pre></td></tr></table></figure>
-
-<h2 id="8-小端法与大端法"><a href="#8-小端法与大端法" class="headerlink" title="8. 小端法与大端法"></a>8. 小端法与大端法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">little endian order means least significant to low memory address</span><br><span class="line">big endian order is the opposite</span><br><span class="line"></span><br><span class="line">val1 DWORD 12345678h</span><br></pre></td></tr></table></figure>
-
-<h2 id="9-Symbolic-Constants"><a href="#9-Symbolic-Constants" class="headerlink" title="9. Symbolic Constants"></a>9. Symbolic Constants</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; calculating the size of a byte array</span><br><span class="line">list BYTE 10, 20, 30, 40</span><br><span class="line">ListSize = ($ - list)</span><br><span class="line">; if it&#x27;s a word, listSize should be divided by 2</span><br><span class="line"></span><br><span class="line">; EQU Directive that can&#x27;t be redefined</span><br><span class="line">PI EQU &lt;3.1416&gt;</span><br><span class="line">pressKey EQU &lt;&quot;press any key to continue..&quot;,0&gt;</span><br><span class="line">.data</span><br><span class="line">prompt BYTE pressKey</span><br><span class="line"></span><br><span class="line">; TEXTEQU Directive that can be redefined</span><br><span class="line">continueMsg TEXTEQU &lt;&quot;Do you wish to continue (Y/N)?&quot;&gt;</span><br><span class="line">rowSize = 5</span><br><span class="line">.data</span><br><span class="line">prompt1 BYTE continueMsg</span><br><span class="line">count TEXTEQU %(rowSize * 2)</span><br><span class="line">setupAL TEXTEQU &lt;mov al, count&gt;</span><br><span class="line">.code</span><br><span class="line">	setupAL</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
-      <tags>
-        <tag>汇编</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>租服务器的环境配置</title>
-    <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
-<li><p>内存不需要买太大（1核2G），后期动态扩容</p>
-</li>
-<li><p>不用买最大带宽，按量付费更实惠</p>
-</li>
-<li><p>选择ubuntu20.04，支持后续docker</p>
-</li>
-<li><p>安全组控制能访问那些端口（起码要有22端口）ssh，在sshconfig修改允许登录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">sudo vim sshd_config</span><br></pre></td></tr></table></figure></li>
-<li><p>创建非root用户，给予sudo权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
-<p>到install Docker Engine第一步结束就可</p>
-<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不用每次都输入sudo</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>server</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>汇编第三天</title>
-    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day3/</url>
-    <content><![CDATA[<h2 id="1-Stack-Operation"><a href="#1-Stack-Operation" class="headerlink" title="1. Stack Operation"></a>1. Stack Operation</h2><h4 id="1-1-Runtime-Stack"><a href="#1-1-Runtime-Stack" class="headerlink" title="1.1    Runtime Stack"></a>1.1    Runtime Stack</h4><ol>
-<li>top的地址大于buttom的地址</li>
-<li>受两个register管控，ss（stack segment）、esp（stack pointer）</li>
-</ol>
-<h4 id="1-2-Push-Operation"><a href="#1-2-Push-Operation" class="headerlink" title="1.2    Push Operation"></a>1.2    Push Operation</h4><p><a href="https://imgtu.com/i/H10nZ8"><img src="https://s4.ax1x.com/2022/02/08/H10nZ8.png" alt="H10nZ8.png"></a></p>
-<p>减4，即4*8=32，再÷4=8，即剩余8位，正好32位。乘8是因为1byte=8bit</p>
-<h4 id="1-3-Pop-Operation"><a href="#1-3-Pop-Operation" class="headerlink" title="1.3    Pop Operation"></a>1.3    Pop Operation</h4><p>add n to esp, 2 or 4 depends on the attribute of the operand</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">push esi</span><br><span class="line">push ecx</span><br><span class="line">push ebx</span><br><span class="line"></span><br><span class="line">mov esi, OFFSET dwordVal	; display some memory</span><br><span class="line">mov ecx, LENGTHOF dwordVal</span><br><span class="line">mov ebx, TYPE dwordVal</span><br><span class="line">call DumpMem</span><br><span class="line"></span><br><span class="line">pop	ebx</span><br><span class="line">pop exc</span><br><span class="line">pop esi</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-defining-and-using-procedures"><a href="#2-defining-and-using-procedures" class="headerlink" title="2. defining and using procedures"></a>2. defining and using procedures</h2><h4 id="2-1-creating-procedure"><a href="#2-1-creating-procedure" class="headerlink" title="2.1    creating procedure"></a>2.1    creating procedure</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sample PROC</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	ret</span><br><span class="line">sample ENDP</span><br><span class="line"></span><br><span class="line">; EXAMPLE: SUM OF PROCEDURE</span><br><span class="line">SumOf PROC</span><br><span class="line">	add eax, ebx</span><br><span class="line">	add eax, ecx</span><br><span class="line">	ret</span><br><span class="line">SumOf ENDP</span><br><span class="line">COMMENT !</span><br><span class="line">    mov eax, 10</span><br><span class="line">    mov ebx, 20</span><br><span class="line">    mov ecx, 30</span><br><span class="line">    call SumOf</span><br><span class="line">    WriteDec</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-Call-and-Ret-Instruction"><a href="#2-2-Call-and-Ret-Instruction" class="headerlink" title="2.2    Call and Ret Instruction"></a>2.2    Call and Ret Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">main PROC</span><br><span class="line">	00000020 call MySub</span><br><span class="line">	00000025 mov eax, ebx</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">main ENDP</span><br><span class="line">MySub PROC</span><br><span class="line">	00000040 mov eax, edx</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	ret</span><br><span class="line">MySub ENDP</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-USES-Operator"><a href="#2-3-USES-Operator" class="headerlink" title="2.3 USES Operator"></a>2.3 USES Operator</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ArraySum PROC</span><br><span class="line">	push esi</span><br><span class="line">	push ecx</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	pop ecx</span><br><span class="line">	pop esi</span><br><span class="line">	ret</span><br><span class="line">ArraySum ENDP</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://imgtu.com/i/H1Im1x"><img src="https://s4.ax1x.com/2022/02/08/H1Im1x.png" alt="H1Im1x.png"></a></p>
-<h2 id="3-linking-to-an-external-library"><a href="#3-linking-to-an-external-library" class="headerlink" title="3. linking to an external library"></a>3. linking to an external library</h2><p><a href="https://imgtu.com/i/H17fDf"><img src="https://s4.ax1x.com/2022/02/08/H17fDf.png" alt="H17fDf.png"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">include Irvine32.inc</span><br><span class="line">.code</span><br><span class="line">	mov eax, 1234h</span><br><span class="line">	call WriteHex</span><br><span class="line">	call Crlf</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-64bit-assembly-programming"><a href="#4-64bit-assembly-programming" class="headerlink" title="4. 64bit assembly programming"></a>4. 64bit assembly programming</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ExitProcess PROTO</span><br><span class="line">WriteHex64 PROTO</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-boolean-and-comparison-instruction"><a href="#5-boolean-and-comparison-instruction" class="headerlink" title="5. boolean and comparison instruction"></a>5. boolean and comparison instruction</h2>]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
-      <tags>
-        <tag>汇编</tag>
       </tags>
   </entry>
   <entry>
@@ -286,6 +191,126 @@
       </categories>
       <tags>
         <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编第一天</title>
+    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day1/</url>
+    <content><![CDATA[<h2 id="1-General-Purpose-Registers"><a href="#1-General-Purpose-Registers" class="headerlink" title="1. General Purpose Registers"></a>1. General Purpose Registers</h2><p>1.1. 32bit寄存器为4bytes，即xxxxh。</p>
+<p>1.2. 以32位寄存器eax举例，内部还有低16bit[ax]，在ax内还分为高八位ah与低八位al</p>
+<p>1.3. 对于64bit-Processors，将前面的e改成r或删去最后的D</p>
+<p><a href="https://imgtu.com/i/H1pd6e"><img src="https://s4.ax1x.com/2022/02/08/H1pd6e.png" alt="寄存器" style="zoom: 80%;" /></a></p>
+<p>1.3. 之所以为general purpose register，作用如下：</p>
+<p><a href="https://imgtu.com/i/H19F1O"><img src="https://s4.ax1x.com/2022/02/08/H19F1O.png" alt="H19F1O.png"></a></p>
+<h2 id="2-计算地址偏移量"><a href="#2-计算地址偏移量" class="headerlink" title="2. 计算地址偏移量"></a>2. 计算地址偏移量</h2><p>example:  08F1:0100的实际地址为08F10+0100=09010，即起始地址*16</p>
+<p>？可能是由于地址范围大，需要用更少的位数表达更大的地址</p>
+<h2 id="3-汇编程序的一般格式"><a href="#3-汇编程序的一般格式" class="headerlink" title="3. 汇编程序的一般格式"></a>3. 汇编程序的一般格式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">ExitProcess PROTO, dwExitCode:DWORD</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">; declare variables here, ; leads comment</span><br><span class="line">COMMENT !</span><br><span class="line">	;multi-lines comments</span><br><span class="line">!</span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	; write your code here</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line"></span><br><span class="line">; insert additional procedures here</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-汇编的常见元素"><a href="#4-汇编的常见元素" class="headerlink" title="4. 汇编的常见元素"></a>4. 汇编的常见元素</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 进制</span><br><span class="line">h hexadecimal</span><br><span class="line">d decimal</span><br><span class="line">b binary</span><br><span class="line">o octal</span><br><span class="line"></span><br><span class="line">; 操作</span><br><span class="line">stc ; set carry flag, no operands</span><br><span class="line"></span><br><span class="line">inc eax ; register</span><br><span class="line">inc myByte ; memory one operand</span><br><span class="line"></span><br><span class="line">add ebx, ecx ; register register</span><br><span class="line">sub myByte, 25 ; memory constant</span><br><span class="line">add eax, 36*25 ; register constant-expression</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-一个简单汇编例子"><a href="#5-一个简单汇编例子" class="headerlink" title="5. 一个简单汇编例子"></a>5. 一个简单汇编例子</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TITLE add and subtract</span><br><span class="line"></span><br><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line"></span><br><span class="line">ExitProcess PROTO. dwExitCode:DWORD</span><br><span class="line">DumpRegs PROTO</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	mov eax, 10000h	; eax = 10000h</span><br><span class="line">	add eax, 40000h ; eax = 50000h</span><br><span class="line">	sub eax, 20000h ; eax = 30000h</span><br><span class="line">	call DumpRegs</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-汇编过程"><a href="#6-汇编过程" class="headerlink" title="6.汇编过程"></a>6.汇编过程</h2><p><a href="https://imgtu.com/i/H1Pq9P"><img src="https://s4.ax1x.com/2022/02/08/H1Pq9P.png" alt="H1Pq9P.png"></a></p>
+<h2 id="7-数据类型"><a href="#7-数据类型" class="headerlink" title="7. 数据类型"></a>7. 数据类型</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; integer</span><br><span class="line">BYTE, SBYTE ; 8bit unsigned and signed</span><br><span class="line">WORD, SWORD ; 16it</span><br><span class="line">DWORD, SDWORD ; 32bit</span><br><span class="line">QWORD ; 64bit</span><br><span class="line">TBYTE ; 80bit integer</span><br><span class="line"></span><br><span class="line">; real</span><br><span class="line">REAL4 ; 4byte IEEE short real</span><br><span class="line">REAL8 ; 8byte long</span><br><span class="line">REAL10 ; 10byte extended</span><br><span class="line"></span><br><span class="line">; define variables</span><br><span class="line">val1 BYTE &#x27;A&#x27;</span><br><span class="line">val2 SBYTE +127 ; largest signed byte</span><br><span class="line">list1 BYTE 10, 20, 30, 40 ; list</span><br><span class="line">str1 BYTE &quot;enter your name&quot;, 0 ; null-terminated</span><br><span class="line"></span><br><span class="line">; 如果想实现回车，需要在末尾加入0dh,0ah</span><br><span class="line">; 0dh = carriage return</span><br><span class="line">; 0ah = line feed</span><br><span class="line">; 一个是回车，一个是换行</span><br><span class="line"></span><br><span class="line">; Using DUP operator</span><br><span class="line">var1 BYTE 20 DUP(0) ; 20 bytes, all equal to 0</span><br><span class="line">var2 BYTE 20 DUP(?) ; 20 bytes, uninitialized</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-小端法与大端法"><a href="#8-小端法与大端法" class="headerlink" title="8. 小端法与大端法"></a>8. 小端法与大端法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">little endian order means least significant to low memory address</span><br><span class="line">big endian order is the opposite</span><br><span class="line"></span><br><span class="line">val1 DWORD 12345678h</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-Symbolic-Constants"><a href="#9-Symbolic-Constants" class="headerlink" title="9. Symbolic Constants"></a>9. Symbolic Constants</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; calculating the size of a byte array</span><br><span class="line">list BYTE 10, 20, 30, 40</span><br><span class="line">ListSize = ($ - list)</span><br><span class="line">; if it&#x27;s a word, listSize should be divided by 2</span><br><span class="line"></span><br><span class="line">; EQU Directive that can&#x27;t be redefined</span><br><span class="line">PI EQU &lt;3.1416&gt;</span><br><span class="line">pressKey EQU &lt;&quot;press any key to continue..&quot;,0&gt;</span><br><span class="line">.data</span><br><span class="line">prompt BYTE pressKey</span><br><span class="line"></span><br><span class="line">; TEXTEQU Directive that can be redefined</span><br><span class="line">continueMsg TEXTEQU &lt;&quot;Do you wish to continue (Y/N)?&quot;&gt;</span><br><span class="line">rowSize = 5</span><br><span class="line">.data</span><br><span class="line">prompt1 BYTE continueMsg</span><br><span class="line">count TEXTEQU %(rowSize * 2)</span><br><span class="line">setupAL TEXTEQU &lt;mov al, count&gt;</span><br><span class="line">.code</span><br><span class="line">	setupAL</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编第三天</title>
+    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day3/</url>
+    <content><![CDATA[<h2 id="1-Stack-Operation"><a href="#1-Stack-Operation" class="headerlink" title="1. Stack Operation"></a>1. Stack Operation</h2><h4 id="1-1-Runtime-Stack"><a href="#1-1-Runtime-Stack" class="headerlink" title="1.1    Runtime Stack"></a>1.1    Runtime Stack</h4><ol>
+<li>top的地址大于buttom的地址</li>
+<li>受两个register管控，ss（stack segment）、esp（stack pointer）</li>
+</ol>
+<h4 id="1-2-Push-Operation"><a href="#1-2-Push-Operation" class="headerlink" title="1.2    Push Operation"></a>1.2    Push Operation</h4><p><a href="https://imgtu.com/i/H10nZ8"><img src="https://s4.ax1x.com/2022/02/08/H10nZ8.png" alt="H10nZ8.png"></a></p>
+<p>减4，即4*8=32，再÷4=8，即剩余8位，正好32位。乘8是因为1byte=8bit</p>
+<h4 id="1-3-Pop-Operation"><a href="#1-3-Pop-Operation" class="headerlink" title="1.3    Pop Operation"></a>1.3    Pop Operation</h4><p>add n to esp, 2 or 4 depends on the attribute of the operand</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">push esi</span><br><span class="line">push ecx</span><br><span class="line">push ebx</span><br><span class="line"></span><br><span class="line">mov esi, OFFSET dwordVal	; display some memory</span><br><span class="line">mov ecx, LENGTHOF dwordVal</span><br><span class="line">mov ebx, TYPE dwordVal</span><br><span class="line">call DumpMem</span><br><span class="line"></span><br><span class="line">pop	ebx</span><br><span class="line">pop exc</span><br><span class="line">pop esi</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-defining-and-using-procedures"><a href="#2-defining-and-using-procedures" class="headerlink" title="2. defining and using procedures"></a>2. defining and using procedures</h2><h4 id="2-1-creating-procedure"><a href="#2-1-creating-procedure" class="headerlink" title="2.1    creating procedure"></a>2.1    creating procedure</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sample PROC</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	ret</span><br><span class="line">sample ENDP</span><br><span class="line"></span><br><span class="line">; EXAMPLE: SUM OF PROCEDURE</span><br><span class="line">SumOf PROC</span><br><span class="line">	add eax, ebx</span><br><span class="line">	add eax, ecx</span><br><span class="line">	ret</span><br><span class="line">SumOf ENDP</span><br><span class="line">COMMENT !</span><br><span class="line">    mov eax, 10</span><br><span class="line">    mov ebx, 20</span><br><span class="line">    mov ecx, 30</span><br><span class="line">    call SumOf</span><br><span class="line">    WriteDec</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-Call-and-Ret-Instruction"><a href="#2-2-Call-and-Ret-Instruction" class="headerlink" title="2.2    Call and Ret Instruction"></a>2.2    Call and Ret Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">main PROC</span><br><span class="line">	00000020 call MySub</span><br><span class="line">	00000025 mov eax, ebx</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">main ENDP</span><br><span class="line">MySub PROC</span><br><span class="line">	00000040 mov eax, edx</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	ret</span><br><span class="line">MySub ENDP</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-USES-Operator"><a href="#2-3-USES-Operator" class="headerlink" title="2.3 USES Operator"></a>2.3 USES Operator</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ArraySum PROC</span><br><span class="line">	push esi</span><br><span class="line">	push ecx</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	pop ecx</span><br><span class="line">	pop esi</span><br><span class="line">	ret</span><br><span class="line">ArraySum ENDP</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/H1Im1x"><img src="https://s4.ax1x.com/2022/02/08/H1Im1x.png" alt="H1Im1x.png"></a></p>
+<h2 id="3-linking-to-an-external-library"><a href="#3-linking-to-an-external-library" class="headerlink" title="3. linking to an external library"></a>3. linking to an external library</h2><p><a href="https://imgtu.com/i/H17fDf"><img src="https://s4.ax1x.com/2022/02/08/H17fDf.png" alt="H17fDf.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">include Irvine32.inc</span><br><span class="line">.code</span><br><span class="line">	mov eax, 1234h</span><br><span class="line">	call WriteHex</span><br><span class="line">	call Crlf</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-64bit-assembly-programming"><a href="#4-64bit-assembly-programming" class="headerlink" title="4. 64bit assembly programming"></a>4. 64bit assembly programming</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ExitProcess PROTO</span><br><span class="line">WriteHex64 PROTO</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-boolean-and-comparison-instruction"><a href="#5-boolean-and-comparison-instruction" class="headerlink" title="5. boolean and comparison instruction"></a>5. boolean and comparison instruction</h2><p>AND, OR, XOR, NOT,</p>
+<h4 id="5-1-Using-Bit-Mapped-Sets"><a href="#5-1-Using-Bit-Mapped-Sets" class="headerlink" title="5.1    Using Bit-Mapped Sets"></a>5.1    Using Bit-Mapped Sets</h4><p>like bit vectors</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; set complement</span><br><span class="line">mov eax, SetX</span><br><span class="line">not eax</span><br><span class="line">; set Intersection</span><br><span class="line">mov eax, SetX</span><br><span class="line">and eax, SetY</span><br><span class="line">; set Union</span><br><span class="line">mov eax, setX</span><br><span class="line">or eax, setY</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-Test-Instruction"><a href="#5-2-Test-Instruction" class="headerlink" title="5.2    Test Instruction"></a>5.2    Test Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">test al, 00000011b</span><br><span class="line">jz ValueNotFound</span><br><span class="line">; neither bit0 and bit1 is set</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-CMP-Instruction"><a href="#5-3-CMP-Instruction" class="headerlink" title="5.3    CMP Instruction"></a>5.3    CMP Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; nondestructive subtraction of source from destination</span><br><span class="line">mov al, 5</span><br><span class="line">cmp al, 5 ; zero flag is set</span><br><span class="line"></span><br><span class="line">mov al, 4</span><br><span class="line">cmp al, 5 ; carry flag is set</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Conditional-Jumps"><a href="#6-Conditional-Jumps" class="headerlink" title="6. Conditional Jumps"></a>6. Conditional Jumps</h2><p>jumps based on specific flags, equality, unsigned comparisons, signed comparisons</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; JB, JC jumps to a label if carry flag is set</span><br><span class="line">; JE, JZ jumps to a label if zero flag is set</span><br><span class="line">; JS jumps to a label if sign flag is set</span><br><span class="line">; JNE, JNZ jump to a label if zero flag is clear</span><br><span class="line">; JECXZ jumps to a label if ECX equals to zero</span><br><span class="line">; Example BT Instruction</span><br><span class="line">; copy bit n to the carry flag</span><br><span class="line">; Task: jump to label L1 if bit 9 is set</span><br><span class="line"></span><br><span class="line">bt ax, 9</span><br><span class="line">jc L1</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-Conditional-Loop-Instruction"><a href="#7-Conditional-Loop-Instruction" class="headerlink" title="7. Conditional Loop Instruction"></a>7. Conditional Loop Instruction</h2><h4 id="LOOPZ-and-LOOPE"><a href="#LOOPZ-and-LOOPE" class="headerlink" title="LOOPZ and LOOPE"></a>LOOPZ and LOOPE</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; if ecx &gt; 0 and ZF = 1, jump to destination</span><br><span class="line">LOOPE destination</span><br><span class="line">LOOPZ destination</span><br><span class="line">; if ecx &gt; 0 and ZF = 0, jump to destination</span><br><span class="line">LOOPNE destination</span><br><span class="line">LOOPNZ destination</span><br><span class="line"></span><br><span class="line">; Example</span><br><span class="line">.data</span><br><span class="line">array SWORD -3,-6,-1,-10,10,30,4-,4</span><br><span class="line">sentinel SWORD 0</span><br><span class="line">.code</span><br><span class="line">	mov esi, OFFSET array</span><br><span class="line">	mov ecx, LENGTHOF array</span><br><span class="line">next:</span><br><span class="line">	test WORD PTR [esi], 8000h</span><br><span class="line">	pushfd</span><br><span class="line">	add esi, TYPE array</span><br><span class="line">	popfd</span><br><span class="line">	loopnz next</span><br><span class="line">	jecxz quit</span><br><span class="line">	sub esi, TYPE array</span><br><span class="line">quit:</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-Conditional-Structures"><a href="#8-Conditional-Structures" class="headerlink" title="8. Conditional Structures"></a>8. Conditional Structures</h2><h4 id="8-1-Block-Structured-IF-Statement"><a href="#8-1-Block-Structured-IF-Statement" class="headerlink" title="8.1    Block-Structured IF Statement"></a>8.1    Block-Structured IF Statement</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if (op1 == op2)			</span><br><span class="line">	x = 1;					</span><br><span class="line">else						</span><br><span class="line">	x = 2;					</span><br><span class="line">.code</span><br><span class="line">	mov eax, op1</span><br><span class="line">	cmp eax, op2</span><br><span class="line">	jne L1</span><br><span class="line">	mov x, 1</span><br><span class="line">	jmp L2</span><br><span class="line">L1: mov x, 2</span><br><span class="line">L2:</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>租服务器的环境配置</title>
+    <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
+<li><p>内存不需要买太大（1核2G），后期动态扩容</p>
+</li>
+<li><p>不用买最大带宽，按量付费更实惠</p>
+</li>
+<li><p>选择ubuntu20.04，支持后续docker</p>
+</li>
+<li><p>安全组控制能访问那些端口（起码要有22端口）ssh，在sshconfig修改允许登录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">sudo vim sshd_config</span><br></pre></td></tr></table></figure></li>
+<li><p>创建非root用户，给予sudo权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
+<p>到install Docker Engine第一步结束就可</p>
+<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不用每次都输入sudo</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>server</tag>
       </tags>
   </entry>
 </search>
