@@ -164,68 +164,6 @@
       </tags>
   </entry>
   <entry>
-    <title>汇编第二天</title>
-    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day2/</url>
-    <content><![CDATA[<h2 id="1-Direct-Memory-Operand"><a href="#1-Direct-Memory-Operand" class="headerlink" title="1. Direct Memory Operand"></a>1. Direct Memory Operand</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">var1 BYTE 10h</span><br><span class="line">.code</span><br><span class="line">mov al, var1</span><br><span class="line">mov al, [var1]</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-1-mov-instruction"><a href="#1-1-mov-instruction" class="headerlink" title="1.1 mov instruction"></a>1.1 mov instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">count BYTE 100</span><br><span class="line">wVal WORD 2</span><br><span class="line">.code</span><br><span class="line">	mov bl, count</span><br><span class="line">	mov ax, wVal</span><br><span class="line">	mov count, al</span><br><span class="line">; 需要控制大小</span><br></pre></td></tr></table></figure>
-
-<p>为解决以上需要控制大小的问题，引入了以下两种操作：</p>
-<ol>
-<li>movzx 用0填补空缺</li>
-<li>movsx 用1填补空缺</li>
-</ol>
-<h4 id="1-2-xchg-instruction"><a href="#1-2-xchg-instruction" class="headerlink" title="1.2 xchg instruction"></a>1.2 xchg instruction</h4><p>至少有一个register</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">var1 WORD 1000h</span><br><span class="line">var2 WORD 2000h</span><br><span class="line">.code</span><br><span class="line">xchg ax, bx</span><br><span class="line">xchg var1, bx</span><br><span class="line">xchg ah, al</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-Direct-Offset-Operands"><a href="#2-Direct-Offset-Operands" class="headerlink" title="2. Direct-Offset Operands"></a>2. Direct-Offset Operands</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayB BYTE 10h, 20h, 30h, 40h</span><br><span class="line">.code</span><br><span class="line">mov al, arrayB+1 ; al = 20h</span><br><span class="line">mov al, [arrayB + 1] ; al = 20h</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-addition-and-subtraction"><a href="#3-addition-and-subtraction" class="headerlink" title="3. addition and subtraction"></a>3. addition and subtraction</h2><h4 id="3-1-inc-and-dec"><a href="#3-1-inc-and-dec" class="headerlink" title="3.1    inc and dec"></a>3.1    inc and dec</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">	myWord WORD 1000h</span><br><span class="line">	myDword DWORD 10000000h</span><br><span class="line">.code</span><br><span class="line">	inc myWord	;1001h</span><br><span class="line">	dec myWord	;1000h</span><br><span class="line">	inc myDword ;10000001h</span><br><span class="line">	</span><br><span class="line">	mov ax, 00FFh</span><br><span class="line">	inc ax ; ax = 0100h</span><br><span class="line">	mov ax, 00FFh</span><br><span class="line">	inc al ; ax = 0000h</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-add-and-sub"><a href="#3-2-add-and-sub" class="headerlink" title="3.2    add and sub"></a>3.2    add and sub</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">	var1 DWORD 10000h</span><br><span class="line">	var2 DWORD 20000h</span><br><span class="line">.code				; ---EAX---</span><br><span class="line">	mov eax, var1	; 10000h</span><br><span class="line">	add eax, var2	; 30000h</span><br><span class="line">	add ax, 0FFFFh	; 3FFFFh</span><br><span class="line">	add eax, 1		; 40000h</span><br><span class="line">	sub ax, 1		; 4FFFFh</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-3-neg-instruction"><a href="#3-3-neg-instruction" class="headerlink" title="3.3    neg instruction"></a>3.3    neg instruction</h4><p>to reverse the sign of an operand</p>
-<h4 id="3-4-flags"><a href="#3-4-flags" class="headerlink" title="3.4    flags"></a>3.4    flags</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; zero flag (ZF), when ans = 0, ZF = 1</span><br><span class="line">; sign flag (SF), When ans &lt; 0, SF = 1</span><br><span class="line">; carry flag (CF), when ans generates an unsigned value that&#x27;s out of range.</span><br><span class="line">; overflow flag (OF), change above unsigned to signed</span><br><span class="line">; parity flag (PF), when the number of &#x27;1&#x27; is even, PF = 1</span><br><span class="line">; auxiliary carry flag(AF), when a carry out of bit3 to bit4, AF = 1</span><br><span class="line"></span><br><span class="line">overflow flag changes when two positives or negatives add together.</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-Data-Related-Operators-and-Directives"><a href="#4-Data-Related-Operators-and-Directives" class="headerlink" title="4. Data-Related Operators and Directives"></a>4. Data-Related Operators and Directives</h2><h4 id="4-1-offset-operator"><a href="#4-1-offset-operator" class="headerlink" title="4.1    offset operator"></a>4.1    offset operator</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; example of offset</span><br><span class="line">.data</span><br><span class="line">bVal BYTE ?</span><br><span class="line">wVal BYTE ?</span><br><span class="line">dVal BYTE ?</span><br><span class="line">dVal2 BYTE ?</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET bVal	; ESI = 00404000h</span><br><span class="line">mov esi, OFFSET wVal	; ESI = 00404001h</span><br><span class="line">mov esi, OFFSET dVal	; ESI = 00404003h</span><br><span class="line">mov esi, OFFSET dVal2	; ESI = 00404007h</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-2-PTR-Operator"><a href="#4-2-PTR-Operator" class="headerlink" title="4.2    PTR Operator"></a>4.2    PTR Operator</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">myDouble DWORD 12345678h</span><br><span class="line">.code</span><br><span class="line">mov ax, myDouble	; error</span><br><span class="line">mov ax, WORD PTR myDouble	; loads 5678h</span><br><span class="line">mov WORD PTR myDouble, 4321h; saves 4321h</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">myDouble DWORD 12345678h</span><br><span class="line">,code</span><br><span class="line">mov al, BYTE PTR myDouble	; AL = </span><br><span class="line">mov al, BYTE PTR [myDouble + 1] ; +1是按byte加的, 与array区分开来</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-3-LENGTHOF-Operator"><a href="#4-3-LENGTHOF-Operator" class="headerlink" title="4.3    LENGTHOF Operator"></a>4.3    LENGTHOF Operator</h4><p>计算元素的个数，而非字节数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">byte1 BYTE 10,20,30</span><br><span class="line">array1 WORD 30 DUP(?), 0, 0</span><br><span class="line">.code</span><br><span class="line">mov ecx, LENGTHOF array1 ;32</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-4-SIZEOF-Operator"><a href="#4-4-SIZEOF-Operator" class="headerlink" title="4.4    SIZEOF Operator"></a>4.4    SIZEOF Operator</h4><p>计算的字节数大小</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">byte1 BYTE 10,20,30</span><br><span class="line">array1 WORD 30 DUP(?), 0, 0</span><br><span class="line">.code</span><br><span class="line">mov ecx, SIZEOF array1 ;64</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-5-LABEL-Directive"><a href="#4-5-LABEL-Directive" class="headerlink" title="4.5 LABEL Directive"></a>4.5 LABEL Directive</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">dwList LABEL DWORD</span><br><span class="line">wordList LABEL WORD</span><br><span class="line">intList BYTE 00h, 10h, 00h, 20h</span><br><span class="line">.code</span><br><span class="line">mov eax, dwList</span><br><span class="line">mov cx, wordList</span><br><span class="line">mov dl, intList</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-Indirect-Addressing"><a href="#5-Indirect-Addressing" class="headerlink" title="5. Indirect Addressing"></a>5. Indirect Addressing</h2><h4 id="5-1-使用-来间接寻址"><a href="#5-1-使用-来间接寻址" class="headerlink" title="5.1 使用[]来间接寻址"></a>5.1 使用[]来间接寻址</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">val1 BYTE 10h, 20h, 30h</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET val1</span><br><span class="line">mov al, [esi]</span><br><span class="line">inc esi</span><br><span class="line">mov al, [esi]</span><br><span class="line">inc esi</span><br><span class="line">mov al, [esi]</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-2-使用PTR来确定"><a href="#5-2-使用PTR来确定" class="headerlink" title="5.2 使用PTR来确定"></a>5.2 使用PTR来确定</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">myCount WORD 0</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET myCount</span><br><span class="line">inc [esi] ;error: ambiguous</span><br><span class="line">inc WORD PTR [esi] ;ok</span><br></pre></td></tr></table></figure>
-
-<p>example</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayW WORD 1000h, 2000h, 3000h</span><br><span class="line">.code</span><br><span class="line">mov esi, 0</span><br><span class="line">mov ax, [arrayW + esi]</span><br><span class="line">mov ax, arrayW[esi]		;alternate format</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-3-Index-Scaling"><a href="#5-3-Index-Scaling" class="headerlink" title="5.3 Index Scaling"></a>5.3 Index Scaling</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayB BYTE 0,1,2,3,4,5</span><br><span class="line">arrayW WORD 0,1,2,3,4,5</span><br><span class="line">arrayD DWORD 0,1,2,3,4,5</span><br><span class="line">.code</span><br><span class="line">mov esi, 4</span><br><span class="line">mov al, arrayB[esi * TYPE arrayB]</span><br><span class="line">mov ax, arrayW[esi * TYPE arrayW]</span><br><span class="line">mov eax, arrayD[esi * TYPE arrayD]</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-4-pointers"><a href="#5-4-pointers" class="headerlink" title="5.4 pointers"></a>5.4 pointers</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayW WORD 1000h, 2000h, 3000h</span><br><span class="line">ptrW DWORD arrayD ; ptrW DWORD OFFSET arrayD an alternate format</span><br><span class="line">.code</span><br><span class="line">mov esi, ptrW</span><br><span class="line">mov ax, [esi]</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-JMP-and-Loop-Instructions"><a href="#6-JMP-and-Loop-Instructions" class="headerlink" title="6. JMP and Loop Instructions"></a>6. JMP and Loop Instructions</h2><h4 id="6-1-JMP-Instruction"><a href="#6-1-JMP-Instruction" class="headerlink" title="6.1 JMP Instruction"></a>6.1 JMP Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">top:</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	jmp top</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-2-Loop-Instruction"><a href="#6-2-Loop-Instruction" class="headerlink" title="6.2 Loop Instruction"></a>6.2 Loop Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	mov ax, 0</span><br><span class="line">	mov ecx, 5</span><br><span class="line">L1: add ax, cx</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></figure>
-
-<p>关注ecx寄存器，当其为0时退出</p>
-<h4 id="6-3-Nested-Loop"><a href="#6-3-Nested-Loop" class="headerlink" title="6.3 Nested Loop"></a>6.3 Nested Loop</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">count DWORD ?</span><br><span class="line">.code</span><br><span class="line">	mov ecx, 100</span><br><span class="line">L1:</span><br><span class="line">	mov count, ecx</span><br><span class="line">	mov ecx, 20</span><br><span class="line">L2:	.</span><br><span class="line">	.</span><br><span class="line">	loop L2</span><br><span class="line">	mov ecx, count</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
-      <tags>
-        <tag>汇编</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>汇编第三天</title>
     <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day3/</url>
     <content><![CDATA[<h2 id="1-Stack-Operation"><a href="#1-Stack-Operation" class="headerlink" title="1. Stack Operation"></a>1. Stack Operation</h2><h4 id="1-1-Runtime-Stack"><a href="#1-1-Runtime-Stack" class="headerlink" title="1.1    Runtime Stack"></a>1.1    Runtime Stack</h4><ol>
@@ -295,6 +233,68 @@
       </tags>
   </entry>
   <entry>
+    <title>汇编第二天</title>
+    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day2/</url>
+    <content><![CDATA[<h2 id="1-Direct-Memory-Operand"><a href="#1-Direct-Memory-Operand" class="headerlink" title="1. Direct Memory Operand"></a>1. Direct Memory Operand</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">var1 BYTE 10h</span><br><span class="line">.code</span><br><span class="line">mov al, var1</span><br><span class="line">mov al, [var1]</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-mov-instruction"><a href="#1-1-mov-instruction" class="headerlink" title="1.1 mov instruction"></a>1.1 mov instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">count BYTE 100</span><br><span class="line">wVal WORD 2</span><br><span class="line">.code</span><br><span class="line">	mov bl, count</span><br><span class="line">	mov ax, wVal</span><br><span class="line">	mov count, al</span><br><span class="line">; 需要控制大小</span><br></pre></td></tr></table></figure>
+
+<p>为解决以上需要控制大小的问题，引入了以下两种操作：</p>
+<ol>
+<li>movzx 用0填补空缺</li>
+<li>movsx 用1填补空缺</li>
+</ol>
+<h4 id="1-2-xchg-instruction"><a href="#1-2-xchg-instruction" class="headerlink" title="1.2 xchg instruction"></a>1.2 xchg instruction</h4><p>至少有一个register</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">var1 WORD 1000h</span><br><span class="line">var2 WORD 2000h</span><br><span class="line">.code</span><br><span class="line">xchg ax, bx</span><br><span class="line">xchg var1, bx</span><br><span class="line">xchg ah, al</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Direct-Offset-Operands"><a href="#2-Direct-Offset-Operands" class="headerlink" title="2. Direct-Offset Operands"></a>2. Direct-Offset Operands</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayB BYTE 10h, 20h, 30h, 40h</span><br><span class="line">.code</span><br><span class="line">mov al, arrayB+1 ; al = 20h</span><br><span class="line">mov al, [arrayB + 1] ; al = 20h</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-addition-and-subtraction"><a href="#3-addition-and-subtraction" class="headerlink" title="3. addition and subtraction"></a>3. addition and subtraction</h2><h4 id="3-1-inc-and-dec"><a href="#3-1-inc-and-dec" class="headerlink" title="3.1    inc and dec"></a>3.1    inc and dec</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">	myWord WORD 1000h</span><br><span class="line">	myDword DWORD 10000000h</span><br><span class="line">.code</span><br><span class="line">	inc myWord	;1001h</span><br><span class="line">	dec myWord	;1000h</span><br><span class="line">	inc myDword ;10000001h</span><br><span class="line">	</span><br><span class="line">	mov ax, 00FFh</span><br><span class="line">	inc ax ; ax = 0100h</span><br><span class="line">	mov ax, 00FFh</span><br><span class="line">	inc al ; ax = 0000h</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-add-and-sub"><a href="#3-2-add-and-sub" class="headerlink" title="3.2    add and sub"></a>3.2    add and sub</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">	var1 DWORD 10000h</span><br><span class="line">	var2 DWORD 20000h</span><br><span class="line">.code				; ---EAX---</span><br><span class="line">	mov eax, var1	; 10000h</span><br><span class="line">	add eax, var2	; 30000h</span><br><span class="line">	add ax, 0FFFFh	; 3FFFFh</span><br><span class="line">	add eax, 1		; 40000h</span><br><span class="line">	sub ax, 1		; 4FFFFh</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-neg-instruction"><a href="#3-3-neg-instruction" class="headerlink" title="3.3    neg instruction"></a>3.3    neg instruction</h4><p>to reverse the sign of an operand</p>
+<h4 id="3-4-flags"><a href="#3-4-flags" class="headerlink" title="3.4    flags"></a>3.4    flags</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; zero flag (ZF), when ans = 0, ZF = 1</span><br><span class="line">; sign flag (SF), When ans &lt; 0, SF = 1</span><br><span class="line">; carry flag (CF), when ans generates an unsigned value that&#x27;s out of range.</span><br><span class="line">; overflow flag (OF), change above unsigned to signed</span><br><span class="line">; parity flag (PF), when the number of &#x27;1&#x27; is even, PF = 1</span><br><span class="line">; auxiliary carry flag(AF), when a carry out of bit3 to bit4, AF = 1</span><br><span class="line"></span><br><span class="line">overflow flag changes when two positives or negatives add together.</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Data-Related-Operators-and-Directives"><a href="#4-Data-Related-Operators-and-Directives" class="headerlink" title="4. Data-Related Operators and Directives"></a>4. Data-Related Operators and Directives</h2><h4 id="4-1-offset-operator"><a href="#4-1-offset-operator" class="headerlink" title="4.1    offset operator"></a>4.1    offset operator</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; example of offset</span><br><span class="line">.data</span><br><span class="line">bVal BYTE ?</span><br><span class="line">wVal BYTE ?</span><br><span class="line">dVal BYTE ?</span><br><span class="line">dVal2 BYTE ?</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET bVal	; ESI = 00404000h</span><br><span class="line">mov esi, OFFSET wVal	; ESI = 00404001h</span><br><span class="line">mov esi, OFFSET dVal	; ESI = 00404003h</span><br><span class="line">mov esi, OFFSET dVal2	; ESI = 00404007h</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-PTR-Operator"><a href="#4-2-PTR-Operator" class="headerlink" title="4.2    PTR Operator"></a>4.2    PTR Operator</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">myDouble DWORD 12345678h</span><br><span class="line">.code</span><br><span class="line">mov ax, myDouble	; error</span><br><span class="line">mov ax, WORD PTR myDouble	; loads 5678h</span><br><span class="line">mov WORD PTR myDouble, 4321h; saves 4321h</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">myDouble DWORD 12345678h</span><br><span class="line">,code</span><br><span class="line">mov al, BYTE PTR myDouble	; AL = </span><br><span class="line">mov al, BYTE PTR [myDouble + 1] ; +1是按byte加的, 与array区分开来</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-LENGTHOF-Operator"><a href="#4-3-LENGTHOF-Operator" class="headerlink" title="4.3    LENGTHOF Operator"></a>4.3    LENGTHOF Operator</h4><p>计算元素的个数，而非字节数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">byte1 BYTE 10,20,30</span><br><span class="line">array1 WORD 30 DUP(?), 0, 0</span><br><span class="line">.code</span><br><span class="line">mov ecx, LENGTHOF array1 ;32</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-SIZEOF-Operator"><a href="#4-4-SIZEOF-Operator" class="headerlink" title="4.4    SIZEOF Operator"></a>4.4    SIZEOF Operator</h4><p>计算的字节数大小</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">byte1 BYTE 10,20,30</span><br><span class="line">array1 WORD 30 DUP(?), 0, 0</span><br><span class="line">.code</span><br><span class="line">mov ecx, SIZEOF array1 ;64</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-LABEL-Directive"><a href="#4-5-LABEL-Directive" class="headerlink" title="4.5 LABEL Directive"></a>4.5 LABEL Directive</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">dwList LABEL DWORD</span><br><span class="line">wordList LABEL WORD</span><br><span class="line">intList BYTE 00h, 10h, 00h, 20h</span><br><span class="line">.code</span><br><span class="line">mov eax, dwList</span><br><span class="line">mov cx, wordList</span><br><span class="line">mov dl, intList</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Indirect-Addressing"><a href="#5-Indirect-Addressing" class="headerlink" title="5. Indirect Addressing"></a>5. Indirect Addressing</h2><h4 id="5-1-使用-来间接寻址"><a href="#5-1-使用-来间接寻址" class="headerlink" title="5.1 使用[]来间接寻址"></a>5.1 使用[]来间接寻址</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">val1 BYTE 10h, 20h, 30h</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET val1</span><br><span class="line">mov al, [esi]</span><br><span class="line">inc esi</span><br><span class="line">mov al, [esi]</span><br><span class="line">inc esi</span><br><span class="line">mov al, [esi]</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-使用PTR来确定"><a href="#5-2-使用PTR来确定" class="headerlink" title="5.2 使用PTR来确定"></a>5.2 使用PTR来确定</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">myCount WORD 0</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET myCount</span><br><span class="line">inc [esi] ;error: ambiguous</span><br><span class="line">inc WORD PTR [esi] ;ok</span><br></pre></td></tr></table></figure>
+
+<p>example</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayW WORD 1000h, 2000h, 3000h</span><br><span class="line">.code</span><br><span class="line">mov esi, 0</span><br><span class="line">mov ax, [arrayW + esi]</span><br><span class="line">mov ax, arrayW[esi]		;alternate format</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-Index-Scaling"><a href="#5-3-Index-Scaling" class="headerlink" title="5.3 Index Scaling"></a>5.3 Index Scaling</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayB BYTE 0,1,2,3,4,5</span><br><span class="line">arrayW WORD 0,1,2,3,4,5</span><br><span class="line">arrayD DWORD 0,1,2,3,4,5</span><br><span class="line">.code</span><br><span class="line">mov esi, 4</span><br><span class="line">mov al, arrayB[esi * TYPE arrayB]</span><br><span class="line">mov ax, arrayW[esi * TYPE arrayW]</span><br><span class="line">mov eax, arrayD[esi * TYPE arrayD]</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-4-pointers"><a href="#5-4-pointers" class="headerlink" title="5.4 pointers"></a>5.4 pointers</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">arrayW WORD 1000h, 2000h, 3000h</span><br><span class="line">ptrW DWORD arrayD ; ptrW DWORD OFFSET arrayD an alternate format</span><br><span class="line">.code</span><br><span class="line">mov esi, ptrW</span><br><span class="line">mov ax, [esi]</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-JMP-and-Loop-Instructions"><a href="#6-JMP-and-Loop-Instructions" class="headerlink" title="6. JMP and Loop Instructions"></a>6. JMP and Loop Instructions</h2><h4 id="6-1-JMP-Instruction"><a href="#6-1-JMP-Instruction" class="headerlink" title="6.1 JMP Instruction"></a>6.1 JMP Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">top:</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	jmp top</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-Loop-Instruction"><a href="#6-2-Loop-Instruction" class="headerlink" title="6.2 Loop Instruction"></a>6.2 Loop Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	mov ax, 0</span><br><span class="line">	mov ecx, 5</span><br><span class="line">L1: add ax, cx</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></figure>
+
+<p>关注ecx寄存器，当其为0时退出</p>
+<h4 id="6-3-Nested-Loop"><a href="#6-3-Nested-Loop" class="headerlink" title="6.3 Nested Loop"></a>6.3 Nested Loop</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">count DWORD ?</span><br><span class="line">.code</span><br><span class="line">	mov ecx, 100</span><br><span class="line">L1:</span><br><span class="line">	mov count, ecx</span><br><span class="line">	mov ecx, 20</span><br><span class="line">L2:	.</span><br><span class="line">	.</span><br><span class="line">	loop L2</span><br><span class="line">	mov ecx, count</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>租服务器的环境配置</title>
     <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
@@ -323,6 +323,59 @@
       </categories>
       <tags>
         <tag>server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编第四天</title>
+    <url>/2022/02/09/%E6%B1%87%E7%BC%96_Day4/</url>
+    <content><![CDATA[<h2 id="1-Shift-and-Rotate-Instruction"><a href="#1-Shift-and-Rotate-Instruction" class="headerlink" title="1. Shift and Rotate Instruction"></a>1. Shift and Rotate Instruction</h2><h4 id="1-1-Logical-Shift-vs-Arithmetic-Shifts"><a href="#1-1-Logical-Shift-vs-Arithmetic-Shifts" class="headerlink" title="1.1    Logical Shift vs Arithmetic Shifts"></a>1.1    Logical Shift vs Arithmetic Shifts</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; logical shift fills with 0</span><br><span class="line">; arithmetic shift fills with 1</span><br><span class="line"></span><br><span class="line">; SHL Instruction perform a logical left shift to fasten multiplication</span><br><span class="line">shl reg, imm8</span><br><span class="line">shl mem, imm8</span><br><span class="line">shl reg, cl</span><br><span class="line">shl mem, cl</span><br><span class="line"></span><br><span class="line">mov dl, 5</span><br><span class="line">shl dl, 2	; 5 * 2^2 = 20</span><br><span class="line"></span><br><span class="line">; SHR Instruction perform a logical right shift to fasten division</span><br><span class="line">mov dl, 80</span><br><span class="line">shr dl, 1</span><br><span class="line">shr dl, 2</span><br><span class="line"></span><br><span class="line">; SAL is identical to SHL</span><br><span class="line">; SAR perform a arithmetic shift</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/H8oazn"><img src="https://s4.ax1x.com/2022/02/09/H8oazn.png" alt="H8oazn.png"></a></p>
+<h4 id="1-2-Rotation-Instruction"><a href="#1-2-Rotation-Instruction" class="headerlink" title="1.2    Rotation Instruction"></a>1.2    Rotation Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; ROL Instruction no bits are lost</span><br><span class="line">; ROR Instruction is as above</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/H87D5F"><img src="https://s4.ax1x.com/2022/02/09/H87D5F.png" alt="H87D5F.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; RCL Instruction copy the most significant to CF and CF to least significant</span><br><span class="line">; RCR Instruction reverse the RCL Instruction</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-SHLD-Instruction-shift-left-double"><a href="#1-3-SHLD-Instruction-shift-left-double" class="headerlink" title="1.3    SHLD Instruction(shift left double)"></a>1.3    SHLD Instruction(shift left double)</h4><p><a href="https://imgtu.com/i/HGidSI"><img src="https://s4.ax1x.com/2022/02/09/HGidSI.png" alt="HGidSI.png"></a></p>
+<p><a href="https://imgtu.com/i/HGiImT"><img src="https://s4.ax1x.com/2022/02/09/HGiImT.png" alt="HGiImT.png"></a></p>
+<h4 id="1-4-SHRD-Instruction"><a href="#1-4-SHRD-Instruction" class="headerlink" title="1.4    SHRD Instruction"></a>1.4    SHRD Instruction</h4><p>just the reverse version of SHLD</p>
+<h2 id="2-Multiplication-and-Division-Instruction"><a href="#2-Multiplication-and-Division-Instruction" class="headerlink" title="2. Multiplication and Division Instruction"></a>2. Multiplication and Division Instruction</h2><h4 id="2-1-MUL-Instruction"><a href="#2-1-MUL-Instruction" class="headerlink" title="2.1    MUL Instruction"></a>2.1    MUL Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mul r/m8</span><br><span class="line">; mul instruction multiplies an 8-, 16-. 32-bit operand by either AL,AX,EAX</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/HGkRs0"><img src="https://s4.ax1x.com/2022/02/09/HGkRs0.png" alt="HGkRs0.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">val1 WORD 2000h</span><br><span class="line">val2 WORD 100h</span><br><span class="line">.code</span><br><span class="line">mov ax, val1</span><br><span class="line">mul val2	; DX:AX = 0020 0000h, CF = 1</span><br><span class="line"></span><br><span class="line">mov eax, 12345h</span><br><span class="line">mov ebx, 1000h</span><br><span class="line">mul ebx	; EDX:EAX = 00000000 12345000h, CF = 0 </span><br><span class="line">; CF indicates whether the upper half has significant digits</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-IMUL-Instruction"><a href="#2-2-IMUL-Instruction" class="headerlink" title="2.2    IMUL Instruction"></a>2.2    IMUL Instruction</h4><p><a href="https://imgtu.com/i/HGVFVf"><img src="https://s4.ax1x.com/2022/02/09/HGVFVf.png" alt="HGVFVf.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov al, 48</span><br><span class="line">mov bl, 4</span><br><span class="line">imul bl ; AX = 00C0h, 0F = 1, because AH is not a sign extension of AL</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-DIV-Instruction"><a href="#2-3-DIV-Instruction" class="headerlink" title="2.3    DIV Instruction"></a>2.3    DIV Instruction</h4><p><a href="https://imgtu.com/i/HGZFyR"><img src="https://s4.ax1x.com/2022/02/09/HGZFyR.png" alt="HGZFyR.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov dx, 0000h ; clear dividend, high</span><br><span class="line">mov ax, 8003h</span><br><span class="line">mov cx, 100h</span><br><span class="line">div cx ; AX = 0080h, DX = 0003h</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">dividend_hi QWORD 00000208h</span><br><span class="line">dividend_lo QWORD 33300020h</span><br><span class="line">divisor QWORD 00010000h</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">mov rdx, dividend_hi</span><br><span class="line">mov rax, dividend_lo</span><br><span class="line">div divisor</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-Signed-Integer-Division"><a href="#2-4-Signed-Integer-Division" class="headerlink" title="2.4    Signed Integer Division"></a>2.4    Signed Integer Division</h4><p><a href="https://imgtu.com/i/HGuzRS"><img src="https://s4.ax1x.com/2022/02/09/HGuzRS.png" alt="HGuzRS.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; CBW, CWD, CDQ Instructions</span><br><span class="line">; CBW extends AL to AH</span><br><span class="line">; CWD extends AX to DX</span><br><span class="line">; CDQ extends eax to edx</span><br><span class="line"></span><br><span class="line">mov eax, 0FFFFFF9B</span><br><span class="line">cdq		; EDX:EAX = FFFFFFFFFFFFFF9Bh</span><br><span class="line"></span><br><span class="line">; example</span><br><span class="line">mov al, -48</span><br><span class="line">cbw</span><br><span class="line">mov bl, 5</span><br><span class="line">idiv bl</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Extended-Addition-and-Subtraction"><a href="#3-Extended-Addition-and-Subtraction" class="headerlink" title="3. Extended Addition and Subtraction"></a>3. Extended Addition and Subtraction</h2><h4 id="3-1-adc-instruction"><a href="#3-1-adc-instruction" class="headerlink" title="3.1    adc instruction"></a>3.1    adc instruction</h4><h4 id="3-2-extended-precision-addition"><a href="#3-2-extended-precision-addition" class="headerlink" title="3.2    extended precision addition"></a>3.2    extended precision addition</h4><h4 id="3-3-sbb-instruction"><a href="#3-3-sbb-instruction" class="headerlink" title="3.3    sbb instruction"></a>3.3    sbb instruction</h4><h4 id="3-4-extended-precision-subtraction"><a href="#3-4-extended-precision-subtraction" class="headerlink" title="3.4    extended precision subtraction"></a>3.4    extended precision subtraction</h4><h2 id="4-Multimodule-Programs"><a href="#4-Multimodule-Programs" class="headerlink" title="4. Multimodule Programs"></a>4. Multimodule Programs</h2><p>source code has been divided up into separate ASM files</p>
+<p>each ASM file is assembled into a separate OBJ file</p>
+<p>all OBJ files belonging to the same program are linked using the link utility into a single exe</p>
+<p>this process is called static linking</p>
+<h2 id="5-Stack-Frames"><a href="#5-Stack-Frames" class="headerlink" title="5. Stack Frames"></a>5. Stack Frames</h2><p>also known as an activation record(活动记录)</p>
+<p>created by the following steps:</p>
+<ol>
+<li><p>call program pushed arguments on the stack and calls the procedure</p>
+</li>
+<li><p>the called procedure pushed ebp on the stack, and set ebp to esp</p>
+</li>
+<li><p>if local var are needed, a constant is subtracted from ESP to make room on the stack</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pushad</span><br><span class="line">mov esi, OFFSET array</span><br><span class="line">mov ecx, LENGTHOF array</span><br><span class="line">mov ebx, TYPE array</span><br><span class="line">call DumpMem</span><br><span class="line">popad</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/HG3Oaj"><img src="https://s4.ax1x.com/2022/02/09/HG3Oaj.png" alt="HG3Oaj.png"></a></p>
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
       </tags>
   </entry>
 </search>
