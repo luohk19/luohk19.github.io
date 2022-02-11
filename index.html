@@ -209,6 +209,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/11/%E6%B1%87%E7%BC%96_Day5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="luohk">
+      <meta itemprop="description" content="今后本博客将会记载学习笔记、科研感想等">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="luohk19">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/11/%E6%B1%87%E7%BC%96_Day5/" class="post-title-link" itemprop="url">汇编第五天</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-11 12:46:54 / 修改时间：23:04:24" itemprop="dateCreated datePublished" datetime="2022-02-11T12:46:54+08:00">2022-02-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B1%87%E7%BC%96/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-String-Primitive-Instruction"><a href="#1-String-Primitive-Instruction" class="headerlink" title="1. String Primitive Instruction"></a>1. String Primitive Instruction</h2><h4 id="1-1-MOVSB-MOVSW-MOVSD"><a href="#1-1-MOVSB-MOVSW-MOVSD" class="headerlink" title="1.1.    MOVSB, MOVSW, MOVSD"></a>1.1.    MOVSB, MOVSW, MOVSD</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">; copy data from [esi] to [edi]</span><br><span class="line">.data</span><br><span class="line">source DWORD 0FFFFFFFFh</span><br><span class="line">target DWORD ?</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">movsd</span><br><span class="line">; esi and edi are automatically inc or dec depending on B,W,D</span><br><span class="line"></span><br><span class="line">; Direction Flag</span><br><span class="line">; DF = 0, inc esi and edi</span><br><span class="line">; DF = 1, dec esi and edi</span><br><span class="line">; that can be explicitly changed by cld and std</span><br><span class="line"></span><br><span class="line">; Using a Repeat Prefix</span><br><span class="line">.data</span><br><span class="line">source DWORD 20 DUP(&#x27;z&#x27;)</span><br><span class="line">target DWORD 20 DUP(?)</span><br><span class="line">.code</span><br><span class="line">cld</span><br><span class="line">mov ecx, LENGTHOF source</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">rep movsw</span><br><span class="line">; wait till ecx == 0</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-CMPSB-CMPSW-CMPSD"><a href="#1-2-CMPSB-CMPSW-CMPSD" class="headerlink" title="1.2.    CMPSB, CMPSW, CMPSD"></a>1.2.    CMPSB, CMPSW, CMPSD</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">; compare data from [esi] to [edi]</span><br><span class="line">; repeat prefix often used: repe(repz), repne(repnz)</span><br><span class="line">.data</span><br><span class="line">source DWORD 1234h</span><br><span class="line">target DWORD 5678h</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">CMPSD</span><br><span class="line">ja L1</span><br><span class="line">jmp L2</span><br><span class="line"></span><br><span class="line">; repeat</span><br><span class="line">.data</span><br><span class="line">source DWORD COUNT DUP(?)</span><br><span class="line">target DWORD COUNT DUP(?)</span><br><span class="line">.code</span><br><span class="line">mov ecx, COUNT</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">cld</span><br><span class="line">repe cmpsd</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-SCASB-SCASW-SCASD"><a href="#1-3-SCASB-SCASW-SCASD" class="headerlink" title="1.3.    SCASB, SCASW, SCASD"></a>1.3.    SCASB, SCASW, SCASD</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">; compare a value in AL/AX/EAX to [edi]</span><br><span class="line">.data</span><br><span class="line">alpha BYTE &quot;ABCDEFGH&quot;, 0</span><br><span class="line">.code</span><br><span class="line">mov edi, OFFSET alpha</span><br><span class="line">mov al, &#x27;F&#x27;</span><br><span class="line">mov ecx, LENGTHOF alpha</span><br><span class="line">cld</span><br><span class="line">repne scasb</span><br><span class="line">jnz quit</span><br><span class="line">dec edi</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-STOSB-STOSW-STOSD"><a href="#1-4-STOSB-STOSW-STOSD" class="headerlink" title="1.4.    STOSB, STOSW, STOSD"></a>1.4.    STOSB, STOSW, STOSD</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">; store content of al/ax/eax to [edi]</span><br><span class="line">.data</span><br><span class="line">Count = 100</span><br><span class="line">string1 BYTE Count DUP(?)</span><br><span class="line">.code</span><br><span class="line">mov al, OFFh</span><br><span class="line">mov edi, OFFSET string1</span><br><span class="line">mov ecx, Count</span><br><span class="line">cld</span><br><span class="line">rep stosb</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/09/%E6%B1%87%E7%BC%96_Day4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1222,87 +1311,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/09/1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="luohk">
-      <meta itemprop="description" content="今后本博客将会记载学习笔记、科研感想等">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="luohk19">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/09/1/" class="post-title-link" itemprop="url">firstOne</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-09 10:34:45 / 修改时间：10:42:53" itemprop="dateCreated datePublished" datetime="2022-01-09T10:34:45+08:00">2022-01-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1374,7 +1382,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1410,6 +1418,11 @@
 	</div>
 	<ul class="links-of-blogroll-list recent-posts-list">
 	        <li class="my-links-of-blogroll-item">
+		    <a href="/2022/02/11/%E6%B1%87%E7%BC%96_Day5/" title="汇编第五天" target="">
+		    汇编第五天
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
 		    <a href="/2022/02/09/%E6%B1%87%E7%BC%96_Day4/" title="汇编第四天" target="">
 		    汇编第四天
 		    </a>
@@ -1427,11 +1440,6 @@
 	        <li class="my-links-of-blogroll-item">
 		    <a href="/2022/02/08/%E6%B1%87%E7%BC%96_Day1/" title="汇编第一天" target="">
 		    汇编第一天
-		    </a>
-		</li>
-	        <li class="my-links-of-blogroll-item">
-		    <a href="/2022/01/12/django/" title="django后端AI训练" target="">
-		    django后端AI训练
 		    </a>
 		</li>
 	</ul>
@@ -1467,13 +1475,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">19k</span>
+    <span title="站点总字数">21k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">19 分钟</span>
 </div>
 
         
