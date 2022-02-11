@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>firstOne</title>
+    <url>/2022/01/09/1/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+  </entry>
+  <entry>
     <title>linux常用命令</title>
     <url>/2022/01/12/Linux%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h4 id="1-系统状况"><a href="#1-系统状况" class="headerlink" title="1.系统状况"></a>1.系统状况</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top # 查看所有进程的信息，M按内存排序，p按cpu排序</span><br><span class="line">df -h # 查看硬盘使用情况</span><br><span class="line">free -h # 查看内存使用情况</span><br><span class="line">du -sh # 查看当前目录占用的硬盘空间</span><br><span class="line">ps aux # 查看所有进程</span><br><span class="line">kill -9 pid # 杀死编号pid的进程</span><br><span class="line">netstat -nt #查看所有网络连接</span><br><span class="line">w #列出当前登录的用户</span><br><span class="line">ping www.baidu.com # 检查是否联网</span><br></pre></td></tr></table></figure>
@@ -55,14 +63,6 @@
       <tags>
         <tag>bash</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>firstOne</title>
-    <url>/2022/01/09/1/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
   </entry>
   <entry>
     <title>django后端AI训练</title>
@@ -356,10 +356,9 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">myWord WORD ?</span><br><span class="line">.code</span><br><span class="line">	invoke mySub, ADDR myWord</span><br></pre></td></tr></table></figure>
 
 <h4 id="6-3-PROC-Directive"><a href="#6-3-PROC-Directive" class="headerlink" title="6.3    PROC Directive"></a>6.3    PROC Directive</h4><p>not in 64bit model</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">label PROC [attributes][USES regList], paramList</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">label PROC [attributes][USES regList], paramList</span><br><span class="line">AddTWo PROC</span><br><span class="line">	val1:DWORD, val2:DWORD</span><br><span class="line">	</span><br><span class="line">	mov eax, val1</span><br><span class="line">	add eax, val2</span><br><span class="line">	ret</span><br><span class="line">AddTwo ENDP</span><br><span class="line">; example</span><br><span class="line">MySub PROTO</span><br><span class="line">.code</span><br><span class="line">invoke mySub</span><br><span class="line"></span><br><span class="line">MySub PROC</span><br><span class="line">	.</span><br><span class="line">MySub ENDP</span><br><span class="line"></span><br><span class="line">; example</span><br><span class="line">ArraySum PROTO</span><br><span class="line">	ptrArray:PTR DWORD</span><br><span class="line">	szArray:DWORD</span><br></pre></td></tr></table></figure>
 
-
-
+<h2 id="7-Multimodule-Programs"><a href="#7-Multimodule-Programs" class="headerlink" title="7. Multimodule Programs"></a>7. Multimodule Programs</h2><h4 id="7-1-Creating-a-multimodule-program"><a href="#7-1-Creating-a-multimodule-program" class="headerlink" title="7.1 Creating a multimodule program"></a>7.1 Creating a multimodule program</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 1. create the main module</span><br><span class="line">; 2. create a separate source code module for each procedure or set of related procedure</span><br><span class="line">; 3. create an include file that contains procedure prototypes for external procedures</span><br><span class="line">; 4. use the include directive to make your procedure prototypes available to each module</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>汇编</category>
