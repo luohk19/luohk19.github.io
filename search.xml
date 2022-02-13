@@ -89,25 +89,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/01/08/hello-world/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
-  <script id="hbeData" type="hbeData" data-hmacdigest="60d335b7180a6957abe64f977aafef3d3a993b5bff30507ffd9f3e75ef7790de">10d79030e8222445804370796b90fca1fcf46a07b5ecf341c635269a7fe842f80cf07e697ff3618a365f409d43ee2a0b71169e7502cdfd2ac90458dd940f8bc9dffd4520316db24d3e303037ca2d5032e72bf872f07e40dbb3cf3ace773ac1c9</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>private</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker使用</title>
     <url>/2022/01/12/docker/</url>
     <content><![CDATA[<h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
@@ -129,6 +110,25 @@
       </categories>
       <tags>
         <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/01/08/hello-world/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
+  <script id="hbeData" type="hbeData" data-hmacdigest="60d335b7180a6957abe64f977aafef3d3a993b5bff30507ffd9f3e75ef7790de">10d79030e8222445804370796b90fca1fcf46a07b5ecf341c635269a7fe842f80cf07e697ff3618a365f409d43ee2a0b71169e7502cdfd2ac90458dd940f8bc9dffd4520316db24d3e303037ca2d5032e72bf872f07e40dbb3cf3ace773ac1c9</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>private</tag>
       </tags>
   </entry>
   <entry>
@@ -382,6 +382,28 @@
 
 <h2 id="2-Selected-String-Procedures"><a href="#2-Selected-String-Procedures" class="headerlink" title="2. Selected String Procedures"></a>2. Selected String Procedures</h2><h4 id="2-1-Two-Dimensional-Arrays"><a href="#2-1-Two-Dimensional-Arrays" class="headerlink" title="2.1 Two-Dimensional Arrays"></a>2.1 Two-Dimensional Arrays</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; Structure Application</span><br><span class="line">COORD STRUCT</span><br><span class="line">	X WORD ?</span><br><span class="line">	Y WORD ?</span><br><span class="line">COORD ENDS</span><br><span class="line">.data</span><br><span class="line">setOfCoordinates COORD 10 DUP(&lt;&gt;)</span><br><span class="line">.code</span><br><span class="line">	mov ebx, OFFSET setOfCoordinates</span><br><span class="line">	mov esi, 2</span><br><span class="line">	mov eax, 0</span><br><span class="line">	mov ecx, LENGTHOF setOfCoordinates</span><br><span class="line">L1: mov ax, [ebx + esi]</span><br><span class="line">	call WriteDec</span><br><span class="line">	add ebx, SIZEOF COORD</span><br><span class="line">	loop L1</span><br><span class="line">; common formats</span><br><span class="line">;	[base + index + displacement]</span><br><span class="line">;	displacement[base + index]</span><br><span class="line">table BYTE 10h, 20h, 30h, 40h, 50h</span><br><span class="line">	  BYTE 60h, 70h, 80h, 90h, 0A0h</span><br><span class="line">	  BYTE 0B0h, 0C0h, 0D0h, 0E0h, 0F0h</span><br><span class="line">NumCols = 5</span><br><span class="line">; alternate formats</span><br><span class="line">table BYTE 10h, 20h, 30h, 40h, 50h, 60h, 70h, 80h, 90h, 0A0h, OB0h, 0C0h, 0D0h, 0E0h, 0F0h</span><br><span class="line">NumCols = 5</span><br><span class="line"></span><br><span class="line">RowNumber = 1</span><br><span class="line">ColumnNumber = 2</span><br><span class="line"></span><br><span class="line">mov ebx, NumCols * RowNumber</span><br><span class="line">mov esi, ColumnNumber</span><br><span class="line">mov al, table[ebx + esi]</span><br></pre></td></tr></table></figure>
 
+<h4 id="2-2-Searching-and-Sorting-Integer-Arrays"><a href="#2-2-Searching-and-Sorting-Integer-Arrays" class="headerlink" title="2.2.    Searching and Sorting Integer Arrays"></a>2.2.    Searching and Sorting Integer Arrays</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; pseudocode</span><br><span class="line">cx1 = N - 1</span><br><span class="line">while(cx1 &gt; 0)&#123;</span><br><span class="line">	esi = addr(array)</span><br><span class="line">	cx2 = cx1</span><br><span class="line">	while(cx2 &gt; 0)&#123;</span><br><span class="line">		if(array[esi] &lt; array[esi + 4])&#123;</span><br><span class="line">			exchange(array[esi], array[esi + 4])</span><br><span class="line">		&#125;</span><br><span class="line">		add esi, 4</span><br><span class="line">		dec cx2</span><br><span class="line">	&#125;</span><br><span class="line">	dec cx2</span><br><span class="line">&#125;</span><br><span class="line">; assembly code</span><br><span class="line">BubbleSort PROC USES eax, ecx, esi, pArray:PTR DWORD, Count:DWORD</span><br><span class="line">	mov ecx, Count</span><br><span class="line">	dec ecx</span><br><span class="line">L1:</span><br><span class="line">	push ecx</span><br><span class="line">	mov esi, pArray</span><br><span class="line">L2:</span><br><span class="line">	mov eax, [esi]</span><br><span class="line">	cmp [esi + 4], eax</span><br><span class="line">	jge L3</span><br><span class="line">	xchg eax, [esi + 4]</span><br><span class="line">	mov [esi], eax</span><br><span class="line">L3:</span><br><span class="line">	add esi, 4</span><br><span class="line">	loop L2</span><br><span class="line">	pop ecx</span><br><span class="line">	loop L1</span><br><span class="line">L4:</span><br><span class="line">	ret</span><br><span class="line">BubbleSort ENDP</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Structure"><a href="#3-Structure" class="headerlink" title="3. Structure"></a>3. Structure</h2><h4 id="3-1-Structure-Definition-Syntax"><a href="#3-1-Structure-Definition-Syntax" class="headerlink" title="3.1    Structure Definition Syntax"></a>3.1    Structure Definition Syntax</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">name STRUCT</span><br><span class="line">	field-declarations</span><br><span class="line">name ENDS</span><br><span class="line"></span><br><span class="line">Employee STRUCT</span><br><span class="line">	IdNum BYTE &quot;000000000&quot;</span><br><span class="line">	LastName BYTE 30 DUP(0)</span><br><span class="line">	Years WORD 0</span><br><span class="line">	SalaryHistory DWORD 0,0,0,0</span><br><span class="line">Employee ENDS</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-Declaring-Structure-Variables"><a href="#3-2-Declaring-Structure-Variables" class="headerlink" title="3.2    Declaring Structure Variables"></a>3.2    Declaring Structure Variables</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">point1 COORD &lt;5,10&gt;</span><br><span class="line">point2 COORD &lt;&gt;</span><br><span class="line">worker Employee &lt;&gt;</span><br><span class="line"></span><br><span class="line">; initializing Array Fields</span><br><span class="line">.data</span><br><span class="line">emp Employee &lt;,,,2 DUP(20000)&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-Array-of-Structure"><a href="#3-3-Array-of-Structure" class="headerlink" title="3.3    Array of Structure"></a>3.3    Array of Structure</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">NumPoints = 3</span><br><span class="line">AllPoints COORD NumPoints DUP(&lt;0,0&gt;)</span><br><span class="line"></span><br><span class="line">RD_Dept Employee 20 DUP(&lt;&gt;)</span><br><span class="line"></span><br><span class="line">accounting Employee 10 DUP(&lt;,,,4 DUP(20000)&gt;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-Reference-Structure-Variables"><a href="#3-4-Reference-Structure-Variables" class="headerlink" title="3.4    Reference Structure Variables"></a>3.4    Reference Structure Variables</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Employee STRUCT								; BYTES</span><br><span class="line">	IdNum BYTE &quot;000000000&quot;					; 9</span><br><span class="line">	LastName BYTE 30 DUP(0)					; 30</span><br><span class="line">	Years WORD 0							; 2</span><br><span class="line">	SalaryHistory DWORD 0,0,0,0				; 16</span><br><span class="line">Employee ENDS								; 57</span><br><span class="line">.data</span><br><span class="line">worker Employee &lt;&gt;</span><br><span class="line"></span><br><span class="line">mov eax, TYPE Employee</span><br><span class="line">mov eax, SIZEOF Employee</span><br><span class="line">mov eax, SIZEOF worker</span><br><span class="line">mov eax, TYPE Employee.SalaryHistory</span><br><span class="line">mov eax, LENGTHOF Employee.SalaryHistory</span><br><span class="line">mov eax, SIZEOF Employee.SalaryHistory</span><br><span class="line">;</span><br><span class="line">mov dx, worker.Years</span><br><span class="line">mov worker.SalaryHistory, 20000</span><br><span class="line">mov worker.SalaryHistory+4, 30000</span><br><span class="line">mov edx, OFFSET worker.LastName</span><br><span class="line">;</span><br><span class="line">mov esi, OFFSET worker</span><br><span class="line">mov ax, (Employee PTR [esi]).Years</span><br><span class="line">;</span><br><span class="line">mov ax, [esi].Years	; invalid operand</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-Nested-Structure"><a href="#3-5-Nested-Structure" class="headerlink" title="3.5    Nested Structure"></a>3.5    Nested Structure</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Rectangle STRUCT</span><br><span class="line">	UpperLeft COORD &lt;&gt;</span><br><span class="line">	LowerRight COORD &lt;&gt;</span><br><span class="line">Rectangle ENDS</span><br><span class="line">.data</span><br><span class="line">rect1 Rectangle &#123;&#123;10,10&#125;,&#123;50,20&#125;&#125;</span><br><span class="line">rect2 Rectangle &lt; &lt;10,10&gt;, &lt;50,20&gt; &gt;</span><br><span class="line"></span><br><span class="line">mov rect1.UpperLeft.X, 10</span><br><span class="line">mov esi, OFFSET rect1</span><br><span class="line">mov (Rectangle PTR [esi]).UpperLeft.Y, 10</span><br><span class="line"></span><br><span class="line">mov edi, OFFSET rect2.LowerRight</span><br><span class="line">mov (COORD PTR [edi]).X, 50</span><br><span class="line">mov edi, OFFSET rect2.LowerRight</span><br><span class="line">mov WORD PTR [edi], 50</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Declaring-and-Using-Union"><a href="#4-Declaring-and-Using-Union" class="headerlink" title="4. Declaring and Using Union"></a>4. Declaring and Using Union</h2><h4 id="4-1-union-definition-syntax"><a href="#4-1-union-definition-syntax" class="headerlink" title="4.1    union definition syntax"></a>4.1    union definition syntax</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">name UNION</span><br><span class="line">	union-fields</span><br><span class="line">name ENDS</span><br><span class="line"></span><br><span class="line">; Integer Union Example</span><br><span class="line">Integer UNION</span><br><span class="line">	D DWORD 0</span><br><span class="line">	W WORD 0</span><br><span class="line">	B BYTE 0</span><br><span class="line">Integer ENDS</span><br><span class="line">.data</span><br><span class="line">val1 Integer &lt;12345678h&gt;</span><br><span class="line">val2 Integer &lt;100h&gt;</span><br><span class="line">val3 Integer &lt;&gt;</span><br><span class="line"></span><br><span class="line">mov val3.B, al</span><br><span class="line">mov ax, val3.W</span><br><span class="line">add val3.D, eax</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-Union-inside-a-structure"><a href="#4-2-Union-inside-a-structure" class="headerlink" title="4.2    Union inside a structure"></a>4.2    Union inside a structure</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Integer UNION</span><br><span class="line">	D DWORD 0</span><br><span class="line">	W WORD 0</span><br><span class="line">	B BYTE 0</span><br><span class="line">Integer ENDS</span><br><span class="line"></span><br><span class="line">FileInfo STRUCT</span><br><span class="line">	FileID Integer &lt;&gt;</span><br><span class="line">	FileName BYTE 64 DUP(?)</span><br><span class="line">FileInfo ENDS</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">myFile FileInfo &lt;&gt;</span><br><span class="line">.code</span><br><span class="line">mov myFile.FileID.W, ax</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Macro"><a href="#5-Macro" class="headerlink" title="5. Macro"></a>5. Macro</h2><p><a href="https://imgtu.com/i/HDZwJH"><img src="https://s4.ax1x.com/2022/02/13/HDZwJH.png" alt="HDZwJH.png"></a></p>
+<h4 id="5-1-Defining-Macros"><a href="#5-1-Defining-Macros" class="headerlink" title="5.1    Defining Macros"></a>5.1    Defining Macros</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">macroname MACRO [param1, param2,...]</span><br><span class="line">	statement-list</span><br><span class="line">ENDM</span><br><span class="line"></span><br><span class="line">; example 1</span><br><span class="line">mNewLine MACRO</span><br><span class="line">	call Crlf</span><br><span class="line">ENDM</span><br><span class="line">.data</span><br><span class="line">.code</span><br><span class="line">mNewLine	; invoke the macro</span><br><span class="line"></span><br><span class="line">; example 2</span><br><span class="line">mPutChar MACRO char</span><br><span class="line">	push eax</span><br><span class="line">	mov al, char</span><br><span class="line">	call WriteChar</span><br><span class="line">	pop eax</span><br><span class="line">ENDM</span><br><span class="line">.code</span><br><span class="line">mPutChar &#x27;A&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-Invoking-Macros"><a href="#5-2-Invoking-Macros" class="headerlink" title="5.2    Invoking Macros"></a>5.2    Invoking Macros</h4><p><a href="https://imgtu.com/i/HDekkD"><img src="https://s4.ax1x.com/2022/02/13/HDekkD.png" alt="HDekkD.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mWriteStr MACRO buffer</span><br><span class="line">	push edx</span><br><span class="line">	mov edx, OFFSET buffer</span><br><span class="line">	call WriteString</span><br><span class="line">	pop edx</span><br><span class="line">ENDM</span><br><span class="line">.data</span><br><span class="line">str1 BYTE &quot;welcome!&quot;, 0</span><br><span class="line">.code</span><br><span class="line">mWriteStr str1</span><br><span class="line"></span><br><span class="line">; if you pass a blank argument, the error is also caught</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>汇编</category>
@@ -419,6 +441,27 @@
       </categories>
       <tags>
         <tag>server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编第六天</title>
+    <url>/2022/02/13/%E6%B1%87%E7%BC%96_Day6/</url>
+    <content><![CDATA[<h2 id="1-Conditional-Assembly-Directives"><a href="#1-Conditional-Assembly-Directives" class="headerlink" title="1. Conditional-Assembly Directives"></a>1. Conditional-Assembly Directives</h2><h4 id="1-1-Checking-for-Missing-Arguments"><a href="#1-1-Checking-for-Missing-Arguments" class="headerlink" title="1.1    Checking for Missing Arguments"></a>1.1    Checking for Missing Arguments</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; IFB directive returns true if its argument is blank</span><br><span class="line">IFB &lt;row&gt;</span><br><span class="line">	EXITM</span><br><span class="line">ENDIF</span><br><span class="line"></span><br><span class="line">; example</span><br><span class="line">mWriteStr MACRO string</span><br><span class="line">	IFB &lt;string&gt;</span><br><span class="line">		ECHO -----------------------------</span><br><span class="line">		ECHO * Error: parameter missing in mWriteStr</span><br><span class="line">		ECHO * (no code generated)</span><br><span class="line">		ECHO -----------------------------</span><br><span class="line">		EXITM</span><br><span class="line">	ENDIF</span><br><span class="line">	push edx</span><br><span class="line">	mov edx, OFFSET string</span><br><span class="line">	call WriteString</span><br><span class="line">	pop edx</span><br><span class="line">ENDM</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-Default-Argument-Initializers"><a href="#1-2-Default-Argument-Initializers" class="headerlink" title="1.2    Default Argument Initializers"></a>1.2    Default Argument Initializers</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mWriteLn MACRO text:=&lt;&quot; &quot;&gt;</span><br><span class="line">	mWrite text</span><br><span class="line">	call Crlf</span><br><span class="line">ENDM</span><br><span class="line">.code</span><br><span class="line">mWriteLn &quot;line one&quot;</span><br><span class="line">mWriteLn</span><br><span class="line">mWriteLn &quot;line three&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-Boolean-Expressions"><a href="#1-3-Boolean-Expressions" class="headerlink" title="1.3    Boolean Expressions"></a>1.3    Boolean Expressions</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; LT - less than</span><br><span class="line">; GT - greater than</span><br><span class="line">; EQ - equal to</span><br><span class="line">; NE - not equal to</span><br><span class="line">; LE - less than or equal</span><br><span class="line">; GE - Greater than or equal to</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-IF-ELSE-and-ENDIF-Directives"><a href="#1-4-IF-ELSE-and-ENDIF-Directives" class="headerlink" title="1.4    IF, ELSE and ENDIF Directives"></a>1.4    IF, ELSE and ENDIF Directives</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">IF boolean-expression</span><br><span class="line">	statements</span><br><span class="line">[ELSE</span><br><span class="line">	statements]</span><br><span class="line">ENDIF</span><br><span class="line"></span><br><span class="line">IF RealMode EQ 1</span><br><span class="line">	mov ax, @data</span><br><span class="line">	mov ds, ax</span><br><span class="line">ENDIF</span><br><span class="line">; RealMode can be defined in following ways:</span><br><span class="line">RealMode = 1</span><br><span class="line">RealMode EQU 1</span><br><span class="line">RealMode TEXTEQU 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-5-IFIDN-and-IFIDNI-Directive"><a href="#1-5-IFIDN-and-IFIDNI-Directive" class="headerlink" title="1.5    IFIDN and IFIDNI Directive"></a>1.5    IFIDN and IFIDNI Directive</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">IFIDNI &lt;symbol&gt;, &lt;symbol&gt;</span><br><span class="line">	statements</span><br><span class="line">ENDIF</span><br><span class="line">; example</span><br><span class="line">mReadBuf MACRO bufferPtr, maxChars</span><br><span class="line">	IFIDNI &lt;maxChars&gt;, &lt;EDX&gt;</span><br><span class="line">		ECHO Warning: Second argument cannot be EDX</span><br><span class="line">		ECHO **************************************</span><br><span class="line">		EXITM</span><br><span class="line">	ENDIF</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
       </tags>
   </entry>
 </search>
