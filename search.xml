@@ -9,25 +9,6 @@
       </categories>
   </entry>
   <entry>
-    <title>linux常用命令</title>
-    <url>/2022/01/12/Linux%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h4 id="1-系统状况"><a href="#1-系统状况" class="headerlink" title="1.系统状况"></a>1.系统状况</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top # 查看所有进程的信息，M按内存排序，p按cpu排序</span><br><span class="line">df -h # 查看硬盘使用情况</span><br><span class="line">free -h # 查看内存使用情况</span><br><span class="line">du -sh # 查看当前目录占用的硬盘空间</span><br><span class="line">ps aux # 查看所有进程</span><br><span class="line">kill -9 pid # 杀死编号pid的进程</span><br><span class="line">netstat -nt #查看所有网络连接</span><br><span class="line">w #列出当前登录的用户</span><br><span class="line">ping www.baidu.com # 检查是否联网</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-文件权限"><a href="#2-文件权限" class="headerlink" title="2.文件权限"></a>2.文件权限</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x xxx <span class="comment">#添加可执行权限</span></span><br><span class="line">chmod +x xxx -R <span class="comment">#递归地修改整个文件</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-文件"><a href="#3-文件" class="headerlink" title="3.文件"></a>3.文件</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find path -name <span class="string">&#x27;*.py&#x27;</span> <span class="comment">#搜索某个路径下的.py文件</span></span><br><span class="line">grep xxx <span class="comment"># stdin读入若干行数据</span></span><br><span class="line">wc <span class="comment"># 统计行数等 -l 行数 -w 单词数 -c 字节数</span></span><br><span class="line">tree <span class="comment">#展示文件结构，-a展示隐藏文件</span></span><br><span class="line">ag xxx <span class="comment">#搜索当前目录下的所有文件，检索xxx字符</span></span><br><span class="line">cut -d <span class="string">&#x27;分割符&#x27;</span> -f 3,5 <span class="comment">#分割符分开的第3，第5列</span></span><br><span class="line">sort <span class="comment">#按字典序排序</span></span><br><span class="line">xargs <span class="comment">#将stdin数据分割成命令</span></span><br><span class="line">head -3 xxx <span class="comment">#展示前三行内容，tail是尾部</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="4-工具"><a href="#4-工具" class="headerlink" title="4.工具"></a>4.工具</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">time <span class="built_in">command</span> <span class="comment">#统计command的执行时间</span></span><br><span class="line">ipython3 <span class="comment">#小型jupyter</span></span><br><span class="line">tar -zcvf xxx.tar.gz path <span class="comment">#压缩至</span></span><br><span class="line">tar -zxvf xxx.tar.gz <span class="comment">#解压</span></span><br><span class="line">diff xxx yyy <span class="comment">#查找两个文件的不同点</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux命令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bash</title>
     <url>/2022/01/10/bash/</url>
     <content><![CDATA[<h4 id="1-Hello-World"><a href="#1-Hello-World" class="headerlink" title="1. Hello World"></a>1. Hello World</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world&quot;</span> <span class="comment">#双引号表示执行，单引号表示单纯输出</span></span><br><span class="line"></span><br><span class="line">chmod +x xxx.sh <span class="comment">#使xxx.sh脚本具有执行能力</span></span><br></pre></td></tr></table></figure>
@@ -65,6 +46,25 @@
       </tags>
   </entry>
   <entry>
+    <title>linux常用命令</title>
+    <url>/2022/01/12/Linux%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h4 id="1-系统状况"><a href="#1-系统状况" class="headerlink" title="1.系统状况"></a>1.系统状况</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top # 查看所有进程的信息，M按内存排序，p按cpu排序</span><br><span class="line">df -h # 查看硬盘使用情况</span><br><span class="line">free -h # 查看内存使用情况</span><br><span class="line">du -sh # 查看当前目录占用的硬盘空间</span><br><span class="line">ps aux # 查看所有进程</span><br><span class="line">kill -9 pid # 杀死编号pid的进程</span><br><span class="line">netstat -nt #查看所有网络连接</span><br><span class="line">w #列出当前登录的用户</span><br><span class="line">ping www.baidu.com # 检查是否联网</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-文件权限"><a href="#2-文件权限" class="headerlink" title="2.文件权限"></a>2.文件权限</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x xxx <span class="comment">#添加可执行权限</span></span><br><span class="line">chmod +x xxx -R <span class="comment">#递归地修改整个文件</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-文件"><a href="#3-文件" class="headerlink" title="3.文件"></a>3.文件</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find path -name <span class="string">&#x27;*.py&#x27;</span> <span class="comment">#搜索某个路径下的.py文件</span></span><br><span class="line">grep xxx <span class="comment"># stdin读入若干行数据</span></span><br><span class="line">wc <span class="comment"># 统计行数等 -l 行数 -w 单词数 -c 字节数</span></span><br><span class="line">tree <span class="comment">#展示文件结构，-a展示隐藏文件</span></span><br><span class="line">ag xxx <span class="comment">#搜索当前目录下的所有文件，检索xxx字符</span></span><br><span class="line">cut -d <span class="string">&#x27;分割符&#x27;</span> -f 3,5 <span class="comment">#分割符分开的第3，第5列</span></span><br><span class="line">sort <span class="comment">#按字典序排序</span></span><br><span class="line">xargs <span class="comment">#将stdin数据分割成命令</span></span><br><span class="line">head -3 xxx <span class="comment">#展示前三行内容，tail是尾部</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-工具"><a href="#4-工具" class="headerlink" title="4.工具"></a>4.工具</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">time <span class="built_in">command</span> <span class="comment">#统计command的执行时间</span></span><br><span class="line">ipython3 <span class="comment">#小型jupyter</span></span><br><span class="line">tar -zcvf xxx.tar.gz path <span class="comment">#压缩至</span></span><br><span class="line">tar -zxvf xxx.tar.gz <span class="comment">#解压</span></span><br><span class="line">diff xxx yyy <span class="comment">#查找两个文件的不同点</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux命令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>django后端AI训练</title>
     <url>/2022/01/12/django/</url>
     <content><![CDATA[<h4 id="1-初始配置"><a href="#1-初始配置" class="headerlink" title="1.初始配置"></a>1.初始配置</h4><p>如果想完美贴合本次教程的环境，可以联系作者发送docker文件以确保环境相同。</p>
@@ -89,25 +89,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/01/08/hello-world/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
-  <script id="hbeData" type="hbeData" data-hmacdigest="60d335b7180a6957abe64f977aafef3d3a993b5bff30507ffd9f3e75ef7790de">10d79030e8222445804370796b90fca1fcf46a07b5ecf341c635269a7fe842f80cf07e697ff3618a365f409d43ee2a0b71169e7502cdfd2ac90458dd940f8bc9dffd4520316db24d3e303037ca2d5032e72bf872f07e40dbb3cf3ace773ac1c9</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>private</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker使用</title>
     <url>/2022/01/12/docker/</url>
     <content><![CDATA[<h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
@@ -129,6 +110,57 @@
       </categories>
       <tags>
         <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/01/08/hello-world/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
+  <script id="hbeData" type="hbeData" data-hmacdigest="60d335b7180a6957abe64f977aafef3d3a993b5bff30507ffd9f3e75ef7790de">10d79030e8222445804370796b90fca1fcf46a07b5ecf341c635269a7fe842f80cf07e697ff3618a365f409d43ee2a0b71169e7502cdfd2ac90458dd940f8bc9dffd4520316db24d3e303037ca2d5032e72bf872f07e40dbb3cf3ace773ac1c9</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>private</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编第一天</title>
+    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day1/</url>
+    <content><![CDATA[<h2 id="1-General-Purpose-Registers"><a href="#1-General-Purpose-Registers" class="headerlink" title="1. General Purpose Registers"></a>1. General Purpose Registers</h2><p>1.1. 32bit寄存器为4bytes，即xxxxh。</p>
+<p>1.2. 以32位寄存器eax举例，内部还有低16bit[ax]，在ax内还分为高八位ah与低八位al</p>
+<p>1.3. 对于64bit-Processors，将前面的e改成r或删去最后的D</p>
+<p><a href="https://imgtu.com/i/H1pd6e"><img src="https://s4.ax1x.com/2022/02/08/H1pd6e.png" alt="寄存器" style="zoom: 80%;" /></a></p>
+<p>1.3. 之所以为general purpose register，作用如下：</p>
+<p><a href="https://imgtu.com/i/H19F1O"><img src="https://s4.ax1x.com/2022/02/08/H19F1O.png" alt="H19F1O.png"></a></p>
+<h2 id="2-计算地址偏移量"><a href="#2-计算地址偏移量" class="headerlink" title="2. 计算地址偏移量"></a>2. 计算地址偏移量</h2><p>example:  08F1:0100的实际地址为08F10+0100=09010，即起始地址*16</p>
+<p>？可能是由于地址范围大，需要用更少的位数表达更大的地址</p>
+<h2 id="3-汇编程序的一般格式"><a href="#3-汇编程序的一般格式" class="headerlink" title="3. 汇编程序的一般格式"></a>3. 汇编程序的一般格式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">ExitProcess PROTO, dwExitCode:DWORD</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">; declare variables here, ; leads comment</span><br><span class="line">COMMENT !</span><br><span class="line">	;multi-lines comments</span><br><span class="line">!</span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	; write your code here</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line"></span><br><span class="line">; insert additional procedures here</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-汇编的常见元素"><a href="#4-汇编的常见元素" class="headerlink" title="4. 汇编的常见元素"></a>4. 汇编的常见元素</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 进制</span><br><span class="line">h hexadecimal</span><br><span class="line">d decimal</span><br><span class="line">b binary</span><br><span class="line">o octal</span><br><span class="line"></span><br><span class="line">; 操作</span><br><span class="line">stc ; set carry flag, no operands</span><br><span class="line"></span><br><span class="line">inc eax ; register</span><br><span class="line">inc myByte ; memory one operand</span><br><span class="line"></span><br><span class="line">add ebx, ecx ; register register</span><br><span class="line">sub myByte, 25 ; memory constant</span><br><span class="line">add eax, 36*25 ; register constant-expression</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-一个简单汇编例子"><a href="#5-一个简单汇编例子" class="headerlink" title="5. 一个简单汇编例子"></a>5. 一个简单汇编例子</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TITLE add and subtract</span><br><span class="line"></span><br><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line"></span><br><span class="line">ExitProcess PROTO. dwExitCode:DWORD</span><br><span class="line">DumpRegs PROTO</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	mov eax, 10000h	; eax = 10000h</span><br><span class="line">	add eax, 40000h ; eax = 50000h</span><br><span class="line">	sub eax, 20000h ; eax = 30000h</span><br><span class="line">	call DumpRegs</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-汇编过程"><a href="#6-汇编过程" class="headerlink" title="6.汇编过程"></a>6.汇编过程</h2><p><a href="https://imgtu.com/i/H1Pq9P"><img src="https://s4.ax1x.com/2022/02/08/H1Pq9P.png" alt="H1Pq9P.png"></a></p>
+<h2 id="7-数据类型"><a href="#7-数据类型" class="headerlink" title="7. 数据类型"></a>7. 数据类型</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; integer</span><br><span class="line">BYTE, SBYTE ; 8bit unsigned and signed</span><br><span class="line">WORD, SWORD ; 16it</span><br><span class="line">DWORD, SDWORD ; 32bit</span><br><span class="line">QWORD ; 64bit</span><br><span class="line">TBYTE ; 80bit integer</span><br><span class="line"></span><br><span class="line">; real</span><br><span class="line">REAL4 ; 4byte IEEE short real</span><br><span class="line">REAL8 ; 8byte long</span><br><span class="line">REAL10 ; 10byte extended</span><br><span class="line"></span><br><span class="line">; define variables</span><br><span class="line">val1 BYTE &#x27;A&#x27;</span><br><span class="line">val2 SBYTE +127 ; largest signed byte</span><br><span class="line">list1 BYTE 10, 20, 30, 40 ; list</span><br><span class="line">str1 BYTE &quot;enter your name&quot;, 0 ; null-terminated</span><br><span class="line"></span><br><span class="line">; 如果想实现回车，需要在末尾加入0dh,0ah</span><br><span class="line">; 0dh = carriage return</span><br><span class="line">; 0ah = line feed</span><br><span class="line">; 一个是回车，一个是换行</span><br><span class="line"></span><br><span class="line">; Using DUP operator</span><br><span class="line">var1 BYTE 20 DUP(0) ; 20 bytes, all equal to 0</span><br><span class="line">var2 BYTE 20 DUP(?) ; 20 bytes, uninitialized</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-小端法与大端法"><a href="#8-小端法与大端法" class="headerlink" title="8. 小端法与大端法"></a>8. 小端法与大端法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">little endian order means least significant to low memory address</span><br><span class="line">big endian order is the opposite</span><br><span class="line"></span><br><span class="line">val1 DWORD 12345678h</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-Symbolic-Constants"><a href="#9-Symbolic-Constants" class="headerlink" title="9. Symbolic Constants"></a>9. Symbolic Constants</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; calculating the size of a byte array</span><br><span class="line">list BYTE 10, 20, 30, 40</span><br><span class="line">ListSize = ($ - list)</span><br><span class="line">; if it&#x27;s a word, listSize should be divided by 2</span><br><span class="line"></span><br><span class="line">; EQU Directive that can&#x27;t be redefined</span><br><span class="line">PI EQU &lt;3.1416&gt;</span><br><span class="line">pressKey EQU &lt;&quot;press any key to continue..&quot;,0&gt;</span><br><span class="line">.data</span><br><span class="line">prompt BYTE pressKey</span><br><span class="line"></span><br><span class="line">; TEXTEQU Directive that can be redefined</span><br><span class="line">continueMsg TEXTEQU &lt;&quot;Do you wish to continue (Y/N)?&quot;&gt;</span><br><span class="line">rowSize = 5</span><br><span class="line">.data</span><br><span class="line">prompt1 BYTE continueMsg</span><br><span class="line">count TEXTEQU %(rowSize * 2)</span><br><span class="line">setupAL TEXTEQU &lt;mov al, count&gt;</span><br><span class="line">.code</span><br><span class="line">	setupAL</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
       </tags>
   </entry>
   <entry>
@@ -184,38 +216,6 @@
 
 <p>关注ecx寄存器，当其为0时退出</p>
 <h4 id="6-3-Nested-Loop"><a href="#6-3-Nested-Loop" class="headerlink" title="6.3 Nested Loop"></a>6.3 Nested Loop</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">count DWORD ?</span><br><span class="line">.code</span><br><span class="line">	mov ecx, 100</span><br><span class="line">L1:</span><br><span class="line">	mov count, ecx</span><br><span class="line">	mov ecx, 20</span><br><span class="line">L2:	.</span><br><span class="line">	.</span><br><span class="line">	loop L2</span><br><span class="line">	mov ecx, count</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
-      <tags>
-        <tag>汇编</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>汇编第一天</title>
-    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day1/</url>
-    <content><![CDATA[<h2 id="1-General-Purpose-Registers"><a href="#1-General-Purpose-Registers" class="headerlink" title="1. General Purpose Registers"></a>1. General Purpose Registers</h2><p>1.1. 32bit寄存器为4bytes，即xxxxh。</p>
-<p>1.2. 以32位寄存器eax举例，内部还有低16bit[ax]，在ax内还分为高八位ah与低八位al</p>
-<p>1.3. 对于64bit-Processors，将前面的e改成r或删去最后的D</p>
-<p><a href="https://imgtu.com/i/H1pd6e"><img src="https://s4.ax1x.com/2022/02/08/H1pd6e.png" alt="寄存器" style="zoom: 80%;" /></a></p>
-<p>1.3. 之所以为general purpose register，作用如下：</p>
-<p><a href="https://imgtu.com/i/H19F1O"><img src="https://s4.ax1x.com/2022/02/08/H19F1O.png" alt="H19F1O.png"></a></p>
-<h2 id="2-计算地址偏移量"><a href="#2-计算地址偏移量" class="headerlink" title="2. 计算地址偏移量"></a>2. 计算地址偏移量</h2><p>example:  08F1:0100的实际地址为08F10+0100=09010，即起始地址*16</p>
-<p>？可能是由于地址范围大，需要用更少的位数表达更大的地址</p>
-<h2 id="3-汇编程序的一般格式"><a href="#3-汇编程序的一般格式" class="headerlink" title="3. 汇编程序的一般格式"></a>3. 汇编程序的一般格式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">ExitProcess PROTO, dwExitCode:DWORD</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">; declare variables here, ; leads comment</span><br><span class="line">COMMENT !</span><br><span class="line">	;multi-lines comments</span><br><span class="line">!</span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	; write your code here</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line"></span><br><span class="line">; insert additional procedures here</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-汇编的常见元素"><a href="#4-汇编的常见元素" class="headerlink" title="4. 汇编的常见元素"></a>4. 汇编的常见元素</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 进制</span><br><span class="line">h hexadecimal</span><br><span class="line">d decimal</span><br><span class="line">b binary</span><br><span class="line">o octal</span><br><span class="line"></span><br><span class="line">; 操作</span><br><span class="line">stc ; set carry flag, no operands</span><br><span class="line"></span><br><span class="line">inc eax ; register</span><br><span class="line">inc myByte ; memory one operand</span><br><span class="line"></span><br><span class="line">add ebx, ecx ; register register</span><br><span class="line">sub myByte, 25 ; memory constant</span><br><span class="line">add eax, 36*25 ; register constant-expression</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-一个简单汇编例子"><a href="#5-一个简单汇编例子" class="headerlink" title="5. 一个简单汇编例子"></a>5. 一个简单汇编例子</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TITLE add and subtract</span><br><span class="line"></span><br><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line"></span><br><span class="line">ExitProcess PROTO. dwExitCode:DWORD</span><br><span class="line">DumpRegs PROTO</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	mov eax, 10000h	; eax = 10000h</span><br><span class="line">	add eax, 40000h ; eax = 50000h</span><br><span class="line">	sub eax, 20000h ; eax = 30000h</span><br><span class="line">	call DumpRegs</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-汇编过程"><a href="#6-汇编过程" class="headerlink" title="6.汇编过程"></a>6.汇编过程</h2><p><a href="https://imgtu.com/i/H1Pq9P"><img src="https://s4.ax1x.com/2022/02/08/H1Pq9P.png" alt="H1Pq9P.png"></a></p>
-<h2 id="7-数据类型"><a href="#7-数据类型" class="headerlink" title="7. 数据类型"></a>7. 数据类型</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; integer</span><br><span class="line">BYTE, SBYTE ; 8bit unsigned and signed</span><br><span class="line">WORD, SWORD ; 16it</span><br><span class="line">DWORD, SDWORD ; 32bit</span><br><span class="line">QWORD ; 64bit</span><br><span class="line">TBYTE ; 80bit integer</span><br><span class="line"></span><br><span class="line">; real</span><br><span class="line">REAL4 ; 4byte IEEE short real</span><br><span class="line">REAL8 ; 8byte long</span><br><span class="line">REAL10 ; 10byte extended</span><br><span class="line"></span><br><span class="line">; define variables</span><br><span class="line">val1 BYTE &#x27;A&#x27;</span><br><span class="line">val2 SBYTE +127 ; largest signed byte</span><br><span class="line">list1 BYTE 10, 20, 30, 40 ; list</span><br><span class="line">str1 BYTE &quot;enter your name&quot;, 0 ; null-terminated</span><br><span class="line"></span><br><span class="line">; 如果想实现回车，需要在末尾加入0dh,0ah</span><br><span class="line">; 0dh = carriage return</span><br><span class="line">; 0ah = line feed</span><br><span class="line">; 一个是回车，一个是换行</span><br><span class="line"></span><br><span class="line">; Using DUP operator</span><br><span class="line">var1 BYTE 20 DUP(0) ; 20 bytes, all equal to 0</span><br><span class="line">var2 BYTE 20 DUP(?) ; 20 bytes, uninitialized</span><br></pre></td></tr></table></figure>
-
-<h2 id="8-小端法与大端法"><a href="#8-小端法与大端法" class="headerlink" title="8. 小端法与大端法"></a>8. 小端法与大端法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">little endian order means least significant to low memory address</span><br><span class="line">big endian order is the opposite</span><br><span class="line"></span><br><span class="line">val1 DWORD 12345678h</span><br></pre></td></tr></table></figure>
-
-<h2 id="9-Symbolic-Constants"><a href="#9-Symbolic-Constants" class="headerlink" title="9. Symbolic Constants"></a>9. Symbolic Constants</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; calculating the size of a byte array</span><br><span class="line">list BYTE 10, 20, 30, 40</span><br><span class="line">ListSize = ($ - list)</span><br><span class="line">; if it&#x27;s a word, listSize should be divided by 2</span><br><span class="line"></span><br><span class="line">; EQU Directive that can&#x27;t be redefined</span><br><span class="line">PI EQU &lt;3.1416&gt;</span><br><span class="line">pressKey EQU &lt;&quot;press any key to continue..&quot;,0&gt;</span><br><span class="line">.data</span><br><span class="line">prompt BYTE pressKey</span><br><span class="line"></span><br><span class="line">; TEXTEQU Directive that can be redefined</span><br><span class="line">continueMsg TEXTEQU &lt;&quot;Do you wish to continue (Y/N)?&quot;&gt;</span><br><span class="line">rowSize = 5</span><br><span class="line">.data</span><br><span class="line">prompt1 BYTE continueMsg</span><br><span class="line">count TEXTEQU %(rowSize * 2)</span><br><span class="line">setupAL TEXTEQU &lt;mov al, count&gt;</span><br><span class="line">.code</span><br><span class="line">	setupAL</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -286,6 +286,79 @@
 
 
 
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汇编第四天</title>
+    <url>/2022/02/09/%E6%B1%87%E7%BC%96_Day4/</url>
+    <content><![CDATA[<h2 id="1-Shift-and-Rotate-Instruction"><a href="#1-Shift-and-Rotate-Instruction" class="headerlink" title="1. Shift and Rotate Instruction"></a>1. Shift and Rotate Instruction</h2><h4 id="1-1-Logical-Shift-vs-Arithmetic-Shifts"><a href="#1-1-Logical-Shift-vs-Arithmetic-Shifts" class="headerlink" title="1.1    Logical Shift vs Arithmetic Shifts"></a>1.1    Logical Shift vs Arithmetic Shifts</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; logical shift fills with 0</span><br><span class="line">; arithmetic shift fills with 1</span><br><span class="line"></span><br><span class="line">; SHL Instruction perform a logical left shift to fasten multiplication</span><br><span class="line">shl reg, imm8</span><br><span class="line">shl mem, imm8</span><br><span class="line">shl reg, cl</span><br><span class="line">shl mem, cl</span><br><span class="line"></span><br><span class="line">mov dl, 5</span><br><span class="line">shl dl, 2	; 5 * 2^2 = 20</span><br><span class="line"></span><br><span class="line">; SHR Instruction perform a logical right shift to fasten division</span><br><span class="line">mov dl, 80</span><br><span class="line">shr dl, 1</span><br><span class="line">shr dl, 2</span><br><span class="line"></span><br><span class="line">; SAL is identical to SHL</span><br><span class="line">; SAR perform a arithmetic shift</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/H8oazn"><img src="https://s4.ax1x.com/2022/02/09/H8oazn.png" alt="H8oazn.png"></a></p>
+<h4 id="1-2-Rotation-Instruction"><a href="#1-2-Rotation-Instruction" class="headerlink" title="1.2    Rotation Instruction"></a>1.2    Rotation Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; ROL Instruction no bits are lost</span><br><span class="line">; ROR Instruction is as above</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/H87D5F"><img src="https://s4.ax1x.com/2022/02/09/H87D5F.png" alt="H87D5F.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; RCL Instruction copy the most significant to CF and CF to least significant</span><br><span class="line">; RCR Instruction reverse the RCL Instruction</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-SHLD-Instruction-shift-left-double"><a href="#1-3-SHLD-Instruction-shift-left-double" class="headerlink" title="1.3    SHLD Instruction(shift left double)"></a>1.3    SHLD Instruction(shift left double)</h4><p><a href="https://imgtu.com/i/HGidSI"><img src="https://s4.ax1x.com/2022/02/09/HGidSI.png" alt="HGidSI.png"></a></p>
+<p><a href="https://imgtu.com/i/HGiImT"><img src="https://s4.ax1x.com/2022/02/09/HGiImT.png" alt="HGiImT.png"></a></p>
+<h4 id="1-4-SHRD-Instruction"><a href="#1-4-SHRD-Instruction" class="headerlink" title="1.4    SHRD Instruction"></a>1.4    SHRD Instruction</h4><p>just the reverse version of SHLD</p>
+<h2 id="2-Multiplication-and-Division-Instruction"><a href="#2-Multiplication-and-Division-Instruction" class="headerlink" title="2. Multiplication and Division Instruction"></a>2. Multiplication and Division Instruction</h2><h4 id="2-1-MUL-Instruction"><a href="#2-1-MUL-Instruction" class="headerlink" title="2.1    MUL Instruction"></a>2.1    MUL Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mul r/m8</span><br><span class="line">; mul instruction multiplies an 8-, 16-. 32-bit operand by either AL,AX,EAX</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/HGkRs0"><img src="https://s4.ax1x.com/2022/02/09/HGkRs0.png" alt="HGkRs0.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">val1 WORD 2000h</span><br><span class="line">val2 WORD 100h</span><br><span class="line">.code</span><br><span class="line">mov ax, val1</span><br><span class="line">mul val2	; DX:AX = 0020 0000h, CF = 1</span><br><span class="line"></span><br><span class="line">mov eax, 12345h</span><br><span class="line">mov ebx, 1000h</span><br><span class="line">mul ebx	; EDX:EAX = 00000000 12345000h, CF = 0 </span><br><span class="line">; CF indicates whether the upper half has significant digits</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-IMUL-Instruction"><a href="#2-2-IMUL-Instruction" class="headerlink" title="2.2    IMUL Instruction"></a>2.2    IMUL Instruction</h4><p><a href="https://imgtu.com/i/HGVFVf"><img src="https://s4.ax1x.com/2022/02/09/HGVFVf.png" alt="HGVFVf.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov al, 48</span><br><span class="line">mov bl, 4</span><br><span class="line">imul bl ; AX = 00C0h, 0F = 1, because AH is not a sign extension of AL</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-DIV-Instruction"><a href="#2-3-DIV-Instruction" class="headerlink" title="2.3    DIV Instruction"></a>2.3    DIV Instruction</h4><p><a href="https://imgtu.com/i/HGZFyR"><img src="https://s4.ax1x.com/2022/02/09/HGZFyR.png" alt="HGZFyR.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov dx, 0000h ; clear dividend, high</span><br><span class="line">mov ax, 8003h</span><br><span class="line">mov cx, 100h</span><br><span class="line">div cx ; AX = 0080h, DX = 0003h</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">dividend_hi QWORD 00000208h</span><br><span class="line">dividend_lo QWORD 33300020h</span><br><span class="line">divisor QWORD 00010000h</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">mov rdx, dividend_hi</span><br><span class="line">mov rax, dividend_lo</span><br><span class="line">div divisor</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-Signed-Integer-Division"><a href="#2-4-Signed-Integer-Division" class="headerlink" title="2.4    Signed Integer Division"></a>2.4    Signed Integer Division</h4><p><a href="https://imgtu.com/i/HGuzRS"><img src="https://s4.ax1x.com/2022/02/09/HGuzRS.png" alt="HGuzRS.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; CBW, CWD, CDQ Instructions</span><br><span class="line">; CBW extends AL to AH</span><br><span class="line">; CWD extends AX to DX</span><br><span class="line">; CDQ extends eax to edx</span><br><span class="line"></span><br><span class="line">mov eax, 0FFFFFF9B</span><br><span class="line">cdq		; EDX:EAX = FFFFFFFFFFFFFF9Bh</span><br><span class="line"></span><br><span class="line">; example</span><br><span class="line">mov al, -48</span><br><span class="line">cbw</span><br><span class="line">mov bl, 5</span><br><span class="line">idiv bl</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Extended-Addition-and-Subtraction"><a href="#3-Extended-Addition-and-Subtraction" class="headerlink" title="3. Extended Addition and Subtraction"></a>3. Extended Addition and Subtraction</h2><h4 id="3-1-adc-instruction"><a href="#3-1-adc-instruction" class="headerlink" title="3.1    adc instruction"></a>3.1    adc instruction</h4><h4 id="3-2-extended-precision-addition"><a href="#3-2-extended-precision-addition" class="headerlink" title="3.2    extended precision addition"></a>3.2    extended precision addition</h4><h4 id="3-3-sbb-instruction"><a href="#3-3-sbb-instruction" class="headerlink" title="3.3    sbb instruction"></a>3.3    sbb instruction</h4><h4 id="3-4-extended-precision-subtraction"><a href="#3-4-extended-precision-subtraction" class="headerlink" title="3.4    extended precision subtraction"></a>3.4    extended precision subtraction</h4><h2 id="4-Multimodule-Programs"><a href="#4-Multimodule-Programs" class="headerlink" title="4. Multimodule Programs"></a>4. Multimodule Programs</h2><p>source code has been divided up into separate ASM files</p>
+<p>each ASM file is assembled into a separate OBJ file</p>
+<p>all OBJ files belonging to the same program are linked using the link utility into a single exe</p>
+<p>this process is called static linking</p>
+<h2 id="5-Stack-Frames"><a href="#5-Stack-Frames" class="headerlink" title="5. Stack Frames"></a>5. Stack Frames</h2><p>also known as an activation record(活动记录)</p>
+<p>created by the following steps:</p>
+<ol>
+<li><p>call program pushed arguments on the stack and calls the procedure</p>
+</li>
+<li><p>the called procedure pushed ebp on the stack, and set ebp to esp</p>
+</li>
+<li><p>if local var are needed, a constant is subtracted from ESP to make room on the stack</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pushad</span><br><span class="line">mov esi, OFFSET array</span><br><span class="line">mov ecx, LENGTHOF array</span><br><span class="line">mov ebx, TYPE array</span><br><span class="line">call DumpMem</span><br><span class="line">popad</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/HJFbwT"><img src="https://s4.ax1x.com/2022/02/09/HJFbwT.png" alt="HJFbwT.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; C Call: caller releases stack</span><br><span class="line">AddTwo_C PROC</span><br><span class="line">	push ebp</span><br><span class="line">	mov ebp, esp</span><br><span class="line">	mov eax, [ebp + 12]</span><br><span class="line">	add eax, [ebp + 8]</span><br><span class="line">	pop ebp</span><br><span class="line">	ret</span><br><span class="line">AddTwo_C ENDP</span><br><span class="line"></span><br><span class="line">_Example1 PROC</span><br><span class="line">	push 6</span><br><span class="line">	push 5</span><br><span class="line">	call AddTwo_C</span><br><span class="line">	add esp, 8</span><br><span class="line">	call DumpRegs</span><br><span class="line">	ret</span><br><span class="line">_Example1 ENDP</span><br><span class="line">; STDCall: procedure releases stack</span><br><span class="line">AddTwo PROC</span><br><span class="line">	push ebp</span><br><span class="line">	mov ebp, esp</span><br><span class="line">	mov eax, [ebp + 12]</span><br><span class="line">	add eax, [ebp + 8]</span><br><span class="line">	pop ebp</span><br><span class="line">	ret 8</span><br><span class="line">AddTwo ENDP</span><br><span class="line">_Example2 PROC</span><br><span class="line">	push 6</span><br><span class="line">	push 5</span><br><span class="line">	call AddTwo</span><br><span class="line">	call DumpRegs</span><br><span class="line">	ret</span><br><span class="line">_Example2 ENDP</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-1-Local-Variables"><a href="#5-1-Local-Variables" class="headerlink" title="5.1. Local Variables"></a>5.1. Local Variables</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void MySub()&#123;</span><br><span class="line">	int X = 10;</span><br><span class="line">	int Y = 20;</span><br><span class="line">&#125;</span><br><span class="line">;	LocalVars.asm</span><br><span class="line">MySub PROC</span><br><span class="line">	push ebp</span><br><span class="line">	mov ebp, esp</span><br><span class="line">	sub esp, 8</span><br><span class="line">	mov DWORD PTR [ebp - 4], 10</span><br><span class="line">	mov DWORD PTR [ebp - 8], 20</span><br><span class="line">	; Do Something</span><br><span class="line">	mov esp, ebp	; remove local vars</span><br><span class="line">	pop ebp</span><br><span class="line">MySub ENDP</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-ENTER-and-LEAVE"><a href="#5-2-ENTER-and-LEAVE" class="headerlink" title="5.2. ENTER and LEAVE"></a>5.2. ENTER and LEAVE</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; ENTER Instruction</span><br><span class="line">; push ebp on the stack						push ebp</span><br><span class="line">; steps ebp to the base of stack frame		mov ebp, esp</span><br><span class="line">; reserves space for local variables		sub esp, n</span><br><span class="line">; syntax: ENTER numBytesReserverd, nestingLevel</span><br><span class="line"></span><br><span class="line">; LEAVE instruction</span><br><span class="line">; restores esp to release local variables	mov esp, ebp</span><br><span class="line">; pops ebp for the caller					pop ebp</span><br><span class="line"></span><br><span class="line">MySub PROC</span><br><span class="line">	enter 8,0</span><br><span class="line">	;push ebp</span><br><span class="line">	;mov ebp, esp</span><br><span class="line">	;sub esp,8</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">	leave</span><br><span class="line">	;mov esp,ebp</span><br><span class="line">	;pop ebp</span><br><span class="line">	ret</span><br><span class="line">MySub ENDP</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-LOCAL-Directive"><a href="#5-3-LOCAL-Directive" class="headerlink" title="5.3. LOCAL Directive"></a>5.3. LOCAL Directive</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MySub PROC</span><br><span class="line">	LOCAL var1:BYTE, var2:WORD, var3:SDWORD</span><br><span class="line">	LOCAL flagVals[20]:BYTE</span><br><span class="line">	LOCAL pArray:PTR WORD</span><br><span class="line">	LOCAL t1:BYTE</span><br><span class="line">MySub ENDP</span><br><span class="line">BubbleSort PROC</span><br><span class="line">	LOCAL temp:DWORD, SwapFlag:BYTE</span><br><span class="line">	...</span><br><span class="line">	ret</span><br><span class="line">BubbleSort ENDP</span><br><span class="line">; masm generates</span><br><span class="line">BubbleSort PROC</span><br><span class="line">	push ebp</span><br><span class="line">	mov ebp, esp</span><br><span class="line">	add esp, 0FFFFFFF8h		; add -8 to ESP</span><br><span class="line">	...</span><br><span class="line">	mov esp, ebp</span><br><span class="line">	pop ebp</span><br><span class="line">	ret</span><br><span class="line">BubbleSort ENDP</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-4-LEA-Instruction"><a href="#5-4-LEA-Instruction" class="headerlink" title="5.4. LEA Instruction"></a>5.4. LEA Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; compared to OFFSET, LEA returns offsets of direct and indirect operands</span><br><span class="line">CopyString PROC</span><br><span class="line">	count:DWORD</span><br><span class="line">	LOCAL temp[20]:BYTE</span><br><span class="line">	</span><br><span class="line">	mov edi, OFFSET count			; invalid</span><br><span class="line">	mov esi, OFFSET temp			; invalid</span><br><span class="line">	lea edi, count					; ok</span><br><span class="line">	lea esi, temp					; ok</span><br><span class="line">	</span><br><span class="line">	lea esi, [ebp - 8]</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Invoke-Addr-PROC-PROTO"><a href="#6-Invoke-Addr-PROC-PROTO" class="headerlink" title="6. Invoke, Addr, PROC, PROTO"></a>6. Invoke, Addr, PROC, PROTO</h2><h4 id="6-1-INVOKE-Directive"><a href="#6-1-INVOKE-Directive" class="headerlink" title="6.1    INVOKE Directive"></a>6.1    INVOKE Directive</h4><p>not in 64bit model</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; syntax:  INVOKE precedureName, [, argumentList]</span><br><span class="line">; arguments can be:</span><br><span class="line">; immediate values and integer expressions</span><br><span class="line">; var names</span><br><span class="line">; address and ADDR expression</span><br><span class="line">; register names</span><br><span class="line">.data</span><br><span class="line">byteVal BYTE 10</span><br><span class="line">wordVal WORD 1000h</span><br><span class="line">.code</span><br><span class="line">	invoke Sub1, byteVal, wordVal</span><br><span class="line">	invoke Sub2, ADDR byteVal</span><br><span class="line">	invoke Sub3, eax, (10 * 20)</span><br><span class="line">	invoke Sub4, [ebx]</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-ADDR-Operator"><a href="#6-2-ADDR-Operator" class="headerlink" title="6.2    ADDR Operator"></a>6.2    ADDR Operator</h4><p>not in 64bit model</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">myWord WORD ?</span><br><span class="line">.code</span><br><span class="line">	invoke mySub, ADDR myWord</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-3-PROC-Directive"><a href="#6-3-PROC-Directive" class="headerlink" title="6.3    PROC Directive"></a>6.3    PROC Directive</h4><p>not in 64bit model</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">label PROC [attributes][USES regList], paramList</span><br><span class="line">AddTWo PROC</span><br><span class="line">	val1:DWORD, val2:DWORD</span><br><span class="line">	</span><br><span class="line">	mov eax, val1</span><br><span class="line">	add eax, val2</span><br><span class="line">	ret</span><br><span class="line">AddTwo ENDP</span><br><span class="line">; example</span><br><span class="line">MySub PROTO</span><br><span class="line">.code</span><br><span class="line">invoke mySub</span><br><span class="line"></span><br><span class="line">MySub PROC</span><br><span class="line">	.</span><br><span class="line">MySub ENDP</span><br><span class="line"></span><br><span class="line">; example</span><br><span class="line">ArraySum PROTO</span><br><span class="line">	ptrArray:PTR DWORD</span><br><span class="line">	szArray:DWORD</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-Multimodule-Programs"><a href="#7-Multimodule-Programs" class="headerlink" title="7. Multimodule Programs"></a>7. Multimodule Programs</h2><h4 id="7-1-Creating-a-multimodule-program"><a href="#7-1-Creating-a-multimodule-program" class="headerlink" title="7.1 Creating a multimodule program"></a>7.1 Creating a multimodule program</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 1. create the main module</span><br><span class="line">; 2. create a separate source code module for each procedure or set of related procedure</span><br><span class="line">; 3. create an include file that contains procedure prototypes for external procedures</span><br><span class="line">; 4. use the include directive to make your procedure prototypes available to each module</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>汇编</category>
@@ -375,71 +448,88 @@
       </tags>
   </entry>
   <entry>
-    <title>汇编第四天</title>
-    <url>/2022/02/09/%E6%B1%87%E7%BC%96_Day4/</url>
-    <content><![CDATA[<h2 id="1-Shift-and-Rotate-Instruction"><a href="#1-Shift-and-Rotate-Instruction" class="headerlink" title="1. Shift and Rotate Instruction"></a>1. Shift and Rotate Instruction</h2><h4 id="1-1-Logical-Shift-vs-Arithmetic-Shifts"><a href="#1-1-Logical-Shift-vs-Arithmetic-Shifts" class="headerlink" title="1.1    Logical Shift vs Arithmetic Shifts"></a>1.1    Logical Shift vs Arithmetic Shifts</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; logical shift fills with 0</span><br><span class="line">; arithmetic shift fills with 1</span><br><span class="line"></span><br><span class="line">; SHL Instruction perform a logical left shift to fasten multiplication</span><br><span class="line">shl reg, imm8</span><br><span class="line">shl mem, imm8</span><br><span class="line">shl reg, cl</span><br><span class="line">shl mem, cl</span><br><span class="line"></span><br><span class="line">mov dl, 5</span><br><span class="line">shl dl, 2	; 5 * 2^2 = 20</span><br><span class="line"></span><br><span class="line">; SHR Instruction perform a logical right shift to fasten division</span><br><span class="line">mov dl, 80</span><br><span class="line">shr dl, 1</span><br><span class="line">shr dl, 2</span><br><span class="line"></span><br><span class="line">; SAL is identical to SHL</span><br><span class="line">; SAR perform a arithmetic shift</span><br></pre></td></tr></table></figure>
+    <title>汇编第八天</title>
+    <url>/2022/02/20/%E6%B1%87%E7%BC%96_Day8/</url>
+    <content><![CDATA[<h2 id="1-MS-DOS-and-the-IBM-PC"><a href="#1-MS-DOS-and-the-IBM-PC" class="headerlink" title="1. MS-DOS and the IBM-PC"></a>1. MS-DOS and the IBM-PC</h2><h4 id="1-1-Real-Address-Mode"><a href="#1-1-Real-Address-Mode" class="headerlink" title="1.1    Real-Address Mode"></a>1.1    Real-Address Mode</h4><p><a href="https://imgtu.com/i/HOCUPO"><img src="https://s4.ax1x.com/2022/02/20/HOCUPO.png" alt="HOCUPO.png"></a></p>
+<h4 id="1-2-MS-DOS-Memory-Organization"><a href="#1-2-MS-DOS-Memory-Organization" class="headerlink" title="1.2    MS-DOS Memory Organization"></a>1.2    MS-DOS Memory Organization</h4><p><a href="https://imgtu.com/i/HO1g2j"><img src="https://s4.ax1x.com/2022/02/20/HO1g2j.png" alt="HO1g2j.png"></a></p>
+<h4 id="1-3-Redirecting-Input-Output"><a href="#1-3-Redirecting-Input-Output" class="headerlink" title="1.3    Redirecting Input-Output"></a>1.3    Redirecting Input-Output</h4><p><a href="https://imgtu.com/i/HO1qz9"><img src="https://s4.ax1x.com/2022/02/20/HO1qz9.png" alt="HO1qz9.png"></a></p>
+<h4 id="1-4-INT-Instructions"><a href="#1-4-INT-Instructions" class="headerlink" title="1.4    INT Instructions"></a>1.4    INT Instructions</h4><p>this instruction executes a software interrupt, which is called an interrupt handler.</p>
+<p>The Interrupt Vector Table holds a 32-bit segment-offset address for each possible interrupt handler.</p>
+<p>&lt; !– more – &gt;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INT number</span><br><span class="line">; (number = 0..FFh)</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://imgtu.com/i/H8oazn"><img src="https://s4.ax1x.com/2022/02/09/H8oazn.png" alt="H8oazn.png"></a></p>
-<h4 id="1-2-Rotation-Instruction"><a href="#1-2-Rotation-Instruction" class="headerlink" title="1.2    Rotation Instruction"></a>1.2    Rotation Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; ROL Instruction no bits are lost</span><br><span class="line">; ROR Instruction is as above</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgtu.com/i/HO81hD"><img src="https://s4.ax1x.com/2022/02/20/HO81hD.png" alt="HO81hD.png"></a></p>
+<h4 id="1-5-Common-Interrupts"><a href="#1-5-Common-Interrupts" class="headerlink" title="1.5     Common Interrupts"></a>1.5     Common Interrupts</h4><p><a href="https://imgtu.com/i/HOGtGF"><img src="https://s4.ax1x.com/2022/02/20/HOGtGF.png" alt="HOGtGF.png"></a></p>
+<h2 id="2-MS-DOS-Function-Calls"><a href="#2-MS-DOS-Function-Calls" class="headerlink" title="2. MS-DOS Function Calls"></a>2. MS-DOS Function Calls</h2><h4 id="2-1-INT-21h-Function-4Ch-Terminate-Process"><a href="#2-1-INT-21h-Function-4Ch-Terminate-Process" class="headerlink" title="2.1    INT 21h Function 4Ch: Terminate Process"></a>2.1    INT 21h Function 4Ch: Terminate Process</h4><p>Ends the current process, returns an optional 8-bit return code to the calling process.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 4Ch</span><br><span class="line">mov al, 0</span><br><span class="line">int 21h</span><br><span class="line">; same as:</span><br><span class="line">.EXIT 0</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://imgtu.com/i/H87D5F"><img src="https://s4.ax1x.com/2022/02/09/H87D5F.png" alt="H87D5F.png"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; RCL Instruction copy the most significant to CF and CF to least significant</span><br><span class="line">; RCR Instruction reverse the RCL Instruction</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-ASCII-Control-Characters"><a href="#2-2-ASCII-Control-Characters" class="headerlink" title="2.2    ASCII Control Characters"></a>2.2    ASCII Control Characters</h4><p><a href="https://imgtu.com/i/HOJjpD"><img src="https://s4.ax1x.com/2022/02/20/HOJjpD.png" alt="HOJjpD.png"></a></p>
+<p><a href="https://imgtu.com/i/HOJhpF"><img src="https://s4.ax1x.com/2022/02/20/HOJhpF.png" alt="HOJhpF.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 02h</span><br><span class="line">mov dl, &#x27;A&#x27;</span><br><span class="line">int 21h</span><br><span class="line"></span><br><span class="line">mov ah, 06h</span><br><span class="line">mov dl, 08h</span><br><span class="line">int 21h</span><br></pre></td></tr></table></figure>
 
-<h4 id="1-3-SHLD-Instruction-shift-left-double"><a href="#1-3-SHLD-Instruction-shift-left-double" class="headerlink" title="1.3    SHLD Instruction(shift left double)"></a>1.3    SHLD Instruction(shift left double)</h4><p><a href="https://imgtu.com/i/HGidSI"><img src="https://s4.ax1x.com/2022/02/09/HGidSI.png" alt="HGidSI.png"></a></p>
-<p><a href="https://imgtu.com/i/HGiImT"><img src="https://s4.ax1x.com/2022/02/09/HGiImT.png" alt="HGiImT.png"></a></p>
-<h4 id="1-4-SHRD-Instruction"><a href="#1-4-SHRD-Instruction" class="headerlink" title="1.4    SHRD Instruction"></a>1.4    SHRD Instruction</h4><p>just the reverse version of SHLD</p>
-<h2 id="2-Multiplication-and-Division-Instruction"><a href="#2-Multiplication-and-Division-Instruction" class="headerlink" title="2. Multiplication and Division Instruction"></a>2. Multiplication and Division Instruction</h2><h4 id="2-1-MUL-Instruction"><a href="#2-1-MUL-Instruction" class="headerlink" title="2.1    MUL Instruction"></a>2.1    MUL Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mul r/m8</span><br><span class="line">; mul instruction multiplies an 8-, 16-. 32-bit operand by either AL,AX,EAX</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-Function-09h"><a href="#2-3-Function-09h" class="headerlink" title="2.3    Function 09h"></a>2.3    Function 09h</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">string BYTE &quot;This is a string$&quot;</span><br><span class="line">.code</span><br><span class="line">mov ah, 9</span><br><span class="line">mov dx, OFFSET string</span><br><span class="line">int 21h</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://imgtu.com/i/HGkRs0"><img src="https://s4.ax1x.com/2022/02/09/HGkRs0.png" alt="HGkRs0.png"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">val1 WORD 2000h</span><br><span class="line">val2 WORD 100h</span><br><span class="line">.code</span><br><span class="line">mov ax, val1</span><br><span class="line">mul val2	; DX:AX = 0020 0000h, CF = 1</span><br><span class="line"></span><br><span class="line">mov eax, 12345h</span><br><span class="line">mov ebx, 1000h</span><br><span class="line">mul ebx	; EDX:EAX = 00000000 12345000h, CF = 0 </span><br><span class="line">; CF indicates whether the upper half has significant digits</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-Function-40h"><a href="#2-4-Function-40h" class="headerlink" title="2.4    Function 40h"></a>2.4    Function 40h</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">message BYTE &quot;Writing a string to the console&quot;</span><br><span class="line">bytesWritten WORD ?</span><br><span class="line">.code</span><br><span class="line">	mov ah, 40h</span><br><span class="line">	mov bx, 1</span><br><span class="line">	mov cx, LENGTHOF message</span><br><span class="line">	mov dx, OFFSET message</span><br><span class="line">	int 21h</span><br><span class="line">	mov bytesWritten, ax</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-2-IMUL-Instruction"><a href="#2-2-IMUL-Instruction" class="headerlink" title="2.2    IMUL Instruction"></a>2.2    IMUL Instruction</h4><p><a href="https://imgtu.com/i/HGVFVf"><img src="https://s4.ax1x.com/2022/02/09/HGVFVf.png" alt="HGVFVf.png"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov al, 48</span><br><span class="line">mov bl, 4</span><br><span class="line">imul bl ; AX = 00C0h, 0F = 1, because AH is not a sign extension of AL</span><br></pre></td></tr></table></figure>
+<h4 id="2-5-Function-01h"><a href="#2-5-Function-01h" class="headerlink" title="2.5    Function 01h"></a>2.5    Function 01h</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">char BYTE ?</span><br><span class="line">.code</span><br><span class="line">mov ah, 01h</span><br><span class="line">int 21h</span><br><span class="line">mov char, al</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-3-DIV-Instruction"><a href="#2-3-DIV-Instruction" class="headerlink" title="2.3    DIV Instruction"></a>2.3    DIV Instruction</h4><p><a href="https://imgtu.com/i/HGZFyR"><img src="https://s4.ax1x.com/2022/02/09/HGZFyR.png" alt="HGZFyR.png"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov dx, 0000h ; clear dividend, high</span><br><span class="line">mov ax, 8003h</span><br><span class="line">mov cx, 100h</span><br><span class="line">div cx ; AX = 0080h, DX = 0003h</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">dividend_hi QWORD 00000208h</span><br><span class="line">dividend_lo QWORD 33300020h</span><br><span class="line">divisor QWORD 00010000h</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">mov rdx, dividend_hi</span><br><span class="line">mov rax, dividend_lo</span><br><span class="line">div divisor</span><br></pre></td></tr></table></figure>
+<h4 id="2-6-Function-06h"><a href="#2-6-Function-06h" class="headerlink" title="2.6    Function 06h"></a>2.6    Function 06h</h4><p>Does not echo the input character</p>
+<p>Does not wait for input(use the zero flag to check for an input character)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">char BYTE ?</span><br><span class="line">.code</span><br><span class="line">L1:</span><br><span class="line">	mov ah, 06h</span><br><span class="line">	mov dl, 0FFh</span><br><span class="line">	int 21h</span><br><span class="line">	jz L1</span><br><span class="line">	mov char, al</span><br><span class="line">	call DumpRegs</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-4-Signed-Integer-Division"><a href="#2-4-Signed-Integer-Division" class="headerlink" title="2.4    Signed Integer Division"></a>2.4    Signed Integer Division</h4><p><a href="https://imgtu.com/i/HGuzRS"><img src="https://s4.ax1x.com/2022/02/09/HGuzRS.png" alt="HGuzRS.png"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; CBW, CWD, CDQ Instructions</span><br><span class="line">; CBW extends AL to AH</span><br><span class="line">; CWD extends AX to DX</span><br><span class="line">; CDQ extends eax to edx</span><br><span class="line"></span><br><span class="line">mov eax, 0FFFFFF9B</span><br><span class="line">cdq		; EDX:EAX = FFFFFFFFFFFFFF9Bh</span><br><span class="line"></span><br><span class="line">; example</span><br><span class="line">mov al, -48</span><br><span class="line">cbw</span><br><span class="line">mov bl, 5</span><br><span class="line">idiv bl</span><br></pre></td></tr></table></figure>
+<h4 id="2-7-Function-0Ah"><a href="#2-7-Function-0Ah" class="headerlink" title="2.7    Function 0Ah"></a>2.7    Function 0Ah</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">count = 80</span><br><span class="line"></span><br><span class="line">KEYBOARD STRUCT</span><br><span class="line">	maxInput BYTE count				; max chars to input</span><br><span class="line">	inputCount BYTE ?				; actual input count</span><br><span class="line">	buffer BYTE count DUP(?)		; holds input chars</span><br><span class="line">KEYBOARD ENDS</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">kybdData KEYBOARD &lt;&gt;</span><br><span class="line">.code</span><br><span class="line">	mov ah, 0Ah</span><br><span class="line">	mov dx, OFFSET kybdData</span><br><span class="line">	int 21h</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-Extended-Addition-and-Subtraction"><a href="#3-Extended-Addition-and-Subtraction" class="headerlink" title="3. Extended Addition and Subtraction"></a>3. Extended Addition and Subtraction</h2><h4 id="3-1-adc-instruction"><a href="#3-1-adc-instruction" class="headerlink" title="3.1    adc instruction"></a>3.1    adc instruction</h4><h4 id="3-2-extended-precision-addition"><a href="#3-2-extended-precision-addition" class="headerlink" title="3.2    extended precision addition"></a>3.2    extended precision addition</h4><h4 id="3-3-sbb-instruction"><a href="#3-3-sbb-instruction" class="headerlink" title="3.3    sbb instruction"></a>3.3    sbb instruction</h4><h4 id="3-4-extended-precision-subtraction"><a href="#3-4-extended-precision-subtraction" class="headerlink" title="3.4    extended precision subtraction"></a>3.4    extended precision subtraction</h4><h2 id="4-Multimodule-Programs"><a href="#4-Multimodule-Programs" class="headerlink" title="4. Multimodule Programs"></a>4. Multimodule Programs</h2><p>source code has been divided up into separate ASM files</p>
-<p>each ASM file is assembled into a separate OBJ file</p>
-<p>all OBJ files belonging to the same program are linked using the link utility into a single exe</p>
-<p>this process is called static linking</p>
-<h2 id="5-Stack-Frames"><a href="#5-Stack-Frames" class="headerlink" title="5. Stack Frames"></a>5. Stack Frames</h2><p>also known as an activation record(活动记录)</p>
-<p>created by the following steps:</p>
-<ol>
-<li><p>call program pushed arguments on the stack and calls the procedure</p>
-</li>
-<li><p>the called procedure pushed ebp on the stack, and set ebp to esp</p>
-</li>
-<li><p>if local var are needed, a constant is subtracted from ESP to make room on the stack</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pushad</span><br><span class="line">mov esi, OFFSET array</span><br><span class="line">mov ecx, LENGTHOF array</span><br><span class="line">mov ebx, TYPE array</span><br><span class="line">call DumpMem</span><br><span class="line">popad</span><br></pre></td></tr></table></figure>
+<h4 id="2-8-Function-0Bh"><a href="#2-8-Function-0Bh" class="headerlink" title="2.8    Function 0Bh"></a>2.8    Function 0Bh</h4><p>get status of std input buffer</p>
+<p>can be interrupted by ctrl+c</p>
+<p>loop until a key is pressed. save it in a variable</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L1:</span><br><span class="line">	mov ah, 0Bh</span><br><span class="line">	int 21h</span><br><span class="line">	cmp al, 0</span><br><span class="line">	je L1</span><br><span class="line">	mov ah, 1</span><br><span class="line">	int 21h</span><br><span class="line">	mov char, al</span><br><span class="line"></span><br><span class="line">; example: String Encryption</span><br><span class="line">XORVAL = 239</span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	mov ax, @data</span><br><span class="line">	mov ds, ax</span><br><span class="line">L1:</span><br><span class="line">	mov ah, 6</span><br><span class="line">	mov dl, 0FFh		; don&#x27;t wait for character</span><br><span class="line">	int 21h	</span><br><span class="line">	jz L2				; quit if zf = 1</span><br><span class="line">	xor al, XORVAL</span><br><span class="line">	mov ah, 6</span><br><span class="line">	mov dl, al</span><br><span class="line">	int 21h				; write to output</span><br><span class="line">	jmp L1</span><br><span class="line">L2: EXIT</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://imgtu.com/i/HJFbwT"><img src="https://s4.ax1x.com/2022/02/09/HJFbwT.png" alt="HJFbwT.png"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; C Call: caller releases stack</span><br><span class="line">AddTwo_C PROC</span><br><span class="line">	push ebp</span><br><span class="line">	mov ebp, esp</span><br><span class="line">	mov eax, [ebp + 12]</span><br><span class="line">	add eax, [ebp + 8]</span><br><span class="line">	pop ebp</span><br><span class="line">	ret</span><br><span class="line">AddTwo_C ENDP</span><br><span class="line"></span><br><span class="line">_Example1 PROC</span><br><span class="line">	push 6</span><br><span class="line">	push 5</span><br><span class="line">	call AddTwo_C</span><br><span class="line">	add esp, 8</span><br><span class="line">	call DumpRegs</span><br><span class="line">	ret</span><br><span class="line">_Example1 ENDP</span><br><span class="line">; STDCall: procedure releases stack</span><br><span class="line">AddTwo PROC</span><br><span class="line">	push ebp</span><br><span class="line">	mov ebp, esp</span><br><span class="line">	mov eax, [ebp + 12]</span><br><span class="line">	add eax, [ebp + 8]</span><br><span class="line">	pop ebp</span><br><span class="line">	ret 8</span><br><span class="line">AddTwo ENDP</span><br><span class="line">_Example2 PROC</span><br><span class="line">	push 6</span><br><span class="line">	push 5</span><br><span class="line">	call AddTwo</span><br><span class="line">	call DumpRegs</span><br><span class="line">	ret</span><br><span class="line">_Example2 ENDP</span><br></pre></td></tr></table></figure>
+<h4 id="2-9-Function-3Fh"><a href="#2-9-Function-3Fh" class="headerlink" title="2.9    Function 3Fh"></a>2.9    Function 3Fh</h4><p>Reads a block of bytes</p>
+<p>can be interrupted by ctrl+c</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">inputBuffer BYTE 127 DUP(0)</span><br><span class="line">bytesRead WORD ?</span><br><span class="line">.code</span><br><span class="line">mov ah, 3Fh</span><br><span class="line">mov bx, 0</span><br><span class="line">mov cx, 127</span><br><span class="line">mov dx, OFFSET inputBuffer</span><br><span class="line">int 21h</span><br><span class="line">mov bytesRead, ax</span><br></pre></td></tr></table></figure>
 
-<h4 id="5-1-Local-Variables"><a href="#5-1-Local-Variables" class="headerlink" title="5.1. Local Variables"></a>5.1. Local Variables</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void MySub()&#123;</span><br><span class="line">	int X = 10;</span><br><span class="line">	int Y = 20;</span><br><span class="line">&#125;</span><br><span class="line">;	LocalVars.asm</span><br><span class="line">MySub PROC</span><br><span class="line">	push ebp</span><br><span class="line">	mov ebp, esp</span><br><span class="line">	sub esp, 8</span><br><span class="line">	mov DWORD PTR [ebp - 4], 10</span><br><span class="line">	mov DWORD PTR [ebp - 8], 20</span><br><span class="line">	; Do Something</span><br><span class="line">	mov esp, ebp	; remove local vars</span><br><span class="line">	pop ebp</span><br><span class="line">MySub ENDP</span><br></pre></td></tr></table></figure>
+<h4 id="2-10-Function-2Ah"><a href="#2-10-Function-2Ah" class="headerlink" title="2.10    Function 2Ah"></a>2.10    Function 2Ah</h4><p>returns year in cx, month in dh, day in dl, and aday of week in al</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 2Ah</span><br><span class="line">int 21h</span><br><span class="line">mov year, cx</span><br><span class="line">mov month, dh</span><br><span class="line">mov day, dl</span><br><span class="line">mov dayOfWeek, al</span><br></pre></td></tr></table></figure>
 
-<h4 id="5-2-ENTER-and-LEAVE"><a href="#5-2-ENTER-and-LEAVE" class="headerlink" title="5.2. ENTER and LEAVE"></a>5.2. ENTER and LEAVE</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; ENTER Instruction</span><br><span class="line">; push ebp on the stack						push ebp</span><br><span class="line">; steps ebp to the base of stack frame		mov ebp, esp</span><br><span class="line">; reserves space for local variables		sub esp, n</span><br><span class="line">; syntax: ENTER numBytesReserverd, nestingLevel</span><br><span class="line"></span><br><span class="line">; LEAVE instruction</span><br><span class="line">; restores esp to release local variables	mov esp, ebp</span><br><span class="line">; pops ebp for the caller					pop ebp</span><br><span class="line"></span><br><span class="line">MySub PROC</span><br><span class="line">	enter 8,0</span><br><span class="line">	;push ebp</span><br><span class="line">	;mov ebp, esp</span><br><span class="line">	;sub esp,8</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">	leave</span><br><span class="line">	;mov esp,ebp</span><br><span class="line">	;pop ebp</span><br><span class="line">	ret</span><br><span class="line">MySub ENDP</span><br></pre></td></tr></table></figure>
+<h4 id="2-11-Function-2Bh"><a href="#2-11-Function-2Bh" class="headerlink" title="2.11    Function 2Bh"></a>2.11    Function 2Bh</h4><p>sets the system date.</p>
+<p>AL = 0 if function was successful</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 2Bh</span><br><span class="line">mov cx, year</span><br><span class="line">mov dh, month</span><br><span class="line">mov dl, day</span><br><span class="line">int 21h</span><br><span class="line">cmp al, 0</span><br><span class="line">jne failed</span><br></pre></td></tr></table></figure>
 
-<h4 id="5-3-LOCAL-Directive"><a href="#5-3-LOCAL-Directive" class="headerlink" title="5.3. LOCAL Directive"></a>5.3. LOCAL Directive</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MySub PROC</span><br><span class="line">	LOCAL var1:BYTE, var2:WORD, var3:SDWORD</span><br><span class="line">	LOCAL flagVals[20]:BYTE</span><br><span class="line">	LOCAL pArray:PTR WORD</span><br><span class="line">	LOCAL t1:BYTE</span><br><span class="line">MySub ENDP</span><br><span class="line">BubbleSort PROC</span><br><span class="line">	LOCAL temp:DWORD, SwapFlag:BYTE</span><br><span class="line">	...</span><br><span class="line">	ret</span><br><span class="line">BubbleSort ENDP</span><br><span class="line">; masm generates</span><br><span class="line">BubbleSort PROC</span><br><span class="line">	push ebp</span><br><span class="line">	mov ebp, esp</span><br><span class="line">	add esp, 0FFFFFFF8h		; add -8 to ESP</span><br><span class="line">	...</span><br><span class="line">	mov esp, ebp</span><br><span class="line">	pop ebp</span><br><span class="line">	ret</span><br><span class="line">BubbleSort ENDP</span><br></pre></td></tr></table></figure>
+<h4 id="2-12-Function-2Ch"><a href="#2-12-Function-2Ch" class="headerlink" title="2.12    Function 2Ch"></a>2.12    Function 2Ch</h4><p>returns hours in ch, minutes in cl, seconds in dh, hundredth in dl</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 2Ch</span><br><span class="line">int 21h</span><br><span class="line">mov hours, ch</span><br><span class="line">mov minutes, cl</span><br><span class="line">mov seconds, dh</span><br></pre></td></tr></table></figure>
 
-<h4 id="5-4-LEA-Instruction"><a href="#5-4-LEA-Instruction" class="headerlink" title="5.4. LEA Instruction"></a>5.4. LEA Instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; compared to OFFSET, LEA returns offsets of direct and indirect operands</span><br><span class="line">CopyString PROC</span><br><span class="line">	count:DWORD</span><br><span class="line">	LOCAL temp[20]:BYTE</span><br><span class="line">	</span><br><span class="line">	mov edi, OFFSET count			; invalid</span><br><span class="line">	mov esi, OFFSET temp			; invalid</span><br><span class="line">	lea edi, count					; ok</span><br><span class="line">	lea esi, temp					; ok</span><br><span class="line">	</span><br><span class="line">	lea esi, [ebp - 8]</span><br></pre></td></tr></table></figure>
+<h4 id="2-13-Function-2Dh"><a href="#2-13-Function-2Dh" class="headerlink" title="2.13 Function 2Dh"></a>2.13 Function 2Dh</h4><p>sets the system date. AL = 0 if function was successful</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 2Dh</span><br><span class="line">mov ch, hours</span><br><span class="line">mov cl, minutes</span><br><span class="line">mov dh, seconds</span><br><span class="line">int 21h</span><br><span class="line">cmp al, 0</span><br><span class="line">jne failed</span><br></pre></td></tr></table></figure>
 
-<h2 id="6-Invoke-Addr-PROC-PROTO"><a href="#6-Invoke-Addr-PROC-PROTO" class="headerlink" title="6. Invoke, Addr, PROC, PROTO"></a>6. Invoke, Addr, PROC, PROTO</h2><h4 id="6-1-INVOKE-Directive"><a href="#6-1-INVOKE-Directive" class="headerlink" title="6.1    INVOKE Directive"></a>6.1    INVOKE Directive</h4><p>not in 64bit model</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; syntax:  INVOKE precedureName, [, argumentList]</span><br><span class="line">; arguments can be:</span><br><span class="line">; immediate values and integer expressions</span><br><span class="line">; var names</span><br><span class="line">; address and ADDR expression</span><br><span class="line">; register names</span><br><span class="line">.data</span><br><span class="line">byteVal BYTE 10</span><br><span class="line">wordVal WORD 1000h</span><br><span class="line">.code</span><br><span class="line">	invoke Sub1, byteVal, wordVal</span><br><span class="line">	invoke Sub2, ADDR byteVal</span><br><span class="line">	invoke Sub3, eax, (10 * 20)</span><br><span class="line">	invoke Sub4, [ebx]</span><br></pre></td></tr></table></figure>
+<h2 id="3-File-Function"><a href="#3-File-Function" class="headerlink" title="3. File Function"></a>3. File Function</h2><h4 id="3-1-Function-716Ch"><a href="#3-1-Function-716Ch" class="headerlink" title="3.1 Function 716Ch"></a>3.1 Function 716Ch</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ax, 716Ch</span><br><span class="line">mov bx, 2</span><br><span class="line">mov cx, 0</span><br><span class="line">mov dx, 10h + 02h</span><br><span class="line">mov si, OFFSET Filename</span><br><span class="line">int 21h</span><br><span class="line">jc failed</span><br><span class="line">mov handle, ax</span><br><span class="line">mov actionTaken, cx</span><br></pre></td></tr></table></figure>
 
-<h4 id="6-2-ADDR-Operator"><a href="#6-2-ADDR-Operator" class="headerlink" title="6.2    ADDR Operator"></a>6.2    ADDR Operator</h4><p>not in 64bit model</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">myWord WORD ?</span><br><span class="line">.code</span><br><span class="line">	invoke mySub, ADDR myWord</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-Function-3Eh"><a href="#3-2-Function-3Eh" class="headerlink" title="3.2    Function 3Eh"></a>3.2    Function 3Eh</h4><p>use the same file handle that was returned by int21h when the file was opened</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">filehandle WORD ?</span><br><span class="line">.code</span><br><span class="line">mov ah, 3Eh</span><br><span class="line">mov bx, filehandle</span><br><span class="line">int 21h</span><br><span class="line">jc failed</span><br></pre></td></tr></table></figure>
 
-<h4 id="6-3-PROC-Directive"><a href="#6-3-PROC-Directive" class="headerlink" title="6.3    PROC Directive"></a>6.3    PROC Directive</h4><p>not in 64bit model</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">label PROC [attributes][USES regList], paramList</span><br><span class="line">AddTWo PROC</span><br><span class="line">	val1:DWORD, val2:DWORD</span><br><span class="line">	</span><br><span class="line">	mov eax, val1</span><br><span class="line">	add eax, val2</span><br><span class="line">	ret</span><br><span class="line">AddTwo ENDP</span><br><span class="line">; example</span><br><span class="line">MySub PROTO</span><br><span class="line">.code</span><br><span class="line">invoke mySub</span><br><span class="line"></span><br><span class="line">MySub PROC</span><br><span class="line">	.</span><br><span class="line">MySub ENDP</span><br><span class="line"></span><br><span class="line">; example</span><br><span class="line">ArraySum PROTO</span><br><span class="line">	ptrArray:PTR DWORD</span><br><span class="line">	szArray:DWORD</span><br></pre></td></tr></table></figure>
+<h4 id="3-3-Function-42h"><a href="#3-3-Function-42h" class="headerlink" title="3.3    Function 42h"></a>3.3    Function 42h</h4><p>permits random access to a file</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 42h</span><br><span class="line">mov al, 0</span><br><span class="line">mov bx, handle</span><br><span class="line">mov cx, offsetHi</span><br><span class="line">mov dx, offsetLo</span><br><span class="line">int 21h</span><br></pre></td></tr></table></figure>
 
-<h2 id="7-Multimodule-Programs"><a href="#7-Multimodule-Programs" class="headerlink" title="7. Multimodule Programs"></a>7. Multimodule Programs</h2><h4 id="7-1-Creating-a-multimodule-program"><a href="#7-1-Creating-a-multimodule-program" class="headerlink" title="7.1 Creating a multimodule program"></a>7.1 Creating a multimodule program</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 1. create the main module</span><br><span class="line">; 2. create a separate source code module for each procedure or set of related procedure</span><br><span class="line">; 3. create an include file that contains procedure prototypes for external procedures</span><br><span class="line">; 4. use the include directive to make your procedure prototypes available to each module</span><br></pre></td></tr></table></figure>
-]]></content>
+<h4 id="3-4-Function-5706h"><a href="#3-4-Function-5706h" class="headerlink" title="3.4    Function 5706h"></a>3.4    Function 5706h</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ax, 5706h</span><br><span class="line">mov bx, handle		; handle of open file</span><br><span class="line">int 21h</span><br><span class="line">jc error</span><br><span class="line">mov date, dx</span><br><span class="line">mov time, cx</span><br><span class="line">mov millisecconds, si</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-BIOS-Introduction"><a href="#4-BIOS-Introduction" class="headerlink" title="4. BIOS Introduction"></a>4. BIOS Introduction</h2><p><a href="https://imgtu.com/i/HOxIxA"><img src="https://s4.ax1x.com/2022/02/20/HOxIxA.png" alt="HOxIxA.png"></a></p>
+<p><a href="https://imgtu.com/i/HOzez9"><img src="https://s4.ax1x.com/2022/02/20/HOzez9.png" alt="HOzez9.png"></a></p>
+<h2 id="5-Keyboard-Input-with-INT-16h"><a href="#5-Keyboard-Input-with-INT-16h" class="headerlink" title="5. Keyboard Input with INT 16h"></a>5. Keyboard Input with INT 16h</h2><p><a href="https://imgtu.com/i/HXSd1J"><img src="https://s4.ax1x.com/2022/02/20/HXSd1J.png" alt="HXSd1J.png"></a></p>
+<p><a href="https://imgtu.com/i/HXSXcj"><img src="https://s4.ax1x.com/2022/02/20/HXSXcj.png" alt="HXSXcj.png"></a></p>
+<p><a href="https://imgtu.com/i/HXpEv9"><img src="https://s4.ax1x.com/2022/02/20/HXpEv9.png" alt="HXpEv9.png"></a></p>
+<h4 id="5-1-Function-10h"><a href="#5-1-Function-10h" class="headerlink" title="5.1    Function 10h"></a>5.1    Function 10h</h4><p>if a key is in buffer, returns it immediately. Or, pauses and waits for user input</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">scanCode BYTE ?</span><br><span class="line">ASCIICode BYTE ?</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">mov ah, 10h</span><br><span class="line">int 16h</span><br><span class="line">mov scanCode, ah</span><br><span class="line">mov ASCIICode, al</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-Function-12h"><a href="#5-2-Function-12h" class="headerlink" title="5.2    Function 12h"></a>5.2    Function 12h</h4><p>retrieves a copy of the keyboard status flags from the BIOS data area</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">keyFlags WORD ?</span><br><span class="line">.code</span><br><span class="line">mov ah, 12h</span><br><span class="line">int 16h</span><br><span class="line">mov keyFlags, ax</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-Function-11h"><a href="#5-3-Function-11h" class="headerlink" title="5.3    Function 11h"></a>5.3    Function 11h</h4><p>clear the zero flag if a key is waiting in the buffer</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L1:</span><br><span class="line">	mov ah, 11h</span><br><span class="line">	int 16h</span><br><span class="line">	jz noKey</span><br><span class="line">	mov ah, 10h</span><br><span class="line">	int 16h</span><br><span class="line">	cmp ah, scanCode</span><br><span class="line">	je quit</span><br><span class="line">	jmp L1</span><br><span class="line">noKey:</span><br><span class="line">	or al, 1</span><br><span class="line">quit:</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-VIDEO-Programming-with-INT-10h"><a href="#6-VIDEO-Programming-with-INT-10h" class="headerlink" title="6. VIDEO Programming with INT 10h"></a>6. VIDEO Programming with INT 10h</h2><h4 id="6-1-Three-levels-of-Video-Access"><a href="#6-1-Three-levels-of-Video-Access" class="headerlink" title="6.1    Three levels of Video Access"></a>6.1    Three levels of Video Access</h4><p><a href="https://imgtu.com/i/HjMyGQ"><img src="https://s4.ax1x.com/2022/02/21/HjMyGQ.png" alt="HjMyGQ.png"></a></p>
+<p><a href="https://imgtu.com/i/HjQpJe"><img src="https://s4.ax1x.com/2022/02/21/HjQpJe.png" alt="HjQpJe.png"></a></p>
+<h4 id="6-2-Displaying-a-Color-String"><a href="#6-2-Displaying-a-Color-String" class="headerlink" title="6.2    Displaying a Color String"></a>6.2    Displaying a Color String</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov si, OFFSET string</span><br><span class="line">...</span><br><span class="line">mov ah, 9				; write character</span><br><span class="line">mov al, [si]			; character to display</span><br><span class="line">mov bh, 0				; video page 0</span><br><span class="line">mov bl, color			; attribute</span><br><span class="line">or bl, 10000000b		; set blink/intensity bit</span><br><span class="line">mov cx, 1				; display it one time</span><br><span class="line">int 10h</span><br></pre></td></tr></table></figure>
+
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
       <categories>
         <category>汇编</category>
       </categories>
@@ -448,35 +538,11 @@
       </tags>
   </entry>
   <entry>
-    <title>租服务器的环境配置</title>
-    <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
-<li><p>内存不需要买太大（1核2G），后期动态扩容</p>
-</li>
-<li><p>不用买最大带宽，按量付费更实惠</p>
-</li>
-<li><p>选择ubuntu20.04，支持后续docker</p>
-</li>
-<li><p>安全组控制能访问那些端口（起码要有22端口）ssh，在sshconfig修改允许登录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">sudo vim sshd_config</span><br></pre></td></tr></table></figure></li>
-<li><p>创建非root用户，给予sudo权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
-<p>到install Docker Engine第一步结束就可</p>
-<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不用每次都输入sudo</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
+    <title></title>
+    <url>/2022/02/20/%E6%B1%87%E7%BC%96_Day9/</url>
+    <content><![CDATA[<hr>
+<hr>
 ]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>server</tag>
-      </tags>
   </entry>
   <entry>
     <title>汇编第七天</title>
@@ -582,100 +648,34 @@
       </tags>
   </entry>
   <entry>
-    <title>汇编第八天</title>
-    <url>/2022/02/20/%E6%B1%87%E7%BC%96_Day8/</url>
-    <content><![CDATA[<h2 id="1-MS-DOS-and-the-IBM-PC"><a href="#1-MS-DOS-and-the-IBM-PC" class="headerlink" title="1. MS-DOS and the IBM-PC"></a>1. MS-DOS and the IBM-PC</h2><h4 id="1-1-Real-Address-Mode"><a href="#1-1-Real-Address-Mode" class="headerlink" title="1.1    Real-Address Mode"></a>1.1    Real-Address Mode</h4><p><a href="https://imgtu.com/i/HOCUPO"><img src="https://s4.ax1x.com/2022/02/20/HOCUPO.png" alt="HOCUPO.png"></a></p>
-<h4 id="1-2-MS-DOS-Memory-Organization"><a href="#1-2-MS-DOS-Memory-Organization" class="headerlink" title="1.2    MS-DOS Memory Organization"></a>1.2    MS-DOS Memory Organization</h4><p><a href="https://imgtu.com/i/HO1g2j"><img src="https://s4.ax1x.com/2022/02/20/HO1g2j.png" alt="HO1g2j.png"></a></p>
-<h4 id="1-3-Redirecting-Input-Output"><a href="#1-3-Redirecting-Input-Output" class="headerlink" title="1.3    Redirecting Input-Output"></a>1.3    Redirecting Input-Output</h4><p><a href="https://imgtu.com/i/HO1qz9"><img src="https://s4.ax1x.com/2022/02/20/HO1qz9.png" alt="HO1qz9.png"></a></p>
-<h4 id="1-4-INT-Instructions"><a href="#1-4-INT-Instructions" class="headerlink" title="1.4    INT Instructions"></a>1.4    INT Instructions</h4><p>this instruction executes a software interrupt, which is called an interrupt handler.</p>
-<p>The Interrupt Vector Table holds a 32-bit segment-offset address for each possible interrupt handler.</p>
-<p>&lt; !–more– &gt;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INT number</span><br><span class="line">; (number = 0..FFh)</span><br></pre></td></tr></table></figure>
+    <title>租服务器的环境配置</title>
+    <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
+<li><p>内存不需要买太大（1核2G），后期动态扩容</p>
+</li>
+<li><p>不用买最大带宽，按量付费更实惠</p>
+</li>
+<li><p>选择ubuntu20.04，支持后续docker</p>
+</li>
+<li><p>安全组控制能访问那些端口（起码要有22端口）ssh，在sshconfig修改允许登录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">sudo vim sshd_config</span><br></pre></td></tr></table></figure></li>
+<li><p>创建非root用户，给予sudo权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
+<p>到install Docker Engine第一步结束就可</p>
+<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不用每次都输入sudo</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
 
-<p><a href="https://imgtu.com/i/HO81hD"><img src="https://s4.ax1x.com/2022/02/20/HO81hD.png" alt="HO81hD.png"></a></p>
-<h4 id="1-5-Common-Interrupts"><a href="#1-5-Common-Interrupts" class="headerlink" title="1.5     Common Interrupts"></a>1.5     Common Interrupts</h4><p><a href="https://imgtu.com/i/HOGtGF"><img src="https://s4.ax1x.com/2022/02/20/HOGtGF.png" alt="HOGtGF.png"></a></p>
-<h2 id="2-MS-DOS-Function-Calls"><a href="#2-MS-DOS-Function-Calls" class="headerlink" title="2. MS-DOS Function Calls"></a>2. MS-DOS Function Calls</h2><h4 id="2-1-INT-21h-Function-4Ch-Terminate-Process"><a href="#2-1-INT-21h-Function-4Ch-Terminate-Process" class="headerlink" title="2.1    INT 21h Function 4Ch: Terminate Process"></a>2.1    INT 21h Function 4Ch: Terminate Process</h4><p>Ends the current process, returns an optional 8-bit return code to the calling process.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 4Ch</span><br><span class="line">mov al, 0</span><br><span class="line">int 21h</span><br><span class="line">; same as:</span><br><span class="line">.EXIT 0</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-2-ASCII-Control-Characters"><a href="#2-2-ASCII-Control-Characters" class="headerlink" title="2.2    ASCII Control Characters"></a>2.2    ASCII Control Characters</h4><p><a href="https://imgtu.com/i/HOJjpD"><img src="https://s4.ax1x.com/2022/02/20/HOJjpD.png" alt="HOJjpD.png"></a></p>
-<p><a href="https://imgtu.com/i/HOJhpF"><img src="https://s4.ax1x.com/2022/02/20/HOJhpF.png" alt="HOJhpF.png"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 02h</span><br><span class="line">mov dl, &#x27;A&#x27;</span><br><span class="line">int 21h</span><br><span class="line"></span><br><span class="line">mov ah, 06h</span><br><span class="line">mov dl, 08h</span><br><span class="line">int 21h</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-3-Function-09h"><a href="#2-3-Function-09h" class="headerlink" title="2.3    Function 09h"></a>2.3    Function 09h</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">string BYTE &quot;This is a string$&quot;</span><br><span class="line">.code</span><br><span class="line">mov ah, 9</span><br><span class="line">mov dx, OFFSET string</span><br><span class="line">int 21h</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-4-Function-40h"><a href="#2-4-Function-40h" class="headerlink" title="2.4    Function 40h"></a>2.4    Function 40h</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">message BYTE &quot;Writing a string to the console&quot;</span><br><span class="line">bytesWritten WORD ?</span><br><span class="line">.code</span><br><span class="line">	mov ah, 40h</span><br><span class="line">	mov bx, 1</span><br><span class="line">	mov cx, LENGTHOF message</span><br><span class="line">	mov dx, OFFSET message</span><br><span class="line">	int 21h</span><br><span class="line">	mov bytesWritten, ax</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-5-Function-01h"><a href="#2-5-Function-01h" class="headerlink" title="2.5    Function 01h"></a>2.5    Function 01h</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">char BYTE ?</span><br><span class="line">.code</span><br><span class="line">mov ah, 01h</span><br><span class="line">int 21h</span><br><span class="line">mov char, al</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-6-Function-06h"><a href="#2-6-Function-06h" class="headerlink" title="2.6    Function 06h"></a>2.6    Function 06h</h4><p>Does not echo the input character</p>
-<p>Does not wait for input(use the zero flag to check for an input character)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">char BYTE ?</span><br><span class="line">.code</span><br><span class="line">L1:</span><br><span class="line">	mov ah, 06h</span><br><span class="line">	mov dl, 0FFh</span><br><span class="line">	int 21h</span><br><span class="line">	jz L1</span><br><span class="line">	mov char, al</span><br><span class="line">	call DumpRegs</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-7-Function-0Ah"><a href="#2-7-Function-0Ah" class="headerlink" title="2.7    Function 0Ah"></a>2.7    Function 0Ah</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">count = 80</span><br><span class="line"></span><br><span class="line">KEYBOARD STRUCT</span><br><span class="line">	maxInput BYTE count				; max chars to input</span><br><span class="line">	inputCount BYTE ?				; actual input count</span><br><span class="line">	buffer BYTE count DUP(?)		; holds input chars</span><br><span class="line">KEYBOARD ENDS</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">kybdData KEYBOARD &lt;&gt;</span><br><span class="line">.code</span><br><span class="line">	mov ah, 0Ah</span><br><span class="line">	mov dx, OFFSET kybdData</span><br><span class="line">	int 21h</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-8-Function-0Bh"><a href="#2-8-Function-0Bh" class="headerlink" title="2.8    Function 0Bh"></a>2.8    Function 0Bh</h4><p>get status of std input buffer</p>
-<p>can be interrupted by ctrl+c</p>
-<p>loop until a key is pressed. save it in a variable</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L1:</span><br><span class="line">	mov ah, 0Bh</span><br><span class="line">	int 21h</span><br><span class="line">	cmp al, 0</span><br><span class="line">	je L1</span><br><span class="line">	mov ah, 1</span><br><span class="line">	int 21h</span><br><span class="line">	mov char, al</span><br><span class="line"></span><br><span class="line">; example: String Encryption</span><br><span class="line">XORVAL = 239</span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	mov ax, @data</span><br><span class="line">	mov ds, ax</span><br><span class="line">L1:</span><br><span class="line">	mov ah, 6</span><br><span class="line">	mov dl, 0FFh		; don&#x27;t wait for character</span><br><span class="line">	int 21h	</span><br><span class="line">	jz L2				; quit if zf = 1</span><br><span class="line">	xor al, XORVAL</span><br><span class="line">	mov ah, 6</span><br><span class="line">	mov dl, al</span><br><span class="line">	int 21h				; write to output</span><br><span class="line">	jmp L1</span><br><span class="line">L2: EXIT</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-9-Function-3Fh"><a href="#2-9-Function-3Fh" class="headerlink" title="2.9    Function 3Fh"></a>2.9    Function 3Fh</h4><p>Reads a block of bytes</p>
-<p>can be interrupted by ctrl+c</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">inputBuffer BYTE 127 DUP(0)</span><br><span class="line">bytesRead WORD ?</span><br><span class="line">.code</span><br><span class="line">mov ah, 3Fh</span><br><span class="line">mov bx, 0</span><br><span class="line">mov cx, 127</span><br><span class="line">mov dx, OFFSET inputBuffer</span><br><span class="line">int 21h</span><br><span class="line">mov bytesRead, ax</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-10-Function-2Ah"><a href="#2-10-Function-2Ah" class="headerlink" title="2.10    Function 2Ah"></a>2.10    Function 2Ah</h4><p>returns year in cx, month in dh, day in dl, and aday of week in al</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 2Ah</span><br><span class="line">int 21h</span><br><span class="line">mov year, cx</span><br><span class="line">mov month, dh</span><br><span class="line">mov day, dl</span><br><span class="line">mov dayOfWeek, al</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-11-Function-2Bh"><a href="#2-11-Function-2Bh" class="headerlink" title="2.11    Function 2Bh"></a>2.11    Function 2Bh</h4><p>sets the system date.</p>
-<p>AL = 0 if function was successful</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 2Bh</span><br><span class="line">mov cx, year</span><br><span class="line">mov dh, month</span><br><span class="line">mov dl, day</span><br><span class="line">int 21h</span><br><span class="line">cmp al, 0</span><br><span class="line">jne failed</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-12-Function-2Ch"><a href="#2-12-Function-2Ch" class="headerlink" title="2.12    Function 2Ch"></a>2.12    Function 2Ch</h4><p>returns hours in ch, minutes in cl, seconds in dh, hundredth in dl</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 2Ch</span><br><span class="line">int 21h</span><br><span class="line">mov hours, ch</span><br><span class="line">mov minutes, cl</span><br><span class="line">mov seconds, dh</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-13-Function-2Dh"><a href="#2-13-Function-2Dh" class="headerlink" title="2.13 Function 2Dh"></a>2.13 Function 2Dh</h4><p>sets the system date. AL = 0 if function was successful</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 2Dh</span><br><span class="line">mov ch, hours</span><br><span class="line">mov cl, minutes</span><br><span class="line">mov dh, seconds</span><br><span class="line">int 21h</span><br><span class="line">cmp al, 0</span><br><span class="line">jne failed</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-File-Function"><a href="#3-File-Function" class="headerlink" title="3. File Function"></a>3. File Function</h2><h4 id="3-1-Function-716Ch"><a href="#3-1-Function-716Ch" class="headerlink" title="3.1 Function 716Ch"></a>3.1 Function 716Ch</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ax, 716Ch</span><br><span class="line">mov bx, 2</span><br><span class="line">mov cx, 0</span><br><span class="line">mov dx, 10h + 02h</span><br><span class="line">mov si, OFFSET Filename</span><br><span class="line">int 21h</span><br><span class="line">jc failed</span><br><span class="line">mov handle, ax</span><br><span class="line">mov actionTaken, cx</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-Function-3Eh"><a href="#3-2-Function-3Eh" class="headerlink" title="3.2    Function 3Eh"></a>3.2    Function 3Eh</h4><p>use the same file handle that was returned by int21h when the file was opened</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">filehandle WORD ?</span><br><span class="line">.code</span><br><span class="line">mov ah, 3Eh</span><br><span class="line">mov bx, filehandle</span><br><span class="line">int 21h</span><br><span class="line">jc failed</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-3-Function-42h"><a href="#3-3-Function-42h" class="headerlink" title="3.3    Function 42h"></a>3.3    Function 42h</h4><p>permits random access to a file</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ah, 42h</span><br><span class="line">mov al, 0</span><br><span class="line">mov bx, handle</span><br><span class="line">mov cx, offsetHi</span><br><span class="line">mov dx, offsetLo</span><br><span class="line">int 21h</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-4-Function-5706h"><a href="#3-4-Function-5706h" class="headerlink" title="3.4    Function 5706h"></a>3.4    Function 5706h</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov ax, 5706h</span><br><span class="line">mov bx, handle		; handle of open file</span><br><span class="line">int 21h</span><br><span class="line">jc error</span><br><span class="line">mov date, dx</span><br><span class="line">mov time, cx</span><br><span class="line">mov millisecconds, si</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-BIOS-Introduction"><a href="#4-BIOS-Introduction" class="headerlink" title="4. BIOS Introduction"></a>4. BIOS Introduction</h2><p><a href="https://imgtu.com/i/HOxIxA"><img src="https://s4.ax1x.com/2022/02/20/HOxIxA.png" alt="HOxIxA.png"></a></p>
-<p><a href="https://imgtu.com/i/HOzez9"><img src="https://s4.ax1x.com/2022/02/20/HOzez9.png" alt="HOzez9.png"></a></p>
-<h2 id="5-Keyboard-Input-with-INT-16h"><a href="#5-Keyboard-Input-with-INT-16h" class="headerlink" title="5. Keyboard Input with INT 16h"></a>5. Keyboard Input with INT 16h</h2><p><a href="https://imgtu.com/i/HXSd1J"><img src="https://s4.ax1x.com/2022/02/20/HXSd1J.png" alt="HXSd1J.png"></a></p>
-<p><a href="https://imgtu.com/i/HXSXcj"><img src="https://s4.ax1x.com/2022/02/20/HXSXcj.png" alt="HXSXcj.png"></a></p>
-<p><a href="https://imgtu.com/i/HXpEv9"><img src="https://s4.ax1x.com/2022/02/20/HXpEv9.png" alt="HXpEv9.png"></a></p>
-<h4 id="5-1-Function-10h"><a href="#5-1-Function-10h" class="headerlink" title="5.1    Function 10h"></a>5.1    Function 10h</h4><p>if a key is in buffer, returns it immediately. Or, pauses and waits for user input</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">scanCode BYTE ?</span><br><span class="line">ASCIICode BYTE ?</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">mov ah, 10h</span><br><span class="line">int 16h</span><br><span class="line">mov scanCode, ah</span><br><span class="line">mov ASCIICode, al</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-2-Function-12h"><a href="#5-2-Function-12h" class="headerlink" title="5.2    Function 12h"></a>5.2    Function 12h</h4><p>retrieves a copy of the keyboard status flags from the BIOS data area</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">keyFlags WORD ?</span><br><span class="line">.code</span><br><span class="line">mov ah, 12h</span><br><span class="line">int 16h</span><br><span class="line">mov keyFlags, ax</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-3-Function-11h"><a href="#5-3-Function-11h" class="headerlink" title="5.3    Function 11h"></a>5.3    Function 11h</h4><p>clear the zero flag if a key is waiting in the buffer</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L1:</span><br><span class="line">	mov ah, 11h</span><br><span class="line">	int 16h</span><br><span class="line">	jz noKey</span><br><span class="line">	mov ah, 10h</span><br><span class="line">	int 16h</span><br><span class="line">	cmp ah, scanCode</span><br><span class="line">	je quit</span><br><span class="line">	jmp L1</span><br><span class="line">noKey:</span><br><span class="line">	or al, 1</span><br><span class="line">quit:</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-VIDEO-Programming-with-INT-10h"><a href="#6-VIDEO-Programming-with-INT-10h" class="headerlink" title="6. VIDEO Programming with INT 10h"></a>6. VIDEO Programming with INT 10h</h2><h4 id="6-1-Three-levels-of-Video-Access"><a href="#6-1-Three-levels-of-Video-Access" class="headerlink" title="6.1    Three levels of Video Access"></a>6.1    Three levels of Video Access</h4><p><a href="https://imgtu.com/i/HjMyGQ"><img src="https://s4.ax1x.com/2022/02/21/HjMyGQ.png" alt="HjMyGQ.png"></a></p>
-<p><a href="https://imgtu.com/i/HjQpJe"><img src="https://s4.ax1x.com/2022/02/21/HjQpJe.png" alt="HjQpJe.png"></a></p>
-<h4 id="6-2-Displaying-a-Color-String"><a href="#6-2-Displaying-a-Color-String" class="headerlink" title="6.2    Displaying a Color String"></a>6.2    Displaying a Color String</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mov si, OFFSET string</span><br><span class="line">...</span><br><span class="line">mov ah, 9				; write character</span><br><span class="line">mov al, [si]			; character to display</span><br><span class="line">mov bh, 0				; video page 0</span><br><span class="line">mov bl, color			; attribute</span><br><span class="line">or bl, 10000000b		; set blink/intensity bit</span><br><span class="line">mov cx, 1				; display it one time</span><br><span class="line">int 10h</span><br></pre></td></tr></table></figure>
-
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
+]]></content>
       <categories>
-        <category>汇编</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>汇编</tag>
+        <tag>server</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2022/02/20/%E6%B1%87%E7%BC%96_Day9/</url>
-    <content><![CDATA[<hr>
-<hr>
-]]></content>
   </entry>
 </search>
