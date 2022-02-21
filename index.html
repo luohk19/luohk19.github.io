@@ -223,7 +223,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/20/%E6%B1%87%E7%BC%96_Day9/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/02/20/%E6%B1%87%E7%BC%96_Day9/" class="post-title-link" itemprop="url">汇编第Ⅸ天</a>
         </h2>
 
         <div class="post-meta">
@@ -232,9 +232,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-02-20 21:54:59 / 修改时间：21:59:24" itemprop="dateCreated datePublished" datetime="2022-02-20T21:54:59+08:00">2022-02-20</time>
+              <time title="创建时间：2022-02-20 21:54:59" itemprop="dateCreated datePublished" datetime="2022-02-20T21:54:59+08:00">2022-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-21 16:16:19" itemprop="dateModified" datetime="2022-02-21T16:16:19+08:00">2022-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B1%87%E7%BC%96/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a>
+                </span>
             </span>
 
           <br>
@@ -243,14 +258,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>1.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -262,8 +277,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
-<hr>
+          <h2 id="1-Defining-Segments"><a href="#1-Defining-Segments" class="headerlink" title="1.    Defining Segments"></a>1.    Defining Segments</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjgpHx"><img src="https://s4.ax1x.com/2022/02/21/HjgpHx.png" alt="HjgpHx.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjgPUK"><img src="https://s4.ax1x.com/2022/02/21/HjgPUK.png" alt="HjgPUK.png"></a></p>
+<h4 id="1-1-NEAR-and-FAR-Segment"><a href="#1-1-NEAR-and-FAR-Segment" class="headerlink" title="1.1    NEAR and FAR Segment"></a>1.1    NEAR and FAR Segment</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjgKVP"><img src="https://s4.ax1x.com/2022/02/21/HjgKVP.png" alt="HjgKVP.png"></a></p>
+<h4 id="1-2-MODEL-Directive"><a href="#1-2-MODEL-Directive" class="headerlink" title="1.2    .MODEL Directive"></a>1.2    .MODEL Directive</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjgWa6"><img src="https://s4.ax1x.com/2022/02/21/HjgWa6.png" alt="HjgWa6.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjgHsA"><img src="https://s4.ax1x.com/2022/02/21/HjgHsA.png" alt="HjgHsA.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">;	syntax:</span><br><span class="line">		.MODEL type, language, stackdistance</span><br><span class="line">;	StackDistance can be NEARSTACK, FARSTACK(stack and data aren&#x27;t together)</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-STACK-Directive"><a href="#1-3-STACK-Directive" class="headerlink" title="1.3    .STACK Directive"></a>1.3    .STACK Directive</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">; Syntax: .STACK [stacksize]</span><br><span class="line">; default 1024</span><br><span class="line">; example</span><br><span class="line">.stack 2048</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-CODE-Directive"><a href="#1-4-CODE-Directive" class="headerlink" title="1.4    .CODE Directive"></a>1.4    .CODE Directive</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjRGBn"><img src="https://s4.ax1x.com/2022/02/21/HjRGBn.png" alt="HjRGBn.png"></a></p>
+<h4 id="1-5-Near-Data-Segments"><a href="#1-5-Near-Data-Segments" class="headerlink" title="1.5    Near Data Segments"></a>1.5    Near Data Segments</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjRBjJ"><img src="https://s4.ax1x.com/2022/02/21/HjRBjJ.png" alt="HjRBjJ.png"></a></p>
+<h4 id="1-6-Far-Data-Segments"><a href="#1-6-Far-Data-Segments" class="headerlink" title="1.6    Far Data Segments"></a>1.6    Far Data Segments</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.FARDATA</span><br><span class="line">myVar</span><br><span class="line">.CODE</span><br><span class="line">	mov ax, SEG myVar		; SEG operator returns the segment value of a lab.</span><br><span class="line">	mov ds, ax</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-7-SEGMENT-Directive"><a href="#1-7-SEGMENT-Directive" class="headerlink" title="1.7    SEGMENT Directive"></a>1.7    SEGMENT Directive</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name SEGMENT [align][combine][&#x27;class&#x27;]</span><br><span class="line">	statements</span><br><span class="line">name ENDS</span><br><span class="line">; name: ExtraData</span><br><span class="line">; paragraph align type (starts on 16-byte boundary)</span><br><span class="line">; public combine type</span><br><span class="line">; &#x27;DATA&#x27;</span><br><span class="line">ExtraData SEGMENT PARA PUBLIC &#x27;DATA&#x27;</span><br><span class="line">	var1 BYTE 1</span><br><span class="line">	var2 WORD 2</span><br><span class="line">ExtraData ENDS</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-8-ASSUME-Directive"><a href="#1-8-ASSUME-Directive" class="headerlink" title="1.8    ASSUME Directive"></a>1.8    ASSUME Directive</h4><p>tells the assembler how to calculate the offsets of labels</p>
+<p>associates a segment register with a segment name</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">; syntax:</span><br><span class="line">	ASSUME segreg:segname [,segreg:segname]</span><br><span class="line">; example</span><br><span class="line">	ASSUME cs:myCode, ds:Data, ss:myStack</span><br><span class="line">	ASSUME es:ExtraData</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-9-Multiple-Data-Segments"><a href="#1-9-Multiple-Data-Segments" class="headerlink" title="1.9    Multiple Data Segments"></a>1.9    Multiple Data Segments</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">; example 1</span><br><span class="line">cseg SEGMENT &#x27;CODE&#x27;</span><br><span class="line">ASSUME cs:cseg, ds:data1, es:data2, ss:mystack</span><br><span class="line"></span><br><span class="line">main PROC</span><br><span class="line">	mov ax, data1			; ds points to data1</span><br><span class="line">	mov ds, ax</span><br><span class="line">	mov ax, SEG val2		; es points to data2</span><br><span class="line">	mov es, ax</span><br><span class="line">	mov ax, val1</span><br><span class="line">	mov bx, val2</span><br><span class="line">	mov ax, 4C00h			; same as .exit</span><br><span class="line">	int 21h</span><br><span class="line">main ENDP</span><br><span class="line">cseg ENDS</span><br><span class="line"></span><br><span class="line">; example 2</span><br><span class="line">data1 SEGMENT &#x27;DATA&#x27;</span><br><span class="line">	var1 WORD 1001h</span><br><span class="line">data1 ENDS</span><br><span class="line"></span><br><span class="line">data2 SEGMENT &#x27;DATA&#x27;</span><br><span class="line">	var2 WORD 1002h</span><br><span class="line">data2 ENDS</span><br><span class="line"></span><br><span class="line">myStack SEGMENT PARA STACK &#x27;STACK&#x27;</span><br><span class="line">	BYTE 100h DUP(&#x27;S&#x27;)</span><br><span class="line">myStack ENDS</span><br><span class="line">END MAIN</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Interrupt-Handling"><a href="#2-Interrupt-Handling" class="headerlink" title="2. Interrupt Handling"></a>2. Interrupt Handling</h2><h4 id="2-1-Interrupt-Vector-Table"><a href="#2-1-Interrupt-Vector-Table" class="headerlink" title="2.1    Interrupt Vector Table"></a>2.1    Interrupt Vector Table</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjjMdK"><img src="https://s4.ax1x.com/2022/02/21/HjjMdK.png" alt="HjjMdK.png"></a></p>
+<h4 id="2-2-Hardware-Interrupt"><a href="#2-2-Hardware-Interrupt" class="headerlink" title="2.2    Hardware Interrupt"></a>2.2    Hardware Interrupt</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjjvFO"><img src="https://s4.ax1x.com/2022/02/21/HjjvFO.png" alt="HjjvFO.png"></a></p>
+<h4 id="2-3-Common-IRQ-Assignments"><a href="#2-3-Common-IRQ-Assignments" class="headerlink" title="2.3    Common IRQ Assignments"></a>2.3    Common IRQ Assignments</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjvPOI"><img src="https://s4.ax1x.com/2022/02/21/HjvPOI.png" alt="HjvPOI.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjvATf"><img src="https://s4.ax1x.com/2022/02/21/HjvATf.png" alt="HjvATf.png"></a></p>
+<h4 id="2-4-Interrupt-Control-Instructions"><a href="#2-4-Interrupt-Control-Instructions" class="headerlink" title="2.4    Interrupt Control Instructions"></a>2.4    Interrupt Control Instructions</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">; STI = set interrupt flag</span><br><span class="line">- enable external interrupts</span><br><span class="line">- executed at beginning of an interrupt handler</span><br><span class="line">; CLI = clear interrupt flag</span><br><span class="line">- disable external interrupts</span><br><span class="line">- used before critical code sections that can&#x27;t be interrupt</span><br><span class="line">- suspends the system timer</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-Writing-a-Custom-Interrupt-Handler"><a href="#2-5-Writing-a-Custom-Interrupt-Handler" class="headerlink" title="2.5    Writing a Custom Interrupt Handler"></a>2.5    Writing a Custom Interrupt Handler</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HjxpNT"><img src="https://s4.ax1x.com/2022/02/21/HjxpNT.png" alt="HjxpNT.png"></a></p>
 
       
     </div>
@@ -314,7 +355,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-21 14:31:59" itemprop="dateModified" datetime="2022-02-21T14:31:59+08:00">2022-02-21</time>
+                <time title="修改时间：2022-02-21 15:09:25" itemprop="dateModified" datetime="2022-02-21T15:09:25+08:00">2022-02-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -332,14 +373,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -352,10 +393,6 @@
 
       
           <h2 id="1-MS-DOS-and-the-IBM-PC"><a href="#1-MS-DOS-and-the-IBM-PC" class="headerlink" title="1. MS-DOS and the IBM-PC"></a>1. MS-DOS and the IBM-PC</h2><h4 id="1-1-Real-Address-Mode"><a href="#1-1-Real-Address-Mode" class="headerlink" title="1.1    Real-Address Mode"></a>1.1    Real-Address Mode</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HOCUPO"><img src="https://s4.ax1x.com/2022/02/20/HOCUPO.png" alt="HOCUPO.png"></a></p>
-<h4 id="1-2-MS-DOS-Memory-Organization"><a href="#1-2-MS-DOS-Memory-Organization" class="headerlink" title="1.2    MS-DOS Memory Organization"></a>1.2    MS-DOS Memory Organization</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HO1g2j"><img src="https://s4.ax1x.com/2022/02/20/HO1g2j.png" alt="HO1g2j.png"></a></p>
-<h4 id="1-3-Redirecting-Input-Output"><a href="#1-3-Redirecting-Input-Output" class="headerlink" title="1.3    Redirecting Input-Output"></a>1.3    Redirecting Input-Output</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HO1qz9"><img src="https://s4.ax1x.com/2022/02/20/HO1qz9.png" alt="HO1qz9.png"></a></p>
-<h4 id="1-4-INT-Instructions"><a href="#1-4-INT-Instructions" class="headerlink" title="1.4    INT Instructions"></a>1.4    INT Instructions</h4><p>this instruction executes a software interrupt, which is called an interrupt handler.</p>
-<p>The Interrupt Vector Table holds a 32-bit segment-offset address for each possible interrupt handler.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/02/20/%E6%B1%87%E7%BC%96_Day8/#more" rel="contents">
@@ -1522,8 +1559,8 @@
 	</div>
 	<ul class="links-of-blogroll-list recent-posts-list">
 	        <li class="my-links-of-blogroll-item">
-		    <a href="/2022/02/20/%E6%B1%87%E7%BC%96_Day9/" title="" target="">
-		    
+		    <a href="/2022/02/20/%E6%B1%87%E7%BC%96_Day9/" title="汇编第Ⅸ天" target="">
+		    汇编第Ⅸ天
 		    </a>
 		</li>
 	        <li class="my-links-of-blogroll-item">
@@ -1579,13 +1616,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">39k</span>
+    <span title="站点总字数">41k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">35 分钟</span>
+    <span title="站点阅读时长">38 分钟</span>
 </div>
 
         
