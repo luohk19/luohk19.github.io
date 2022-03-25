@@ -209,6 +209,151 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/08/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="luohk">
+      <meta itemprop="description" content="今后本博客将会记载学习笔记、科研感想等">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="luohk19">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/08/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day3/" class="post-title-link" itemprop="url">汇编第三天</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-08 15:55:52" itemprop="dateCreated datePublished" datetime="2022-02-08T15:55:52+08:00">2022-02-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-09 12:22:09" itemprop="dateModified" datetime="2022-02-09T12:22:09+08:00">2022-02-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B1%87%E7%BC%96/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Stack-Operation"><a href="#1-Stack-Operation" class="headerlink" title="1. Stack Operation"></a>1. Stack Operation</h2><h4 id="1-1-Runtime-Stack"><a href="#1-1-Runtime-Stack" class="headerlink" title="1.1    Runtime Stack"></a>1.1    Runtime Stack</h4><ol>
+<li>top的地址大于buttom的地址</li>
+<li>受两个register管控，ss（stack segment）、esp（stack pointer）</li>
+</ol>
+<h4 id="1-2-Push-Operation"><a href="#1-2-Push-Operation" class="headerlink" title="1.2    Push Operation"></a>1.2    Push Operation</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/H10nZ8"><img src="https://s4.ax1x.com/2022/02/08/H10nZ8.png" alt="H10nZ8.png"></a></p>
+<p>减4，即4*8=32，再÷4=8，即剩余8位，正好32位。乘8是因为1byte=8bit</p>
+<h4 id="1-3-Pop-Operation"><a href="#1-3-Pop-Operation" class="headerlink" title="1.3    Pop Operation"></a>1.3    Pop Operation</h4><p>add n to esp, 2 or 4 depends on the attribute of the operand</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">push esi</span><br><span class="line">push ecx</span><br><span class="line">push ebx</span><br><span class="line"></span><br><span class="line">mov esi, OFFSET dwordVal	; display some memory</span><br><span class="line">mov ecx, LENGTHOF dwordVal</span><br><span class="line">mov ebx, TYPE dwordVal</span><br><span class="line">call DumpMem</span><br><span class="line"></span><br><span class="line">pop	ebx</span><br><span class="line">pop exc</span><br><span class="line">pop esi</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-defining-and-using-procedures"><a href="#2-defining-and-using-procedures" class="headerlink" title="2. defining and using procedures"></a>2. defining and using procedures</h2><h4 id="2-1-creating-procedure"><a href="#2-1-creating-procedure" class="headerlink" title="2.1    creating procedure"></a>2.1    creating procedure</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sample PROC</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	ret</span><br><span class="line">sample ENDP</span><br><span class="line"></span><br><span class="line">; EXAMPLE: SUM OF PROCEDURE</span><br><span class="line">SumOf PROC</span><br><span class="line">	add eax, ebx</span><br><span class="line">	add eax, ecx</span><br><span class="line">	ret</span><br><span class="line">SumOf ENDP</span><br><span class="line">COMMENT !</span><br><span class="line">    mov eax, 10</span><br><span class="line">    mov ebx, 20</span><br><span class="line">    mov ecx, 30</span><br><span class="line">    call SumOf</span><br><span class="line">    WriteDec</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-Call-and-Ret-Instruction"><a href="#2-2-Call-and-Ret-Instruction" class="headerlink" title="2.2    Call and Ret Instruction"></a>2.2    Call and Ret Instruction</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">main PROC</span><br><span class="line">	00000020 call MySub</span><br><span class="line">	00000025 mov eax, ebx</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">main ENDP</span><br><span class="line">MySub PROC</span><br><span class="line">	00000040 mov eax, edx</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	ret</span><br><span class="line">MySub ENDP</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-USES-Operator"><a href="#2-3-USES-Operator" class="headerlink" title="2.3 USES Operator"></a>2.3 USES Operator</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ArraySum PROC</span><br><span class="line">	push esi</span><br><span class="line">	push ecx</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	pop ecx</span><br><span class="line">	pop esi</span><br><span class="line">	ret</span><br><span class="line">ArraySum ENDP</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/H1Im1x"><img src="https://s4.ax1x.com/2022/02/08/H1Im1x.png" alt="H1Im1x.png"></a></p>
+<h2 id="3-linking-to-an-external-library"><a href="#3-linking-to-an-external-library" class="headerlink" title="3. linking to an external library"></a>3. linking to an external library</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/H17fDf"><img src="https://s4.ax1x.com/2022/02/08/H17fDf.png" alt="H17fDf.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">include Irvine32.inc</span><br><span class="line">.code</span><br><span class="line">	mov eax, 1234h</span><br><span class="line">	call WriteHex</span><br><span class="line">	call Crlf</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-64bit-assembly-programming"><a href="#4-64bit-assembly-programming" class="headerlink" title="4. 64bit assembly programming"></a>4. 64bit assembly programming</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExitProcess PROTO</span><br><span class="line">WriteHex64 PROTO</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-boolean-and-comparison-instruction"><a href="#5-boolean-and-comparison-instruction" class="headerlink" title="5. boolean and comparison instruction"></a>5. boolean and comparison instruction</h2><p>AND, OR, XOR, NOT,</p>
+<h4 id="5-1-Using-Bit-Mapped-Sets"><a href="#5-1-Using-Bit-Mapped-Sets" class="headerlink" title="5.1    Using Bit-Mapped Sets"></a>5.1    Using Bit-Mapped Sets</h4><p>like bit vectors</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">; set complement</span><br><span class="line">mov eax, SetX</span><br><span class="line">not eax</span><br><span class="line">; set Intersection</span><br><span class="line">mov eax, SetX</span><br><span class="line">and eax, SetY</span><br><span class="line">; set Union</span><br><span class="line">mov eax, setX</span><br><span class="line">or eax, setY</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-Test-Instruction"><a href="#5-2-Test-Instruction" class="headerlink" title="5.2    Test Instruction"></a>5.2    Test Instruction</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test al, 00000011b</span><br><span class="line">jz ValueNotFound</span><br><span class="line">; neither bit0 and bit1 is set</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-CMP-Instruction"><a href="#5-3-CMP-Instruction" class="headerlink" title="5.3    CMP Instruction"></a>5.3    CMP Instruction</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">; nondestructive subtraction of source from destination</span><br><span class="line">mov al, 5</span><br><span class="line">cmp al, 5 ; zero flag is set</span><br><span class="line"></span><br><span class="line">mov al, 4</span><br><span class="line">cmp al, 5 ; carry flag is set</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Conditional-Jumps"><a href="#6-Conditional-Jumps" class="headerlink" title="6. Conditional Jumps"></a>6. Conditional Jumps</h2><p>jumps based on specific flags, equality, unsigned comparisons, signed comparisons</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">; JB, JC jumps to a label if carry flag is set</span><br><span class="line">; JE, JZ jumps to a label if zero flag is set</span><br><span class="line">; JS jumps to a label if sign flag is set</span><br><span class="line">; JNE, JNZ jump to a label if zero flag is clear</span><br><span class="line">; JECXZ jumps to a label if ECX equals to zero</span><br><span class="line">; Example BT Instruction</span><br><span class="line">; copy bit n to the carry flag</span><br><span class="line">; Task: jump to label L1 if bit 9 is set</span><br><span class="line"></span><br><span class="line">bt ax, 9</span><br><span class="line">jc L1</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-Conditional-Loop-Instruction"><a href="#7-Conditional-Loop-Instruction" class="headerlink" title="7. Conditional Loop Instruction"></a>7. Conditional Loop Instruction</h2><h4 id="LOOPZ-and-LOOPE"><a href="#LOOPZ-and-LOOPE" class="headerlink" title="LOOPZ and LOOPE"></a>LOOPZ and LOOPE</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">; if ecx &gt; 0 and ZF = 1, jump to destination</span><br><span class="line">LOOPE destination</span><br><span class="line">LOOPZ destination</span><br><span class="line">; if ecx &gt; 0 and ZF = 0, jump to destination</span><br><span class="line">LOOPNE destination</span><br><span class="line">LOOPNZ destination</span><br><span class="line"></span><br><span class="line">; Example</span><br><span class="line">.data</span><br><span class="line">array SWORD -3,-6,-1,-10,10,30,4-,4</span><br><span class="line">sentinel SWORD 0</span><br><span class="line">.code</span><br><span class="line">	mov esi, OFFSET array</span><br><span class="line">	mov ecx, LENGTHOF array</span><br><span class="line">next:</span><br><span class="line">	test WORD PTR [esi], 8000h</span><br><span class="line">	pushfd</span><br><span class="line">	add esi, TYPE array</span><br><span class="line">	popfd</span><br><span class="line">	loopnz next</span><br><span class="line">	jecxz quit</span><br><span class="line">	sub esi, TYPE array</span><br><span class="line">quit:</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-Conditional-Structures"><a href="#8-Conditional-Structures" class="headerlink" title="8. Conditional Structures"></a>8. Conditional Structures</h2><h4 id="8-1-Block-Structured-IF-Statement"><a href="#8-1-Block-Structured-IF-Statement" class="headerlink" title="8.1    Block-Structured IF Statement"></a>8.1    Block-Structured IF Statement</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (op1 == op2)			</span><br><span class="line">	x = 1;					</span><br><span class="line">else						</span><br><span class="line">	x = 2;					</span><br><span class="line">.code</span><br><span class="line">	mov eax, op1</span><br><span class="line">	cmp eax, op2</span><br><span class="line">	jne L1</span><br><span class="line">	mov x, 1</span><br><span class="line">	jmp L2</span><br><span class="line">L1: mov x, 2</span><br><span class="line">L2:</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-2-Compound-Expression-with-AND"><a href="#8-2-Compound-Expression-with-AND" class="headerlink" title="8.2    Compound Expression with AND"></a>8.2    Compound Expression with AND</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">if (al &gt; bl) and (bl &gt; cl)</span><br><span class="line">	x = 1;</span><br><span class="line">; one implementation</span><br><span class="line">	cmp al, bl</span><br><span class="line">	ja L1</span><br><span class="line">	jmp next</span><br><span class="line">L1:</span><br><span class="line">	cmp bl, cl</span><br><span class="line">	ja L2</span><br><span class="line">	jmp next</span><br><span class="line">L2:</span><br><span class="line">	mov x, 1</span><br><span class="line">next:</span><br><span class="line"></span><br><span class="line">; the other implementation</span><br><span class="line">	cmp al, bl</span><br><span class="line">	jbe next</span><br><span class="line">	cmp bl, cl</span><br><span class="line">	jbe next</span><br><span class="line">	mov x, 1</span><br><span class="line">next:</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-Creating-IF-Statement"><a href="#9-Creating-IF-Statement" class="headerlink" title="9. Creating IF Statement"></a>9. Creating IF Statement</h2><h4 id="9-1-Runtime-Expression"><a href="#9-1-Runtime-Expression" class="headerlink" title="9.1    Runtime Expression"></a>9.1    Runtime Expression</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.if eax &gt; ebx &amp;&amp; eax &gt; ecx</span><br><span class="line">	mov edx, 1</span><br><span class="line">.else</span><br><span class="line">	mov edx, 2</span><br><span class="line">.endif</span><br><span class="line"></span><br><span class="line">; if 自动生成相反的命令jmp</span><br><span class="line">.data</span><br><span class="line">result DWORD ?</span><br><span class="line">.code</span><br><span class="line">mov ebx, 5</span><br><span class="line">mov eax, 6</span><br><span class="line">.if eax &gt; ebx</span><br><span class="line">	mov result, 1</span><br><span class="line">.endif</span><br><span class="line"></span><br><span class="line">	mov ebx, 5</span><br><span class="line">	mov eax, 6</span><br><span class="line">	cmp eax, ebx</span><br><span class="line">	jle @c0001</span><br><span class="line">	mov result, 1</span><br><span class="line">@c0001:</span><br><span class="line"></span><br><span class="line">; you can also prefix one of your register with the SDWORD PTR operator.</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-2-repeat-directive"><a href="#9-2-repeat-directive" class="headerlink" title="9.2    .repeat directive"></a>9.2    .repeat directive</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">; Display integers 1 - 10</span><br><span class="line">mov eax, 0</span><br><span class="line">.repeat</span><br><span class="line">	inc eax</span><br><span class="line">	call WriteDec</span><br><span class="line">	call Crlf</span><br><span class="line">.until eax == 10</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-3-while-directive"><a href="#9-3-while-directive" class="headerlink" title="9.3    .while directive"></a>9.3    .while directive</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mov eax, 0</span><br><span class="line">.while eax &lt; 10</span><br><span class="line">	inc eax</span><br><span class="line">	call WriteDec</span><br><span class="line">	call Crlf</span><br><span class="line">.endw</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/08/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1166,7 +1311,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1202,6 +1347,11 @@
 	</div>
 	<ul class="links-of-blogroll-list recent-posts-list">
 	        <li class="my-links-of-blogroll-item">
+		    <a href="/2022/03/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/os_day2/" title="os xv6源码解读(操作系统架构)" target="">
+		    os xv6源码解读(操作系统架构)
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
 		    <a href="/2022/02/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/os_day1/" title="os xv6源码解读(操作系统接口)" target="">
 		    os xv6源码解读(操作系统接口)
 		    </a>
@@ -1219,11 +1369,6 @@
 	        <li class="my-links-of-blogroll-item">
 		    <a href="/2022/02/20/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day9/" title="汇编第Ⅸ天" target="">
 		    汇编第Ⅸ天
-		    </a>
-		</li>
-	        <li class="my-links-of-blogroll-item">
-		    <a href="/2022/02/20/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day8/" title="汇编第八天" target="">
-		    汇编第八天
 		    </a>
 		</li>
 	</ul>
@@ -1259,13 +1404,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">47k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">43 分钟</span>
 </div>
 
         
