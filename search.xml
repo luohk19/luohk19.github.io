@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>firstOne</title>
+    <url>/2022/01/09/1/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>AI第一天</title>
+    <url>/2022/02/21/AI_Day1/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>bash</title>
     <url>/2022/01/10/bash/</url>
     <content><![CDATA[<h4 id="1-Hello-World"><a href="#1-Hello-World" class="headerlink" title="1. Hello World"></a>1. Hello World</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world&quot;</span> <span class="comment">#双引号表示执行，单引号表示单纯输出</span></span><br><span class="line"></span><br><span class="line">chmod +x xxx.sh <span class="comment">#使xxx.sh脚本具有执行能力</span></span><br></pre></td></tr></table></figure>
@@ -57,38 +76,6 @@
       </tags>
   </entry>
   <entry>
-    <title>firstOne</title>
-    <url>/2022/01/09/1/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>docker使用</title>
-    <url>/2022/01/12/docker/</url>
-    <content><![CDATA[<h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
-<h4 id="2-Docker概念"><a href="#2-Docker概念" class="headerlink" title="2.Docker概念"></a>2.Docker概念</h4><h5 id="2-1-Docker的结构"><a href="#2-1-Docker的结构" class="headerlink" title="2.1 Docker的结构"></a>2.1 Docker的结构</h5><p>$docker\begin{cases}image \begin{cases}container \cr container \cr … \end{cases}   \cr image \cr …\end{cases}$</p>
-<h5 id="2-2-Docker的小概念"><a href="#2-2-Docker的小概念" class="headerlink" title="2.2 Docker的小概念"></a>2.2 Docker的小概念</h5><p>采用相同的image（镜像）生成的container（容器）配置都相同。</p>
-<p>每个container都是完全独立的云端服务器，docker管理image时会采取空间优化。</p>
-<p>未来如果需要迁移container，可以先生成image（可下载到其他服务器加载）</p>
-<h4 id="3-Docker-Images"><a href="#3-Docker-Images" class="headerlink" title="3.Docker Images"></a>3.Docker Images</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu:20.04 <span class="comment">#可以拉取一个镜像 name:tag</span></span><br><span class="line"></span><br><span class="line">docker images <span class="comment">#查看目前存在的image</span></span><br><span class="line"></span><br><span class="line">docker rmi &lt;imageName&gt; <span class="comment">#便可删除对应镜像</span></span><br><span class="line"></span><br><span class="line">docker save -o ubuntu_20_04.tar ubuntu:20.04 <span class="comment">#保存镜像,可以用ls -l查看权限</span></span><br><span class="line"><span class="comment"># 查看权限后发现仅自己有可读写权限，因此需要添加权限</span></span><br><span class="line"></span><br><span class="line">docker load -i ubuntu_20_04.tar <span class="comment">#读取生成镜像</span></span><br><span class="line"><span class="comment">#可以将原镜像删去再检验</span></span><br></pre></td></tr></table></figure>
-
-<p>自此通过scp命令可以实现不同服务器的镜像迁移</p>
-<h4 id="4-Docker-Container"><a href="#4-Docker-Container" class="headerlink" title="4.Docker Container"></a>4.Docker Container</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create -it ubuntu:20.04 <span class="comment">#利用image生成container</span></span><br><span class="line"></span><br><span class="line">docker ps -a <span class="comment">#查看创建了的容器，无a则展示正在运行的</span></span><br><span class="line"></span><br><span class="line">docker start CONTAINER_ID <span class="comment">#启动容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker stop CONTAINER_ID <span class="comment">#停止容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker restart CONTAINER_ID <span class="comment">#重启</span></span><br><span class="line"></span><br><span class="line">docker run -itd ubuntu:20.04 <span class="comment">#创建并启动container</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#CONTAINER_ID 与 CONTAINER_NAME 都可以，下面用CONTAINER代替</span></span><br><span class="line"></span><br><span class="line">docker attach CONTAINER <span class="comment">#进入容器，前提是已启动，默认root</span></span><br><span class="line"><span class="comment">#想退出？ ctrl+p 再 ctrl+q, ctrl+q是用于挂起，否则直接关闭</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> CONTAINER COMMAND <span class="comment">#在某容器内执行命令，!!!容器必须运行</span></span><br><span class="line"></span><br><span class="line">docker rm CONTAINER <span class="comment">#删除容器，注意rmi与rm的区别</span></span><br><span class="line"><span class="comment">#删除前要停止容器，全删除已停止的容器为docker container prune</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> -o xxx.tar CONTAINER <span class="comment">#不保存历史记录等，占用内存比save更少</span></span><br><span class="line"><span class="comment">#注意添加可读权限</span></span><br><span class="line"></span><br><span class="line">docker import xxx.tar ubuntu:20.04 <span class="comment">#导入，实现容器到其他服务器镜像的迁移</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#剩下的都是一些小操作</span></span><br><span class="line">docker top CONTAINER <span class="comment">#查看容器的的所有进程</span></span><br><span class="line">docker stats <span class="comment">#查看所有容器的信息cpu等</span></span><br><span class="line">docker cp xxx CONTAINER:XXX <span class="comment">#本地与容器之间传递信息</span></span><br><span class="line">docker rename CONTAINER1 CONTAINER2 <span class="comment">#重命名</span></span><br><span class="line">docker update CONTAINER --XXX XXX <span class="comment">#更新各种参数</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="5-对于vscode"><a href="#5-对于vscode" class="headerlink" title="5.对于vscode"></a>5.对于vscode</h4><p>在docker挂起时，可能会发生vscode的快捷键冲突，因此需要找到左下角设置-&gt;快捷键</p>
-<p>再查找ctrl+q的快捷方式，将视图的when条件加上 !terminalFocus 便可</p>
-<p>解决方法来源于stackOverFlow</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>django后端AI训练</title>
     <url>/2022/01/12/django/</url>
     <content><![CDATA[<h4 id="1-初始配置"><a href="#1-初始配置" class="headerlink" title="1.初始配置"></a>1.初始配置</h4><p>如果想完美贴合本次教程的环境，可以联系作者发送docker文件以确保环境相同。</p>
@@ -132,75 +119,86 @@
       </tags>
   </entry>
   <entry>
-    <title>汇编第一天</title>
-    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day1/</url>
-    <content><![CDATA[<h2 id="1-General-Purpose-Registers"><a href="#1-General-Purpose-Registers" class="headerlink" title="1. General Purpose Registers"></a>1. General Purpose Registers</h2><p>1.1. 32bit寄存器为4bytes，即xxxxh。</p>
-<p>1.2. 以32位寄存器eax举例，内部还有低16bit[ax]，在ax内还分为高八位ah与低八位al</p>
-<p>1.3. 对于64bit-Processors，将前面的e改成r或删去最后的D</p>
-<p><a href="https://imgtu.com/i/H1pd6e"><img src="https://s4.ax1x.com/2022/02/08/H1pd6e.png" alt="寄存器" style="zoom: 80%;" /></a></p>
-<p>1.3. 之所以为general purpose register，作用如下：</p>
-<p><a href="https://imgtu.com/i/H19F1O"><img src="https://s4.ax1x.com/2022/02/08/H19F1O.png" alt="H19F1O.png"></a></p>
-<h2 id="2-计算地址偏移量"><a href="#2-计算地址偏移量" class="headerlink" title="2. 计算地址偏移量"></a>2. 计算地址偏移量</h2><p>example:  08F1:0100的实际地址为08F10+0100=09010，即起始地址*16</p>
-<p>？可能是由于地址范围大，需要用更少的位数表达更大的地址</p>
-<h2 id="3-汇编程序的一般格式"><a href="#3-汇编程序的一般格式" class="headerlink" title="3. 汇编程序的一般格式"></a>3. 汇编程序的一般格式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">ExitProcess PROTO, dwExitCode:DWORD</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">; declare variables here, ; leads comment</span><br><span class="line">COMMENT !</span><br><span class="line">	;multi-lines comments</span><br><span class="line">!</span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	; write your code here</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line"></span><br><span class="line">; insert additional procedures here</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
+    <title>docker使用</title>
+    <url>/2022/01/12/docker/</url>
+    <content><![CDATA[<h4 id="1-前期配置"><a href="#1-前期配置" class="headerlink" title="1.前期配置"></a>1.前期配置</h4><p>请看<a href="https://luohk19.github.io/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/">服务器配置</a>，完成后便可开始</p>
+<h4 id="2-Docker概念"><a href="#2-Docker概念" class="headerlink" title="2.Docker概念"></a>2.Docker概念</h4><h5 id="2-1-Docker的结构"><a href="#2-1-Docker的结构" class="headerlink" title="2.1 Docker的结构"></a>2.1 Docker的结构</h5><p>$docker\begin{cases}image \begin{cases}container \cr container \cr … \end{cases}   \cr image \cr …\end{cases}$</p>
+<h5 id="2-2-Docker的小概念"><a href="#2-2-Docker的小概念" class="headerlink" title="2.2 Docker的小概念"></a>2.2 Docker的小概念</h5><p>采用相同的image（镜像）生成的container（容器）配置都相同。</p>
+<p>每个container都是完全独立的云端服务器，docker管理image时会采取空间优化。</p>
+<p>未来如果需要迁移container，可以先生成image（可下载到其他服务器加载）</p>
+<h4 id="3-Docker-Images"><a href="#3-Docker-Images" class="headerlink" title="3.Docker Images"></a>3.Docker Images</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu:20.04 <span class="comment">#可以拉取一个镜像 name:tag</span></span><br><span class="line"></span><br><span class="line">docker images <span class="comment">#查看目前存在的image</span></span><br><span class="line"></span><br><span class="line">docker rmi &lt;imageName&gt; <span class="comment">#便可删除对应镜像</span></span><br><span class="line"></span><br><span class="line">docker save -o ubuntu_20_04.tar ubuntu:20.04 <span class="comment">#保存镜像,可以用ls -l查看权限</span></span><br><span class="line"><span class="comment"># 查看权限后发现仅自己有可读写权限，因此需要添加权限</span></span><br><span class="line"></span><br><span class="line">docker load -i ubuntu_20_04.tar <span class="comment">#读取生成镜像</span></span><br><span class="line"><span class="comment">#可以将原镜像删去再检验</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="4-汇编的常见元素"><a href="#4-汇编的常见元素" class="headerlink" title="4. 汇编的常见元素"></a>4. 汇编的常见元素</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 进制</span><br><span class="line">h hexadecimal</span><br><span class="line">d decimal</span><br><span class="line">b binary</span><br><span class="line">o octal</span><br><span class="line"></span><br><span class="line">; 操作</span><br><span class="line">stc ; set carry flag, no operands</span><br><span class="line"></span><br><span class="line">inc eax ; register</span><br><span class="line">inc myByte ; memory one operand</span><br><span class="line"></span><br><span class="line">add ebx, ecx ; register register</span><br><span class="line">sub myByte, 25 ; memory constant</span><br><span class="line">add eax, 36*25 ; register constant-expression</span><br></pre></td></tr></table></figure>
+<p>自此通过scp命令可以实现不同服务器的镜像迁移</p>
+<h4 id="4-Docker-Container"><a href="#4-Docker-Container" class="headerlink" title="4.Docker Container"></a>4.Docker Container</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create -it ubuntu:20.04 <span class="comment">#利用image生成container</span></span><br><span class="line"></span><br><span class="line">docker ps -a <span class="comment">#查看创建了的容器，无a则展示正在运行的</span></span><br><span class="line"></span><br><span class="line">docker start CONTAINER_ID <span class="comment">#启动容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker stop CONTAINER_ID <span class="comment">#停止容器，docker ps检验</span></span><br><span class="line"></span><br><span class="line">docker restart CONTAINER_ID <span class="comment">#重启</span></span><br><span class="line"></span><br><span class="line">docker run -itd ubuntu:20.04 <span class="comment">#创建并启动container</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#CONTAINER_ID 与 CONTAINER_NAME 都可以，下面用CONTAINER代替</span></span><br><span class="line"></span><br><span class="line">docker attach CONTAINER <span class="comment">#进入容器，前提是已启动，默认root</span></span><br><span class="line"><span class="comment">#想退出？ ctrl+p 再 ctrl+q, ctrl+q是用于挂起，否则直接关闭</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> CONTAINER COMMAND <span class="comment">#在某容器内执行命令，!!!容器必须运行</span></span><br><span class="line"></span><br><span class="line">docker rm CONTAINER <span class="comment">#删除容器，注意rmi与rm的区别</span></span><br><span class="line"><span class="comment">#删除前要停止容器，全删除已停止的容器为docker container prune</span></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">export</span> -o xxx.tar CONTAINER <span class="comment">#不保存历史记录等，占用内存比save更少</span></span><br><span class="line"><span class="comment">#注意添加可读权限</span></span><br><span class="line"></span><br><span class="line">docker import xxx.tar ubuntu:20.04 <span class="comment">#导入，实现容器到其他服务器镜像的迁移</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#剩下的都是一些小操作</span></span><br><span class="line">docker top CONTAINER <span class="comment">#查看容器的的所有进程</span></span><br><span class="line">docker stats <span class="comment">#查看所有容器的信息cpu等</span></span><br><span class="line">docker cp xxx CONTAINER:XXX <span class="comment">#本地与容器之间传递信息</span></span><br><span class="line">docker rename CONTAINER1 CONTAINER2 <span class="comment">#重命名</span></span><br><span class="line">docker update CONTAINER --XXX XXX <span class="comment">#更新各种参数</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="5-一个简单汇编例子"><a href="#5-一个简单汇编例子" class="headerlink" title="5. 一个简单汇编例子"></a>5. 一个简单汇编例子</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TITLE add and subtract</span><br><span class="line"></span><br><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line"></span><br><span class="line">ExitProcess PROTO. dwExitCode:DWORD</span><br><span class="line">DumpRegs PROTO</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	mov eax, 10000h	; eax = 10000h</span><br><span class="line">	add eax, 40000h ; eax = 50000h</span><br><span class="line">	sub eax, 20000h ; eax = 30000h</span><br><span class="line">	call DumpRegs</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-汇编过程"><a href="#6-汇编过程" class="headerlink" title="6.汇编过程"></a>6.汇编过程</h2><p><a href="https://imgtu.com/i/H1Pq9P"><img src="https://s4.ax1x.com/2022/02/08/H1Pq9P.png" alt="H1Pq9P.png"></a></p>
-<h2 id="7-数据类型"><a href="#7-数据类型" class="headerlink" title="7. 数据类型"></a>7. 数据类型</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; integer</span><br><span class="line">BYTE, SBYTE ; 8bit unsigned and signed</span><br><span class="line">WORD, SWORD ; 16it</span><br><span class="line">DWORD, SDWORD ; 32bit</span><br><span class="line">QWORD ; 64bit</span><br><span class="line">TBYTE ; 80bit integer</span><br><span class="line"></span><br><span class="line">; real</span><br><span class="line">REAL4 ; 4byte IEEE short real</span><br><span class="line">REAL8 ; 8byte long</span><br><span class="line">REAL10 ; 10byte extended</span><br><span class="line"></span><br><span class="line">; define variables</span><br><span class="line">val1 BYTE &#x27;A&#x27;</span><br><span class="line">val2 SBYTE +127 ; largest signed byte</span><br><span class="line">list1 BYTE 10, 20, 30, 40 ; list</span><br><span class="line">str1 BYTE &quot;enter your name&quot;, 0 ; null-terminated</span><br><span class="line"></span><br><span class="line">; 如果想实现回车，需要在末尾加入0dh,0ah</span><br><span class="line">; 0dh = carriage return</span><br><span class="line">; 0ah = line feed</span><br><span class="line">; 一个是回车，一个是换行</span><br><span class="line"></span><br><span class="line">; Using DUP operator</span><br><span class="line">var1 BYTE 20 DUP(0) ; 20 bytes, all equal to 0</span><br><span class="line">var2 BYTE 20 DUP(?) ; 20 bytes, uninitialized</span><br></pre></td></tr></table></figure>
-
-<h2 id="8-小端法与大端法"><a href="#8-小端法与大端法" class="headerlink" title="8. 小端法与大端法"></a>8. 小端法与大端法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">little endian order means least significant to low memory address</span><br><span class="line">big endian order is the opposite</span><br><span class="line"></span><br><span class="line">val1 DWORD 12345678h</span><br></pre></td></tr></table></figure>
-
-<h2 id="9-Symbolic-Constants"><a href="#9-Symbolic-Constants" class="headerlink" title="9. Symbolic Constants"></a>9. Symbolic Constants</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; calculating the size of a byte array</span><br><span class="line">list BYTE 10, 20, 30, 40</span><br><span class="line">ListSize = ($ - list)</span><br><span class="line">; if it&#x27;s a word, listSize should be divided by 2</span><br><span class="line"></span><br><span class="line">; EQU Directive that can&#x27;t be redefined</span><br><span class="line">PI EQU &lt;3.1416&gt;</span><br><span class="line">pressKey EQU &lt;&quot;press any key to continue..&quot;,0&gt;</span><br><span class="line">.data</span><br><span class="line">prompt BYTE pressKey</span><br><span class="line"></span><br><span class="line">; TEXTEQU Directive that can be redefined</span><br><span class="line">continueMsg TEXTEQU &lt;&quot;Do you wish to continue (Y/N)?&quot;&gt;</span><br><span class="line">rowSize = 5</span><br><span class="line">.data</span><br><span class="line">prompt1 BYTE continueMsg</span><br><span class="line">count TEXTEQU %(rowSize * 2)</span><br><span class="line">setupAL TEXTEQU &lt;mov al, count&gt;</span><br><span class="line">.code</span><br><span class="line">	setupAL</span><br></pre></td></tr></table></figure>
-
+<h4 id="5-对于vscode"><a href="#5-对于vscode" class="headerlink" title="5.对于vscode"></a>5.对于vscode</h4><p>在docker挂起时，可能会发生vscode的快捷键冲突，因此需要找到左下角设置-&gt;快捷键</p>
+<p>再查找ctrl+q的快捷方式，将视图的when条件加上 !terminalFocus 便可</p>
+<p>解决方法来源于stackOverFlow</p>
 ]]></content>
       <categories>
-        <category>汇编</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>汇编</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
-    <title>汇编第Ⅹ天</title>
-    <url>/2022/02/21/%E6%B1%87%E7%BC%96_Day10/</url>
-    <content><![CDATA[<h2 id="1-concept"><a href="#1-concept" class="headerlink" title="1. concept"></a>1. concept</h2><h4 id="1-1-Compilation"><a href="#1-1-Compilation" class="headerlink" title="1.1    Compilation"></a>1.1    Compilation</h4><p>translation from one language to simpler and more low-level one.</p>
-<p>for example, C to assembly language.</p>
-<span id="more"></span>
+    <title>租服务器的环境配置</title>
+    <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
+<li><p>内存不需要买太大（1核2G），后期动态扩容</p>
+</li>
+<li><p>不用买最大带宽，按量付费更实惠</p>
+</li>
+<li><p>选择ubuntu20.04，支持后续docker</p>
+</li>
+<li><p>安全组控制能访问那些端口（起码要有22端口）ssh，在sshconfig修改允许登录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">sudo vim sshd_config</span><br></pre></td></tr></table></figure></li>
+<li><p>创建非root用户，给予sudo权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
+<p>到install Docker Engine第一步结束就可</p>
+<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不用每次都输入sudo</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="1-2-Compiler"><a href="#1-2-Compiler" class="headerlink" title="1.2    Compiler"></a>1.2    Compiler</h4><p>the program that does the translation is known as compiler.</p>
-<h4 id="1-3-Preprocessor"><a href="#1-3-Preprocessor" class="headerlink" title="1.3    Preprocessor"></a>1.3    Preprocessor</h4><p>produce input to compilers and perform the following functions</p>
-<p>Macro inclusion</p>
-<p>File inclusion</p>
-<p>Rational preprocessor</p>
-<p>Language extension</p>
-<h4 id="1-4-Assemblers"><a href="#1-4-Assemblers" class="headerlink" title="1.4    Assemblers"></a>1.4    Assemblers</h4><p>assembly code is passed to an assembler for further processing</p>
-<p>Relation?</p>
-<p>Assembly code is mnemonic version of machine code</p>
-<p>names are used instead of binary codes for operations</p>
-<p>names are also given to memory address.</p>
-<h4 id="1-5-Loaders-and-Link-Editors"><a href="#1-5-Loaders-and-Link-Editors" class="headerlink" title="1.5    Loaders and Link-Editors"></a>1.5    Loaders and Link-Editors</h4><p><a href="https://imgtu.com/i/HvgTXj"><img src="https://s4.ax1x.com/2022/02/21/HvgTXj.png" alt="HvgTXj.png"></a></p>
-<h4 id="1-6-编译程序和解释程序"><a href="#1-6-编译程序和解释程序" class="headerlink" title="1.6    编译程序和解释程序"></a>1.6    编译程序和解释程序</h4><p>编译程序先将程序翻译再执行，即先编译后运行，独立分开的过程。</p>
-<p>解释程序接受某个语言的程序并立即运行，适合交互</p>
-<h4 id="1-7-Syntax-Tree"><a href="#1-7-Syntax-Tree" class="headerlink" title="1.7    Syntax Tree"></a>1.7    Syntax Tree</h4><p>make Operations into a hierachical structure.</p>
-<p><a href="https://imgtu.com/i/Hv2LKH"><img src="https://s4.ax1x.com/2022/02/21/Hv2LKH.png" alt="Hv2LKH.png"></a></p>
-<h4 id="1-8-Symbol-Table"><a href="#1-8-Symbol-Table" class="headerlink" title="1.8    Symbol-Table"></a>1.8    Symbol-Table</h4><p>it’s a data-structure</p>
-<p><a href="https://imgtu.com/i/HvhVZd"><img src="https://s4.ax1x.com/2022/02/21/HvhVZd.png" alt="HvhVZd.png"></a></p>
-<h4 id="1-9-句型与句子"><a href="#1-9-句型与句子" class="headerlink" title="1.9    句型与句子"></a>1.9    句型与句子</h4><p>句型仅仅要求v -*&gt; w; 句子要求v -*&gt; w 且 w $\in V_T^*$ </p>
-<p>因此，句子也是句型。</p>
+
+
+
+
 ]]></content>
       <categories>
-        <category>汇编</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>汇编</tag>
+        <tag>server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>os xv6源码解读(操作系统接口)</title>
+    <url>/2022/02/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/os_day1/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉，您输入的密码错误，请检查后重新输入。" data-whm="抱歉, 当前文章不能被校验, 不过您还是可以看看解密后的内容。">
+  <script id="hbeData" type="hbeData" data-hmacdigest="21426ad87cb8dd9a870a202dd6fb89a1251330a87ac6337bf97cd158155da9fe">10d79030e8222445804370796b90fca1b3149e2c2a0f36d6b4ea04e548758c2138c82a57bbcc35721ee7b1ccd17333ca678da103cfb7d50eb4bd8d1c4d1e4ad4270ee2e14fb3d880fa811f891a8a19f49f2277de30012c62fb0be2f46ce99d5268fecc32a3866cb8986d41b777f30a370755a575361176168adbf8dd8b5af1c2e09e4acbc5314c7b9c8a4441d0f6aa1842b44bd0c80c6e677c92dc5b07f733ab74866c887ea33d5ae3a78de58e80ce88158d085d2bbf96d7d9dbf6ddb5d836e3e5ccbeca5d6f2c621398c12f89c9e6b48c191e8c5e42a7d9342615cfb7faf899c4102cc9620d5a49acf2d532ea95f113351b7f2bd54a8392a6f2cb66ebb10898a15cb43fc3e0ccac2fb5c8d95ce0b9cf72258b5fbf34a0a3bb203f3e9d12eb488a9f1bfb91b8edc262e09bb671ae760286d84e9ecef3d986662223ca1798be0092d79240786268dbe317d34cd15ceaa5f558b8468c40d4a7c4b78de117ffd211d5de213565be5b1bb55eef6a9d9e2ec8486b90766cb3955b7ff07775571b3d86a330bd25034c8f856f9f6d8d6a8455ac5b6734aa8503b9f95cd1064e9e48bcd085feedc47e3a83a84681605cf7c398dee486e5189fd13c4f6d08811a5448fd72e20096430a4ac8455435b2c5356549dee9dd4e6d0912d456ed2021517ecab82917e693e9fccc631639c02380bf0be4eeb308c16c23e1f808ac51d582801367a37fb59d9632b64981d7c318ae1a8d0f8331dd77f92c7210d3155ecdbd146fdd22e0a1358fdcb7388f0a30cfed1b7cf0a3c2c9ccfb9bc488baa26d7925aa76a79d32499c1dddbd8d424ba2d81a48c4e29e7d94853637d5b1baa6d4e05ea652ac2561792cd38bce7404757f991c60dbaa3eb4d982e8afc05f3406bbbcf4f6dd7dff1587ec6ceacd7011c7b778f632136f22e7e37ff5376b15214f99a87fd0f26afb6d3fda2b5b0622a4c491d3af89fe88f6b5d510ab6dc0c0dea977100febff02543c23e983e169533cc8e30eedc7b4f9df9bb9cadf3e3380cf26f4a74ffa6435a228dd09c9686cc99057bb6e1f7fc2d0a05b47d8cab8178cb56c5f12266d948337faea93694b53d2e5743abc72eaf021a7f90816e212bac0bd31eaa07c766ee8402d5057b13313c1c435bfcd888ed3708a997704d18fae45e82fabb8a4b68092da0e5074c9324d8a0b9a6123b4b3b14baf5dc95ba7c66aa1f13e54bd01ac9193d33ef2e3cad2e5b572ac23a0b44bf28e41edbf4d6eecf516f5f299fb8194408338e7ea95ed7505e915687bc26e1112ade9e18fd39e50a6138f68a7a1dc4407588a755599324823ce7f809b8c362d7413fdfa2c784b904bc37b0a1e3704c94355bd718c98b39f4d11ab7a899681de75bf2f916b665afca0de770a8553824c226cba00addfefe4fc10fbf3202f0f7d648281b1876ca9cb94c0d274ea0a36aad9df4cb970812016d470db549d62c6333447da71cad2e0cbd1a9ac84f9e714de928e7bd31d6bde25e3a4cee2fa42d5351cebd53470b2ebdccc2aaeed8f62a6d910c046741f6f13c43d42c84a4e68cd0f48e51fc4dac0db20e5bbfe065392b11273889ce8cb742599dd1a43cc60a7e63d3014995412df703688ec4d31986caea8d3df152d273c24c3ae58fa109c101d7529b2730d7f1e1a2fe3948965c05057fa04638adbe6bd532914a2e1ff99ced28d8134e5232e60d516bf653efce89f778e798380129f102d8fc46d2f610c0e15645e6ea62f446ac2ebb94b2676e19eff6d1c33f175651a8cfacf0e3e1d96ddc498aff89bcae81d86dc378ce09e1860a7682c863618a2e377f5cbc1ed7d0915f282b33416f3bb032413ee3850822cf4146fa068ac99c90760295df851ad6faa9f900f8076d0e68d4dcf7c377a07b55c273b3df8b25fdf7e3c3d0976fa1e4f4fb6fc765f7ee1f395d196685dba9a0f6993ac2061ce23547bd92ef210072a1f2747fec5bf80446b8f443a9c82907a8c6c0c215dcb0c972cdafff63ef780e4568118ee7b8cf2925e3421d05af412de37766704a2332595d85fa1788a1ccf1322545f8f9f890c7a19979461d4682609101ec3237da5e5c7193ff72375d8b5680eb90f94e5fb8959686cc9b343a16e1a7b4ceeeb072e7800887fb9bcae49df3cff9bc38dc8e561252c5d62fdb465d5ace393c82b3f0e65584b00f13621eaba7bd60ffbf257c6e49fa700ab7fa7325bdd360bbe8a347b4839900907369955d31665c70d37a115e64fdaf0d67c9df9306bdb645ccae86ce64a7871a6ed77093abf760432a2301e22557dd35b7a8d0d2e2d374c3425eb339dd3f9dea62b42eb9d1e127b3fc9e2606959d2f9fca57d25341ccea65a322cc68060131f797c863be6f901c86676e2026bbbf5ca9c6cb745c5066281b46852de9a598de787928513d52690472ae842574acc89922573a6a29446cb8444b900b59bbdbc5f8cddc598a1924647879a3cb4e2b9c70468d0ebddad02422c3dbc705804dbcfd4317e7ea911da485e9c16ab705ea853b55f20ded456fcadd140eee2c6df9dd4756cb08cb4a5a68c3c0934c62b8f371c50c7c569ab307384b713c63206d9ce364b1bb6803f4c75e3e1b7fe1eb10c96b8a08c0a803de6cadbb7e9a3be4e3699a8a7a67774efbe51ce39fce624c265b2c132d6ecc509e2134344b8e4468ee3c0427403e135d4d39340ea53835e9b2722178650bf1d0fcadd40ef36755863af43a0a0bed2ff46c601ccd12172186fd853d8ad667b5b92e54226051b2b80cb4f6dc6d26a5304504346d25453282789ede58fed2b298c30cb08faa3266ff65c43cdccb2962ffb6511aa210c58f7f782d19fae3a270171620ae7dac609217b6464b00d8d945505966d8403d2890efc3ffd84a4b42a21c71b40cc92148819762baeb938166dfbb66e4d2f22f3a4ff6b6ecd96f2abdc60db9a1676e5b9abaf1ae5f33f30c246cb3e0759cd9b723b426067e0b4cf5b3cfe369b53b9ce9d77ee4a75da9a09b3712fe584a247d373488a52c4bed71a349cdbddb27eff774900ba2100c1432298b96b1b5c61d78a3952529b55761f1aea955dbb68a7797f368cc993a743f0087dcd968ee35f561f2de9204bb22f63f18a93da017659f3356d9731f009e6463a29985760443a863f4c59402e6b58cda9731237238f9306a9a4fb382d16b57458c02854562a116c616fd87c5e112b4f8e68e5efacc2ebddc03ed2c668a3fdb4368cf080d4ae372673e55ba857aacfc6f50ecf5e747305cdba6a607432ee70fab0f61bfcc70edbdd36119a2eba18555887bb701d4da0281d09431c37b50be60ea5940a31ea3ffe8c60e4e99028dbcf15bb12f40e4cc7e4bd64b605e92b8bd8b21d6778f5b9e5300f8161e693052ea20767d434ddb3423c42786242e3d305e91b5160e9fe052b43938b9c55114f39bbb282253f7f24bf71875c9dd7b794254832c94d71c080003e5d64a541ad52cbe7cb96081a4bfdf3e5bbae2bd557c2c58d886c54bae18aeb08defbb520865dc73c986ce27a7286a9c2b9a815a9ed03fb03b4ab6b8f7eb0417b27358a54ef1a8c57a3683ffce5e703f0b06dadd0dd72f51a47f45684168a0fbf0dc59f513525b8beb4a20fc6023d19c1b3b2c55f3c7b930ec7eefb8ad0ffd7fcd527dcb8bef02a3ffb7f248135ae120d408e7e5ab6f12676d4d6e177777eb0ed0c1ec6ef7b4c5a668a79e78440f4777c4181216ba16aa79e12ca8af9381656d48ae747cf653198227c46d0ce8e1fc5ea22bd3032409afd4edf9e819218840c12c367e97eeef98f078a4f4c11def8d654c44a0f6a0094a1fff2cbc3a325e67a7200554d9b773327b08839b2fdd03ee2dcf38d572896e059e0f72614c6b221429456aad7243cdf7ca3580076ec505a9d063cdbe241cb91bf6ba35d74fe9a64f7701f099f9295df6a790f85ff34cdfcca396352f692ec16e198245a8234a376c48518303fd79edcc3c2fa956505a6a060ebe35429fbc57be56528be3b28833840e3318cfc16dc81dd45530dcb0f99162f07bc9bad4cc9912dfa1e4531e974c130ea1548009671c597b07d12d257fd5ea13c3c76bf4779f8067158c7eea023e44967d5acd869f988a9631d7c77d2eae1b594e36377ea51e5ce1e190bb850dea4a74e4bb0d979e4df7a142e273f2bbd3fc21ba731f5f59896f086354a087ec67911c8185e98dbfa2f02af66a1f1237f59d3b5a5f14128fcc8104aeb7b94634345ab038edc1b6022141cc1dabf2ba9dc01e9544153ad53f33c24e7078b570200f2a5ab35ee711d9a8ac9976723e5e01661937e457c5b6ed70e5d458d4744b623e3c062ed8d4626c577518adc0a944331694629ca96db2962e96ca21b49e1fb73e7e2bcb2a7567df2d5012ba833dc56debcbc094e64f18c198e9178133eb0b412794828a1544f94f424dc3172f86096fb53ba13c453ee301bb93df2029aade59c93d22ce2bc5a94469309007b624cf901ba16f1f6803c1cda7e1eab2eeb04bb312c1a642da5f9c20f4a1b75fa365e8e5351a2d4984d21049c4c396d17d98ceda50470052804a14c0be5e239558a77be82c0226dffe2aa95cd5d995642dba41bfe68cfee9a665b92abf2d3de09426d942a4927a686c09536db1ba23ee0b0d9752cf63162a70811d0bda26e998e889b5cdccef87a4c923d9c22b418f5d9ea77e69e20d017336b922d8c8094d5abe32e1f3db6b3ea807a41e31900e26bddf187daf6e6960eb550abd464daa5ad8079471cec755489ed8f753969235998cb841c3d140c4f9d0b8e4f76411e6f0ea1ea74fcf87a8ad9ac4d86a27c661d522368a460211ef514a7eb30614b44eafb3e7563c5c731cf22b2175955e260049da0f650582c96f9328956ab55fa886b59eed37d1ba781858b8b189a642567ef08129593034e049f6e0cbf6b42629d4004b1bfdeae21b9faf9b6ba670291921413c1b1626face1952a17e4582544c27aa136ac07018b1240d75ec8a02be8ec4b45faa39f447c4763e8b9aefa9933062d1f3ebf976cef41d4eceb1521a2e53c6d295fb330737876b1c13cd9272e3f2ff68549b132258a5770db3a24ed61f51d9fbd86c1d904dd60370edcff708111dccb90d681f4ffdec29b7598de510cecfd2729b5534a8cbdf4dcb4dafb830ee5c9196a14caa0cece5aee4fc186553c0a7f98e7d78dfe8f603da039eb9ebb7b51b78645ed4f4e730853098854e7a3e3811042bedf81d4ad5a675c2ec4fd84b382803478cfb4ade4dbd27609d40b1fcea216df6cb03d3e1667144c31bdd6f321f7062988b7e5dd879396536112b6a3de9b635b160d945049ffc662ea273df981690fb919ddfe47a0a8ac4c9f733409928927527b0ea62ce3078c06d3381bddd0a27e0ac029bd6bd499ba5d47c7c621e05924036d88c42135224080a19d48b1cc63df4860610482484efd992413f9ead3024d275d3f4c7f53000b9f8b646ae93704dc8424c0c40690fad95a648f34a36b096edc4c75f3d89f75708c02efe710ff5425f738ebeb3820f588ed12f219b76d102d083802d95cffaccd2832cc925ebd68804fb5ae6dee3ff790694ed06161f037025b259674bafe61efc79b15217c2ac670ba141ddacb2c657e366aa59d4fab13ad71af5e6a33d7ed431158f31bdcf4827beb521383175c15801054d6d087c7d4c849db0d90e790cab622bbd43be8500f9b1314b2447f95215d2c974fff849096aa9dcc4fc6a0971abc9afda0cec6f2366aa255dbb1f8be9b7cf47172ad8d8bdaf3415f1b02a60739e4a21fd125a9f2da91b4352cab633be05c0a6a84a0c2a4bf2c8ac927a2ed27c2063a26837bc158d91ab90653093ce6de5363b1c08dbcd55862e7feb6025c55b7265271f3fd772fef790992250c8c399f5ce320d441f11c9be91da35e07282442acac30bee68f2e627cb5fcc1708e3aee5f276a4a2f6ea8394f00f68625683129dd0e5cea18569e314f4d1009e7a86938bb2456a4174aa0265d54da4e1b6c09092101264453df7d2fab921754fabcc9aaeb98147764ae5ec277a96468d59bac925a5f95a8974564cea688ed66e48d9df575417d8f5ed339b61af11dcd7e2713273d0ba20e8392a8377420e0f03def3b64b07315e0b5bd6700b46110790b3000979a3617a3d33d5ba5b48d3ea6307e27516eb8ac23d92860afefd9f88653678dc2009dc091270d1404bfee9b97923eca690a92598d66f7932007732f4016823b7aef72fe81ab9d9b39818510fc0ab1029fb98d3faa16c49f6bd03e3ba85e55d0cfda58f6878d1501b9d83600b53ddf9192fc43ebe746f916af241b2eaa558d5d1fe1fff50d1f02c70e08f03fecd0bb19a9738518712e5047d88517a7677b891646456fc1716ed580b62e70506e3d278375a5e04b5ef1cb1fa0aee6cab0bba975ea2efc7daad922008c0ffefd9bb7e4f01d3abf3ca19ce8314a254145cac29b46444cb4582191c4d72603ddbc081acf8a07bfbacc8afeadd46d3a4b2d45477ed0e32570f76af80dab123ada1a8a7f4f76f1ca987aa66fa4028fa014e443558c9616e347c77c8388fb9b29f68b7c1b596e382d1150e7dd8bf3f52958b2d9ae1e38f20c104f54b75e800f5f0f1f51836471ba7803e979388577c61e588eac6ce623f31a8ca3acd2a2c9ea87af0906d4f7b981fb9c50171a6793f6bacc4f66872f505827ed455024004931ff51f3fa581f584d1fa30334f2378fbc279359bc5bac030665b3fad0a7e84ebe273aff1867d0fff73bfa0fe97a342db307d17db4f0559a12603de8980b07d9efa0a8dc9483a35f493029b43960cad03569003bebb87e0d5844399424815cffa837448618e927c5273c5481f91e6b35079a96f383349b7b7d9819fe3165cc5957218ab3b833291e4170656d4d121fd766faedd6a033ea732dc0ccdcdec6881896e62c0da8c0f61ccfa9d6da24b918e38252c9a1e1bd83c835970ea67ea40936b5fcb08a46af4e2a23d76e52321cb9b35b01e1feb4988577ff64b6734bd69950093055b0c2d961677243b44cf0cbc1c27001badd499d215c3638182012f1e1f00b59543598ce9de7cae3cfd2b1fe6cea7d5d84d0bee816c8747ceaadba5ab4650da8040488d539ca15a192c29d85eec9bdd7e6a2d3edb0db6ce8726e90a2a0736f88ae688f1e88b14b41dee3bf33f2dc83d20543d8fc8c97974cf5cfd9b65419698823e88dcbd0fe2227eb7b06eff21fd23158704327c844c6eca8c894ddf45df3a3ea7211a789cdd59d80f8dcaaa57a546b46e482c72a7ed0150649b2c7380dd7ba4db1421fb14443d422daeecdad5cc781d1c647b6717ea03bd467a89799ea17e62cd759cb2108d3206f076502eb042dbc36e6c89f229d699e5a975e96f8a5bd2a8ce43a2cc27146e51321c73616b1aa2afe250cf889a27fa4a81a23dc272e27a0b76b2717a498eba55094c27e1217681927c56dba9a6b21851cf70a96974ef442b6320421fd0f3c456d2ea080f258b8798ce71855c6986fb0c6dbb8b7dad17f09705d7a2956319917b8ea594a7d542db65594ff07c2b8127d1189c9ba8e07f557710a0d0baa370b603055069f202db5c3d3c52476b504ed8bdedc273124d843dd7f041654bc707d6c33338476800b34e28b73ffc04eddbc026ac1be6d8177f6b7abb9e6ad60cd115c9a6ac64c2e93da8003c25b2c6ff5aac0ff20c138316ddb862086a78eca9e575c47f64cd4e88650f0bfc66a765c42757c89298249cf0c927b64403006c9bc1ad8dc2a5e0279b92a96cf717cdd0778152afdb5212a5ccf26bde8082ab5f05e0487f63d8c44116ca16efd8c376b1656d62dd5f8e219df71f1369afe4df969e9b2d1c4b21e9541db525b2bc6b08177f5ba6c9c0e2f1e384d04f7555b90f2dc75d54079006ea6b67b4edc28ddeda0d3f0283f2732328e9a03a2c146c28e085a667885a59ef9cdb6aeeedaa300897177376addae424ea9b51f81ddc49fe7f526984419ac404b4876907f1769d674f035a76a063831ef78d76bdd30aeffbdfcbf9158d6c921663bfc35caeb4bae906f81fcf4b6e6f0998650101e094f9531fa9877e7d20f3d223626a81fbe7cf829915896e885663c2ba3585b58a08d29b42e73bbf3d22919e155822a84876b432b3b9e95675755ab43d1dd4ac52c20ec455d9ea77cbbb79f13e8a4b10c56da823a60c59e5774076a6fa5d93c7661e7a3446189c6082db440b63d6320a6cb2fb3b5d95a8b8489f1f765656fa22eec28af7b2f43ad1e065f1b0e775c26edc1caa6526d576b1987882a1aec25f3088ffca4c9a16f6b468b58041a2f20c91cebb45a2969dbf218981f929276124ece5f3731c7ec931d2c1f8d895ec63defdd0de7c07a052a91be4a1b13364ebda5e94c8b49b872ad7bb27da7300e8e0048912dc4ad8b091593798bc6252302cb0a51e6b3a44ba79f13f55eea10cd3d42653a75e9c3c3963b00b5c1a73e0b71f675513def6595802eecb77888250b45abe3366022ca926e823318cb38dbd76fdaafc3ada863ae4bbbe8bf2e0a1c8dc717790aae313bf0eb1821defcbc1fd497f65b328666ef778ac8ed964d8145cf076ba80120fe447b404db27381d66bcadccfdd70f24d0f78b359c8510c7c9154bfa52a43b92f3668baf0be14eb125c8dba2ab9222719a698a739edf94641d72feb317b2a286021da34a9e87bcf852b115b8f7d0e92f33e6d1b44db22bcd2ed614c1d82552c33c4628a242eb4c6470f9b0394a29f6dc51e63c458dd27d457ae22723386b4990c9ca00c43416fa84073af37398ffe414592b31c8ba90ea4c62851ec5b6bfadb8d6099d96dd3aabf126c95412db3560d008ceaedd2e2e62506bba2b2c64aca1fd495c3118eee935bb5bf20bab3e52f56302fd4124b66a60cdbe380b920eb3f2370ff5b4bdeef62e00bf8805eef5ac058926e644c3006b4cff6e8525a9a32b401ec50bfb2e59f511b3deb9cc7907968fb69c57657ea1bbcad963be534e391bad8abeb12912446fe1bfa13c1add5bff5723e3e8da7c3792d3c1be0aa79cae582879d40a2aec9cc0c600001643e8995631c6609fd2c59f5c25e88b39e0d99524873efc7510aaf7ba1857a5010cf4627bc245cd6b644ed95e572f35414e8e9beb15bc789e739c8a3dd03ed63f16c23b08cd8108bdbce26d22bcc249f51f112e29acd304294e56dea12cdbfd10bab7b449476118e4d0dd051cf065f667a35be9f85907caff398f591ad15513585cf15e8d175946d69a4089bbb197245ce658788cc0e1550238f26e3ae46613feab9594afca72fed11abf986f4d84bff14bcc077c3191185a7d6c8919c873f08c2adaa42e021e25a60fa46b03116b8d7ce7eab35981c7772b81de8218f1d6ea4750e2889f4765b1735d1b802c9c700ff7063943010d9f648bd50a49dee8a9647ba4d867c40e3115602dccc111b99a4b6d6d9d1294c29ca521eaf0a062e623802b3cea2e3009e59f84dbab793ab054ad10fd192fc7840eacaa75edd355ee5f3ed724bac9d32c6e2a084a0317b31fb30d2e1eba2e28e542bfaaa0a633ad69b2a8a907bd3f7759bfc4f7ff13af0ef2eae442df77c7c8ccd5d967cbef8376403b4ac761a7c7c38b4b254c9fdffb9157d9cd8197bd3bab1b8206b4cb3531f8a8d1cb93769b34176c668d627290fc31fdb8611606cbe89be75659521a74df940584669b67f81df36b699305cbfe551d773de83446677b87cd131aca35991b23facb5336a67ca838bf70a2773765437e05c85bf43e037d35522504bc8114d5ada0174d6d51cbf8360330791fcea7f19ebd7688c783a704313ff5a7a41f92cdfa21b03ae1e405b2efc26005b2ad17c5b966a50acb86203eb3239b4bc0c89e97760308954e11ff0833ea8e1ffbef94df80e9535d7821893d60670fc2899253699a1ae1720b5ecd3054d5e2157cffe2f66327cbbf15c045a398cea96efdb2214900f8411654e4f67294b959c02bdfd1f643f729fe1f70486b056b94aecb9ea77309b3177f9061f8aedcfd2f7f4792cef486628bde1885a81ebc954e1af82b6ebb3d94e34ad82b0ba3e6d118f1b1244efac613d267852217ffa503e4518b3043a35861b21ab1d32202ff9711821d5b35fd9748b127791d8a79ad66520ec65a3f0c704d2350118b805eacd684c809b76935be04ebe20fbe750b61f62cf6e0b0662b1ff191e0478516bb99b822fb063f58cd376ed81dfbd5415bd6ba0d841e90cbe50bdd29fbae5fe65242084c8a93a178c1c00fd85a59865c8b0699be56683d0b3780afc1d0e74e4ef04c746589e150593ec264c9ac8a0e90117bb4daed26a6dac49664ef98116bea033efd3fb31120186cd645b4e088829e96093584e22c48db067967d086e7405ccd42d46b671d6fb7a6f3e1ac00f705fa72fc6b67420f7b6faf920884cbddabbe433ca4dfad6b855253e3f68c80367bce62fd3e9460e4234b3c399181c85186ba36c18a314dd24d2b0f07513ee98596c38eae3b7325cbee13d5cbeed6b8c88fdea11f514670241b1156c3c3839500046a02f9e682754db5665da6031c93db6e7049328f9ce36770edd35d00ae4755256e2eac69e0c72e5e34d82104a07d90dad0039e444cc32a8e067bfb9358d58092b20dd0d3bce4cbf8aa67d07e0458e1f269f9c7688556d2a34bcd2c98cb6ddfd58806daafc70b1258486d3515f5ac5cb518d7a2a75a6e67138da5a9e49672326d1a6768288f9b7087298fed4ee0a50f11690fb2bf1c6d7917e67d999bd779236e3af0ba88c4187d1cbf2d048452676e884a4b364dead8f0f257c173fea83b40e6f912edc005b138b40f9a4dc8e0ec59d7541c3bdc6ba189352573c804eab24545b62454efac4832aae041266735808965c97e107ebb0c5893bd6ea7971bb6ca20cd789c3bcb18ca72f0123a00e8784924720161dc8ca55feb555b5473504499259e1f4a4087ad40de1b30326e3f2fcf431a4825d68313fbd5f2375792f0b1574f048fb00d58437</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">当前文章暂不对外可见，请输入密码后查看！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>private</tag>
+        <tag>os</tag>
       </tags>
   </entry>
   <entry>
     <title>汇编第二天</title>
-    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day2/</url>
+    <url>/2022/02/08/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day2/</url>
     <content><![CDATA[<h2 id="1-Direct-Memory-Operand"><a href="#1-Direct-Memory-Operand" class="headerlink" title="1. Direct Memory Operand"></a>1. Direct Memory Operand</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">var1 BYTE 10h</span><br><span class="line">.code</span><br><span class="line">mov al, var1</span><br><span class="line">mov al, [var1]</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-1-mov-instruction"><a href="#1-1-mov-instruction" class="headerlink" title="1.1 mov instruction"></a>1.1 mov instruction</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">count BYTE 100</span><br><span class="line">wVal WORD 2</span><br><span class="line">.code</span><br><span class="line">	mov bl, count</span><br><span class="line">	mov ax, wVal</span><br><span class="line">	mov count, al</span><br><span class="line">; 需要控制大小</span><br></pre></td></tr></table></figure>
@@ -262,7 +260,7 @@
   </entry>
   <entry>
     <title>汇编第三天</title>
-    <url>/2022/02/08/%E6%B1%87%E7%BC%96_Day3/</url>
+    <url>/2022/02/08/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day3/</url>
     <content><![CDATA[<h2 id="1-Stack-Operation"><a href="#1-Stack-Operation" class="headerlink" title="1. Stack Operation"></a>1. Stack Operation</h2><h4 id="1-1-Runtime-Stack"><a href="#1-1-Runtime-Stack" class="headerlink" title="1.1    Runtime Stack"></a>1.1    Runtime Stack</h4><ol>
 <li>top的地址大于buttom的地址</li>
 <li>受两个register管控，ss（stack segment）、esp（stack pointer）</li>
@@ -330,8 +328,43 @@
       </tags>
   </entry>
   <entry>
+    <title>汇编第Ⅹ天</title>
+    <url>/2022/02/22/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day10/</url>
+    <content><![CDATA[<h2 id="1-concept"><a href="#1-concept" class="headerlink" title="1. concept"></a>1. concept</h2><h4 id="1-1-Compilation"><a href="#1-1-Compilation" class="headerlink" title="1.1    Compilation"></a>1.1    Compilation</h4><p>translation from one language to simpler and more low-level one.</p>
+<p>for example, C to assembly language.</p>
+<span id="more"></span>
+
+<h4 id="1-2-Compiler"><a href="#1-2-Compiler" class="headerlink" title="1.2    Compiler"></a>1.2    Compiler</h4><p>the program that does the translation is known as compiler.</p>
+<h4 id="1-3-Preprocessor"><a href="#1-3-Preprocessor" class="headerlink" title="1.3    Preprocessor"></a>1.3    Preprocessor</h4><p>produce input to compilers and perform the following functions</p>
+<p>Macro inclusion</p>
+<p>File inclusion</p>
+<p>Rational preprocessor</p>
+<p>Language extension</p>
+<h4 id="1-4-Assemblers"><a href="#1-4-Assemblers" class="headerlink" title="1.4    Assemblers"></a>1.4    Assemblers</h4><p>assembly code is passed to an assembler for further processing</p>
+<p>Relation?</p>
+<p>Assembly code is mnemonic version of machine code</p>
+<p>names are used instead of binary codes for operations</p>
+<p>names are also given to memory address.</p>
+<h4 id="1-5-Loaders-and-Link-Editors"><a href="#1-5-Loaders-and-Link-Editors" class="headerlink" title="1.5    Loaders and Link-Editors"></a>1.5    Loaders and Link-Editors</h4><p><a href="https://imgtu.com/i/HvgTXj"><img src="https://s4.ax1x.com/2022/02/21/HvgTXj.png" alt="HvgTXj.png"></a></p>
+<h4 id="1-6-编译程序和解释程序"><a href="#1-6-编译程序和解释程序" class="headerlink" title="1.6    编译程序和解释程序"></a>1.6    编译程序和解释程序</h4><p>编译程序先将程序翻译再执行，即先编译后运行，独立分开的过程。</p>
+<p>解释程序接受某个语言的程序并立即运行，适合交互</p>
+<h4 id="1-7-Syntax-Tree"><a href="#1-7-Syntax-Tree" class="headerlink" title="1.7    Syntax Tree"></a>1.7    Syntax Tree</h4><p>make Operations into a hierachical structure.</p>
+<p><a href="https://imgtu.com/i/Hv2LKH"><img src="https://s4.ax1x.com/2022/02/21/Hv2LKH.png" alt="Hv2LKH.png"></a></p>
+<h4 id="1-8-Symbol-Table"><a href="#1-8-Symbol-Table" class="headerlink" title="1.8    Symbol-Table"></a>1.8    Symbol-Table</h4><p>it’s a data-structure</p>
+<p><a href="https://imgtu.com/i/HvhVZd"><img src="https://s4.ax1x.com/2022/02/21/HvhVZd.png" alt="HvhVZd.png"></a></p>
+<h4 id="1-9-句型与句子"><a href="#1-9-句型与句子" class="headerlink" title="1.9    句型与句子"></a>1.9    句型与句子</h4><p>句型仅仅要求v -*&gt; w; 句子要求v -*&gt; w 且 w $\in V_T^*$ </p>
+<p>因此，句子也是句型。</p>
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>汇编第四天</title>
-    <url>/2022/02/09/%E6%B1%87%E7%BC%96_Day4/</url>
+    <url>/2022/02/09/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day4/</url>
     <content><![CDATA[<h2 id="1-Shift-and-Rotate-Instruction"><a href="#1-Shift-and-Rotate-Instruction" class="headerlink" title="1. Shift and Rotate Instruction"></a>1. Shift and Rotate Instruction</h2><h4 id="1-1-Logical-Shift-vs-Arithmetic-Shifts"><a href="#1-1-Logical-Shift-vs-Arithmetic-Shifts" class="headerlink" title="1.1    Logical Shift vs Arithmetic Shifts"></a>1.1    Logical Shift vs Arithmetic Shifts</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; logical shift fills with 0</span><br><span class="line">; arithmetic shift fills with 1</span><br><span class="line"></span><br><span class="line">; SHL Instruction perform a logical left shift to fasten multiplication</span><br><span class="line">shl reg, imm8</span><br><span class="line">shl mem, imm8</span><br><span class="line">shl reg, cl</span><br><span class="line">shl mem, cl</span><br><span class="line"></span><br><span class="line">mov dl, 5</span><br><span class="line">shl dl, 2	; 5 * 2^2 = 20</span><br><span class="line"></span><br><span class="line">; SHR Instruction perform a logical right shift to fasten division</span><br><span class="line">mov dl, 80</span><br><span class="line">shr dl, 1</span><br><span class="line">shr dl, 2</span><br><span class="line"></span><br><span class="line">; SAL is identical to SHL</span><br><span class="line">; SAR perform a arithmetic shift</span><br></pre></td></tr></table></figure>
 
 <p><a href="https://imgtu.com/i/H8oazn"><img src="https://s4.ax1x.com/2022/02/09/H8oazn.png" alt="H8oazn.png"></a></p>
@@ -403,8 +436,40 @@
       </tags>
   </entry>
   <entry>
+    <title>汇编第一天</title>
+    <url>/2022/02/08/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day1/</url>
+    <content><![CDATA[<h2 id="1-General-Purpose-Registers"><a href="#1-General-Purpose-Registers" class="headerlink" title="1. General Purpose Registers"></a>1. General Purpose Registers</h2><p>1.1. 32bit寄存器为4bytes，即xxxxh。</p>
+<p>1.2. 以32位寄存器eax举例，内部还有低16bit[ax]，在ax内还分为高八位ah与低八位al</p>
+<p>1.3. 对于64bit-Processors，将前面的e改成r或删去最后的D</p>
+<p><a href="https://imgtu.com/i/H1pd6e"><img src="https://s4.ax1x.com/2022/02/08/H1pd6e.png" alt="寄存器" style="zoom: 80%;" /></a></p>
+<p>1.3. 之所以为general purpose register，作用如下：</p>
+<p><a href="https://imgtu.com/i/H19F1O"><img src="https://s4.ax1x.com/2022/02/08/H19F1O.png" alt="H19F1O.png"></a></p>
+<h2 id="2-计算地址偏移量"><a href="#2-计算地址偏移量" class="headerlink" title="2. 计算地址偏移量"></a>2. 计算地址偏移量</h2><p>example:  08F1:0100的实际地址为08F10+0100=09010，即起始地址*16</p>
+<p>？可能是由于地址范围大，需要用更少的位数表达更大的地址</p>
+<h2 id="3-汇编程序的一般格式"><a href="#3-汇编程序的一般格式" class="headerlink" title="3. 汇编程序的一般格式"></a>3. 汇编程序的一般格式</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">ExitProcess PROTO, dwExitCode:DWORD</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">; declare variables here, ; leads comment</span><br><span class="line">COMMENT !</span><br><span class="line">	;multi-lines comments</span><br><span class="line">!</span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	; write your code here</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line"></span><br><span class="line">; insert additional procedures here</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-汇编的常见元素"><a href="#4-汇编的常见元素" class="headerlink" title="4. 汇编的常见元素"></a>4. 汇编的常见元素</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 进制</span><br><span class="line">h hexadecimal</span><br><span class="line">d decimal</span><br><span class="line">b binary</span><br><span class="line">o octal</span><br><span class="line"></span><br><span class="line">; 操作</span><br><span class="line">stc ; set carry flag, no operands</span><br><span class="line"></span><br><span class="line">inc eax ; register</span><br><span class="line">inc myByte ; memory one operand</span><br><span class="line"></span><br><span class="line">add ebx, ecx ; register register</span><br><span class="line">sub myByte, 25 ; memory constant</span><br><span class="line">add eax, 36*25 ; register constant-expression</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-一个简单汇编例子"><a href="#5-一个简单汇编例子" class="headerlink" title="5. 一个简单汇编例子"></a>5. 一个简单汇编例子</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">TITLE add and subtract</span><br><span class="line"></span><br><span class="line">.386</span><br><span class="line">.model flat, stdcall</span><br><span class="line">.stack 4096</span><br><span class="line"></span><br><span class="line">ExitProcess PROTO. dwExitCode:DWORD</span><br><span class="line">DumpRegs PROTO</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">	mov eax, 10000h	; eax = 10000h</span><br><span class="line">	add eax, 40000h ; eax = 50000h</span><br><span class="line">	sub eax, 20000h ; eax = 30000h</span><br><span class="line">	call DumpRegs</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">main ENDP</span><br><span class="line">END main</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-汇编过程"><a href="#6-汇编过程" class="headerlink" title="6.汇编过程"></a>6.汇编过程</h2><p><a href="https://imgtu.com/i/H1Pq9P"><img src="https://s4.ax1x.com/2022/02/08/H1Pq9P.png" alt="H1Pq9P.png"></a></p>
+<h2 id="7-数据类型"><a href="#7-数据类型" class="headerlink" title="7. 数据类型"></a>7. 数据类型</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; integer</span><br><span class="line">BYTE, SBYTE ; 8bit unsigned and signed</span><br><span class="line">WORD, SWORD ; 16it</span><br><span class="line">DWORD, SDWORD ; 32bit</span><br><span class="line">QWORD ; 64bit</span><br><span class="line">TBYTE ; 80bit integer</span><br><span class="line"></span><br><span class="line">; real</span><br><span class="line">REAL4 ; 4byte IEEE short real</span><br><span class="line">REAL8 ; 8byte long</span><br><span class="line">REAL10 ; 10byte extended</span><br><span class="line"></span><br><span class="line">; define variables</span><br><span class="line">val1 BYTE &#x27;A&#x27;</span><br><span class="line">val2 SBYTE +127 ; largest signed byte</span><br><span class="line">list1 BYTE 10, 20, 30, 40 ; list</span><br><span class="line">str1 BYTE &quot;enter your name&quot;, 0 ; null-terminated</span><br><span class="line"></span><br><span class="line">; 如果想实现回车，需要在末尾加入0dh,0ah</span><br><span class="line">; 0dh = carriage return</span><br><span class="line">; 0ah = line feed</span><br><span class="line">; 一个是回车，一个是换行</span><br><span class="line"></span><br><span class="line">; Using DUP operator</span><br><span class="line">var1 BYTE 20 DUP(0) ; 20 bytes, all equal to 0</span><br><span class="line">var2 BYTE 20 DUP(?) ; 20 bytes, uninitialized</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-小端法与大端法"><a href="#8-小端法与大端法" class="headerlink" title="8. 小端法与大端法"></a>8. 小端法与大端法</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">little endian order means least significant to low memory address</span><br><span class="line">big endian order is the opposite</span><br><span class="line"></span><br><span class="line">val1 DWORD 12345678h</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-Symbolic-Constants"><a href="#9-Symbolic-Constants" class="headerlink" title="9. Symbolic Constants"></a>9. Symbolic Constants</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; calculating the size of a byte array</span><br><span class="line">list BYTE 10, 20, 30, 40</span><br><span class="line">ListSize = ($ - list)</span><br><span class="line">; if it&#x27;s a word, listSize should be divided by 2</span><br><span class="line"></span><br><span class="line">; EQU Directive that can&#x27;t be redefined</span><br><span class="line">PI EQU &lt;3.1416&gt;</span><br><span class="line">pressKey EQU &lt;&quot;press any key to continue..&quot;,0&gt;</span><br><span class="line">.data</span><br><span class="line">prompt BYTE pressKey</span><br><span class="line"></span><br><span class="line">; TEXTEQU Directive that can be redefined</span><br><span class="line">continueMsg TEXTEQU &lt;&quot;Do you wish to continue (Y/N)?&quot;&gt;</span><br><span class="line">rowSize = 5</span><br><span class="line">.data</span><br><span class="line">prompt1 BYTE continueMsg</span><br><span class="line">count TEXTEQU %(rowSize * 2)</span><br><span class="line">setupAL TEXTEQU &lt;mov al, count&gt;</span><br><span class="line">.code</span><br><span class="line">	setupAL</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>汇编第五天</title>
-    <url>/2022/02/11/%E6%B1%87%E7%BC%96_Day5/</url>
+    <url>/2022/02/11/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day5/</url>
     <content><![CDATA[<h2 id="1-String-Primitive-Instruction"><a href="#1-String-Primitive-Instruction" class="headerlink" title="1. String Primitive Instruction"></a>1. String Primitive Instruction</h2><h4 id="1-1-MOVSB-MOVSW-MOVSD"><a href="#1-1-MOVSB-MOVSW-MOVSD" class="headerlink" title="1.1.    MOVSB, MOVSW, MOVSD"></a>1.1.    MOVSB, MOVSW, MOVSD</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; copy data from [esi] to [edi]</span><br><span class="line">.data</span><br><span class="line">source DWORD 0FFFFFFFFh</span><br><span class="line">target DWORD ?</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">movsd</span><br><span class="line">; esi and edi are automatically inc or dec depending on B,W,D</span><br><span class="line"></span><br><span class="line">; Direction Flag</span><br><span class="line">; DF = 0, inc esi and edi</span><br><span class="line">; DF = 1, dec esi and edi</span><br><span class="line">; that can be explicitly changed by cld and std</span><br><span class="line"></span><br><span class="line">; Using a Repeat Prefix</span><br><span class="line">.data</span><br><span class="line">source DWORD 20 DUP(&#x27;z&#x27;)</span><br><span class="line">target DWORD 20 DUP(?)</span><br><span class="line">.code</span><br><span class="line">cld</span><br><span class="line">mov ecx, LENGTHOF source</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">rep movsw</span><br><span class="line">; wait till ecx == 0</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-2-CMPSB-CMPSW-CMPSD"><a href="#1-2-CMPSB-CMPSW-CMPSD" class="headerlink" title="1.2.    CMPSB, CMPSW, CMPSD"></a>1.2.    CMPSB, CMPSW, CMPSD</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; compare data from [esi] to [edi]</span><br><span class="line">; repeat prefix often used: repe(repz), repne(repnz)</span><br><span class="line">.data</span><br><span class="line">source DWORD 1234h</span><br><span class="line">target DWORD 5678h</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">CMPSD</span><br><span class="line">ja L1</span><br><span class="line">jmp L2</span><br><span class="line"></span><br><span class="line">; repeat</span><br><span class="line">.data</span><br><span class="line">source DWORD COUNT DUP(?)</span><br><span class="line">target DWORD COUNT DUP(?)</span><br><span class="line">.code</span><br><span class="line">mov ecx, COUNT</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">cld</span><br><span class="line">repe cmpsd</span><br></pre></td></tr></table></figure>
@@ -449,7 +514,7 @@
   </entry>
   <entry>
     <title>汇编第六天</title>
-    <url>/2022/02/13/%E6%B1%87%E7%BC%96_Day6/</url>
+    <url>/2022/02/13/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day6/</url>
     <content><![CDATA[<h2 id="1-Conditional-Assembly-Directives"><a href="#1-Conditional-Assembly-Directives" class="headerlink" title="1. Conditional-Assembly Directives"></a>1. Conditional-Assembly Directives</h2><h4 id="1-1-Checking-for-Missing-Arguments"><a href="#1-1-Checking-for-Missing-Arguments" class="headerlink" title="1.1    Checking for Missing Arguments"></a>1.1    Checking for Missing Arguments</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; IFB directive returns true if its argument is blank</span><br><span class="line">IFB &lt;row&gt;</span><br><span class="line">	EXITM</span><br><span class="line">ENDIF</span><br><span class="line"></span><br><span class="line">; example</span><br><span class="line">mWriteStr MACRO string</span><br><span class="line">	IFB &lt;string&gt;</span><br><span class="line">		ECHO -----------------------------</span><br><span class="line">		ECHO * Error: parameter missing in mWriteStr</span><br><span class="line">		ECHO * (no code generated)</span><br><span class="line">		ECHO -----------------------------</span><br><span class="line">		EXITM</span><br><span class="line">	ENDIF</span><br><span class="line">	push edx</span><br><span class="line">	mov edx, OFFSET string</span><br><span class="line">	call WriteString</span><br><span class="line">	pop edx</span><br><span class="line">ENDM</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-2-Default-Argument-Initializers"><a href="#1-2-Default-Argument-Initializers" class="headerlink" title="1.2    Default Argument Initializers"></a>1.2    Default Argument Initializers</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mWriteLn MACRO text:=&lt;&quot; &quot;&gt;</span><br><span class="line">	mWrite text</span><br><span class="line">	call Crlf</span><br><span class="line">ENDM</span><br><span class="line">.code</span><br><span class="line">mWriteLn &quot;line one&quot;</span><br><span class="line">mWriteLn</span><br><span class="line">mWriteLn &quot;line three&quot;</span><br></pre></td></tr></table></figure>
@@ -483,111 +548,8 @@
       </tags>
   </entry>
   <entry>
-    <title>汇编第七天</title>
-    <url>/2022/02/14/%E6%B1%87%E7%BC%96_Day7/</url>
-    <content><![CDATA[<h2 id="1-Win32-Console-Programming"><a href="#1-Win32-Console-Programming" class="headerlink" title="1. Win32 Console Programming"></a>1. Win32 Console Programming</h2><h4 id="1-1-Translating-Windows-Data-Types"><a href="#1-1-Translating-Windows-Data-Types" class="headerlink" title="1.1    Translating Windows Data Types"></a>1.1    Translating Windows Data Types</h4><table>
-<thead>
-<tr>
-<th>Windows Types</th>
-<th>MASM Type</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>BOOL</td>
-<td>DWORD</td>
-</tr>
-<tr>
-<td>LONG</td>
-<td>SWORD</td>
-</tr>
-<tr>
-<td>COLORREF, HANDLE, LPARAM, LPCTSTR, LPTSTR, LPVOID, LRESULT, UINT, WNDPROC, WPARAM</td>
-<td>DWORD</td>
-</tr>
-<tr>
-<td>BSTR, LPCSTR, LPSTR</td>
-<td>PTR BYTE</td>
-</tr>
-<tr>
-<td>WORD</td>
-<td>WORD</td>
-</tr>
-<tr>
-<td>LPCRECT</td>
-<td>PTR RECT</td>
-</tr>
-</tbody></table>
-<h4 id="1-2-Standard-Console-Handles"><a href="#1-2-Standard-Console-Handles" class="headerlink" title="1.2    Standard Console Handles"></a>1.2    Standard Console Handles</h4><p>A handle is an unsigned 32-bit integer.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">STD_INPUT_HANDLE</span><br><span class="line">	; standard input</span><br><span class="line">STD_OUTPUT_HANDLE</span><br><span class="line">	; standard output</span><br><span class="line">STD_ERROR_HANDLE</span><br><span class="line">	; standard error output</span><br><span class="line"></span><br><span class="line">; GetStdHandle, the handle is returned in eax</span><br><span class="line">GetStdHandle PROTO,</span><br><span class="line">	nStdHandle:DWORD</span><br><span class="line"></span><br><span class="line">INVOKE GetStdHandle, STD_OUTPUT_HANDLE</span><br><span class="line">mov myHandle, eax</span><br><span class="line"></span><br><span class="line">ReadConsole PROTO,</span><br><span class="line">	handle:DWORD					; input handle</span><br><span class="line">	pBuffer:PTR BYTE				; pointer to buffer</span><br><span class="line">	maxBytes:DWORD					; number of chars to read</span><br><span class="line">	pBytesRead:PTR DWORD			; ptr to num bytes read</span><br><span class="line">	notUsed:DWORD					; (not used)</span><br><span class="line"></span><br><span class="line">WriteConsole PROTO,</span><br><span class="line">	handle:DWORD					; output handle</span><br><span class="line">	pBuffer:PTR BYTE				; pointer to buffer</span><br><span class="line">	bufsize:DWORD					; size of buffer</span><br><span class="line">	pCount:PTR DWORD				; output count</span><br><span class="line">	lpReserved:DWORD				; (not used)</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-Example"><a href="#1-3-Example" class="headerlink" title="1.3    Example"></a>1.3    Example</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mainc1 PROC</span><br><span class="line">; get the console output handle</span><br><span class="line">	INVOKE GetStdHandle, STD_OUTPUT_HANDLE</span><br><span class="line">	mov consoleHandle, eax</span><br><span class="line">	mov ebx, messageSize</span><br><span class="line">	</span><br><span class="line">	INVOKE WriteConsole, consoleHandle, ADDR message, ebx, ADDR bytesWriiten,0</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">mainc1 ENDP</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-Console-Window-Manipulation"><a href="#2-Console-Window-Manipulation" class="headerlink" title="2. Console Window Manipulation"></a>2. Console Window Manipulation</h2><h4 id="2-1-Screen-Buffer-and-Console-Window"><a href="#2-1-Screen-Buffer-and-Console-Window" class="headerlink" title="2.1    Screen Buffer and Console Window"></a>2.1    Screen Buffer and Console Window</h4><p>the active screen buffer includes data displayed by the console window</p>
-<p><a href="https://imgtu.com/i/HLU6SS"><img src="https://s4.ax1x.com/2022/02/20/HLU6SS.png" alt="HLU6SS.png"></a></p>
-<h4 id="2-2-SetConsoleTitle"><a href="#2-2-SetConsoleTitle" class="headerlink" title="2.2    SetConsoleTitle"></a>2.2    SetConsoleTitle</h4><p>SetConsoleTitle changes the console window’s title</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">titleStr BYTE &quot;Console title&quot;, 0</span><br><span class="line">.code</span><br><span class="line">INVOKE SetConsoleTitle, ADDR titleStr</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-GetConsoleScreenBufferInfo"><a href="#2-3-GetConsoleScreenBufferInfo" class="headerlink" title="2.3    GetConsoleScreenBufferInfo"></a>2.3    GetConsoleScreenBufferInfo</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">outHandlw DWORD ?</span><br><span class="line">consoleInfo CONSOLE_SCREEN_BUFFER_INFO &lt;&gt;</span><br><span class="line">.code</span><br><span class="line">	INVOKE GetConsoleScreenBufferInfo, outHandle, ADDR consoleInfo</span><br><span class="line"></span><br><span class="line">CONSOLE_SCREEN_BUFFER_INFO STRUCT</span><br><span class="line">	dwSize	COORD &lt;&gt;</span><br><span class="line">	dwCursorPos	COORD &lt;&gt;</span><br><span class="line">	wAttributes	WORD ?</span><br><span class="line">	srWindow	SMALL_RECT &lt;&gt;</span><br><span class="line">	maxWinSize	COORD &lt;&gt;</span><br><span class="line">CONSOLE_SCREEN_BUFFER_INFO ENDS</span><br><span class="line">; dwSize: size of the screen buffer(char columns and rows)</span><br><span class="line">; dwCursorPos: cursor location</span><br><span class="line">; wAttributes: colors of characters in console buffer</span><br><span class="line">; srWindow: coords of console window relative to screen buffer</span><br><span class="line">; maxWinSize: maximum size of the console window</span><br><span class="line">COORD STRUCT</span><br><span class="line">	X WORD ?</span><br><span class="line">	Y WORD ?</span><br><span class="line">COORD ENDS</span><br><span class="line">SMALL_RECT STRUCT</span><br><span class="line">	Left WORD ?</span><br><span class="line">	Top WORD ?</span><br><span class="line">	Right WORD ?</span><br><span class="line">	Bottom WORD ?</span><br><span class="line">SMALL_RECT ENDS</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-SetConsoleWindowInfo"><a href="#2-4-SetConsoleWindowInfo" class="headerlink" title="2.4    SetConsoleWindowInfo"></a>2.4    SetConsoleWindowInfo</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SetConsoleWindowInfo PROTO,</span><br><span class="line">	nStdHandle:DWORD,			; screen buffer handle</span><br><span class="line">	bAbsolute:DWORD,			; coordinate type</span><br><span class="line">	pConsoleRect:PTR SMALL_RECT ; window rectangle</span><br><span class="line"></span><br><span class="line">SetConsoleScreenBufferSize PROTO,</span><br><span class="line">	outHandle:DWORD,			; handle to screen buffer</span><br><span class="line">	dwSize:COORD 				; new screen buffer size</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-Controlling-the-cursor"><a href="#3-Controlling-the-cursor" class="headerlink" title="3. Controlling the cursor"></a>3. Controlling the cursor</h2><h4 id="3-1-CONSOLE-CURSOR-INFO"><a href="#3-1-CONSOLE-CURSOR-INFO" class="headerlink" title="3.1    CONSOLE_CURSOR_INFO"></a>3.1    CONSOLE_CURSOR_INFO</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CONSOLE_CURSOR_INFO STRUCT</span><br><span class="line">	dwSize	DWORD ?		; percentage 1 to 100 of the char cell</span><br><span class="line">	bVisible DWORD ?	; true or false</span><br><span class="line">CONSOLE_CURSOR_INFO ENDS</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-SetConsoleTextAttribute"><a href="#3-2-SetConsoleTextAttribute" class="headerlink" title="3.2    SetConsoleTextAttribute"></a>3.2    SetConsoleTextAttribute</h4><p>sets the foreground and background colors of all subsequent text written to the console</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SetConsoleTextAttribute	PROTO,</span><br><span class="line">	hConsoleOutput:HANDLE,		; console output handle</span><br><span class="line">	wAttributes:WORD 			; color attribute</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-3-WriteConsoleOutputAttribute"><a href="#3-3-WriteConsoleOutputAttribute" class="headerlink" title="3.3    WriteConsoleOutputAttribute"></a>3.3    WriteConsoleOutputAttribute</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WriteConsoleOutputAttribute PROTO,</span><br><span class="line">	hConsoleOutput:DWORD,		; output handle</span><br><span class="line">	lpAttribute:PTR WORD,       ; write attributes</span><br><span class="line">	nLength:DWORD, 				; number of cells</span><br><span class="line">	dwWriteCoord:COORD,			; first cell coordinates</span><br><span class="line">	lpNumberOfAttrsWritten:PTR DWORD	; output count</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-4-WriteConsoleOutputCharacter"><a href="#3-4-WriteConsoleOutputCharacter" class="headerlink" title="3.4    WriteConsoleOutputCharacter"></a>3.4    WriteConsoleOutputCharacter</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WriteConsoleOutputCharacter PROTO,</span><br><span class="line">	hConsoleOutput:HANDLE,		; console output handle</span><br><span class="line">	lpCharacter:PTR BYTE,		; pointer to buffer</span><br><span class="line">	nLength:DWORD,				; size of buffer</span><br><span class="line">	dwWriteCoord:COORD,			; first cell coordinates</span><br><span class="line">	lpNumberOfCharsWritten:PTR DWORD	; output count</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-File-Manipulation"><a href="#4-File-Manipulation" class="headerlink" title="4. File Manipulation"></a>4. File Manipulation</h2><h4 id="4-1-CreateFile"><a href="#4-1-CreateFile" class="headerlink" title="4.1    CreateFile"></a>4.1    CreateFile</h4><p>either creates a new file or opens an existing file.</p>
-<p>if successful, returns a handle to the open file; otherwise, returns INVALID_HANDLE_VALUE</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CreateFile PROTO,</span><br><span class="line">	pFilename:PTR BYTE,			; ptr to filename</span><br><span class="line">	desireAccess:DWORD,			; access mod</span><br><span class="line">	shareMode:DWORD,			; share mode</span><br><span class="line">	lpSecurity:DWORD,			; ptr to security attribs</span><br><span class="line">	creationDisposition:DWORD,  ; file creation options</span><br><span class="line">	flagsAndAttributes:DWORD,	; file attributes</span><br><span class="line">	htemplate:DWORD				; handle to template file</span><br><span class="line"></span><br><span class="line">; opens an existing file for reading</span><br><span class="line">INVOKE CreateFile,</span><br><span class="line">	ADDR filename,				; ptr to filename</span><br><span class="line">	GENERIC_READ,				; access mode &quot;GENERIC_WRITE&quot;	</span><br><span class="line">	DO_NOT_SHARE,				; share mode</span><br><span class="line">	NULL,						; ptr to security attributes</span><br><span class="line">	OPEN_EXISTING,				; file creation options</span><br><span class="line">	FILE_ATTRIBUTE_NORMAL,		; file attributes</span><br><span class="line">	0							; handle to template file</span><br><span class="line"></span><br><span class="line">INVOKE CreateFile,</span><br><span class="line">	ADDR filename,				; ptr to filename</span><br><span class="line">	GENERIC_WRITE,				; access mode</span><br><span class="line">	DO_NOT_SHARE,				; share mode</span><br><span class="line">	NULL,						; ptr to security attributes</span><br><span class="line">	CREATE_ALWAYS,				; file creation options</span><br><span class="line">	FILE_ATTRIBUTE_NORMAL,		; file attributes</span><br><span class="line">	0							; handle to template file</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-2-ReadFile"><a href="#4-2-ReadFile" class="headerlink" title="4.2    ReadFile"></a>4.2    ReadFile</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ReadFile PROTO,</span><br><span class="line">	handle:DWORD,				; handle to file</span><br><span class="line">	pBuffer:PTR BYTE,			; ptr to buffer</span><br><span class="line">	nBufSize:DWORD,				; num bytes to read</span><br><span class="line">	pBytesRead:PTR DWORD,		; bytes actually read</span><br><span class="line">	pOverlapped:PTR DWORD		; ptr to asynch info</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-3-WriteFile"><a href="#4-3-WriteFile" class="headerlink" title="4.3    WriteFile"></a>4.3    WriteFile</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WriteFile PROTO</span><br><span class="line">	fileHandle:DWORD,			; output handle</span><br><span class="line">	pBuffer:PTR BYTE,			; pointer to buffer</span><br><span class="line">	nBufSize:DWORD,				; size of buffer</span><br><span class="line">	pBytesWritten:PTR DWORD,	; num bytes written</span><br><span class="line">	pOverlapped:PTR DWORD		; ptr to asynch info</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-4-SetFilePointer"><a href="#4-4-SetFilePointer" class="headerlink" title="4.4    SetFilePointer"></a>4.4    SetFilePointer</h4><p>SetFilePointer moves the position pointer of an open file. </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SetFilePointer PROTO,</span><br><span class="line">	handle:DWORD,				; file handle</span><br><span class="line">	nDistanceLo:SDWORD,			; bytes to move pointer</span><br><span class="line">	pDistanceHi:PTR SDWORD,		; ptr to bytes to move</span><br><span class="line">	moveMethod:DWORD			; starting point</span><br><span class="line">INVOKE SetFilePointer, fileHandle, 0,0, FILE_END</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-5-GetLocalTime-SetLocalTime"><a href="#4-5-GetLocalTime-SetLocalTime" class="headerlink" title="4.5    GetLocalTime, SetLocalTime"></a>4.5    GetLocalTime, SetLocalTime</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GetLocalTime PROTO,</span><br><span class="line">	pSystemTime:PTR SYSTEMTIME</span><br><span class="line">SetLocalTime PROTO,</span><br><span class="line">	pSystemTime:PTR SYSTEMTIME</span><br><span class="line"></span><br><span class="line">SYSTEMTIME STRUCT</span><br><span class="line">	wYear WORD ?</span><br><span class="line">	wMonth WORD ?</span><br><span class="line">	wDayOfWeek WORD ?</span><br><span class="line">	wDay WORD ?</span><br><span class="line">	wHour WORD ?</span><br><span class="line">	wMinute WORD ?</span><br><span class="line">	wSecond WORD ?</span><br><span class="line">	wMilliseconds ?</span><br><span class="line">SYSTEMTIME ENDS</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-6-GetTickCount-Sleep"><a href="#4-6-GetTickCount-Sleep" class="headerlink" title="4.6    GetTickCount, Sleep"></a>4.6    GetTickCount, Sleep</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GetTickCount PROTO, ; return value in eax</span><br><span class="line">Sleep PROTO,</span><br><span class="line">	dwMilliseconds:DWORD</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-Writing-a-Graphic-Windows-Application"><a href="#5-Writing-a-Graphic-Windows-Application" class="headerlink" title="5. Writing a Graphic Windows Application"></a>5. Writing a Graphic Windows Application</h2><h4 id="5-1-MessageBox-Function"><a href="#5-1-MessageBox-Function" class="headerlink" title="5.1    MessageBox Function"></a>5.1    MessageBox Function</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MessageBox PROTO,</span><br><span class="line">	hWnd:DWORD,					; a handle to the current window</span><br><span class="line">	lpText:PTR BYTE,			; ptr to string inside the box</span><br><span class="line">    lpCaption:PTR BYTE,			; ptr to string	in caption&#x27;s bar</span><br><span class="line">	uTyle:DWORD					; describe icon</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">hMainWnd DWORD ?</span><br><span class="line">QuestionText BYTE &quot;Register this program now?&quot;, 0</span><br><span class="line">QuestionTitle BYTE &quot;Trial Period Has Expired&quot;, 0</span><br><span class="line">.code</span><br><span class="line">INVOKE MessageBox, hMainWnd, ADDR QuestionText, ADDR QuestionTitle,</span><br><span class="line">	MB_OK + MB_ICONQUESTION</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-2-Required-Files"><a href="#5-2-Required-Files" class="headerlink" title="5.2    Required Files"></a>5.2    Required Files</h4><p><a href="https://imgtu.com/i/HL4YpF"><img src="https://s4.ax1x.com/2022/02/20/HL4YpF.png" alt="HL4YpF.png"></a></p>
-<h4 id="5-3-Structures"><a href="#5-3-Structures" class="headerlink" title="5.3    Structures"></a>5.3    Structures</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MSGStruct STRUCT</span><br><span class="line">	msgWnd DWORD ?</span><br><span class="line">	msgMessage DWORD ?</span><br><span class="line">	msgWparam DWORD ?</span><br><span class="line">	msgLparam DWORD ?</span><br><span class="line">	msgTime DWORD ?</span><br><span class="line">	msgPt POINT &lt;&gt;</span><br><span class="line">MSGStruct ENDS</span><br><span class="line"></span><br><span class="line">; each window belongs to a class and each program defines a window class for its main window</span><br><span class="line">WNDCLASS STRUCT</span><br><span class="line">	style DWORD ?				; window style options	</span><br><span class="line">	lpfnWndProc DWORD ?			; winproc function pointer</span><br><span class="line">	cbClsExtra DWORD ?			; shared memory</span><br><span class="line">	cbWndExtra DWORD ?			; number of extra bytes</span><br><span class="line">	hInstance DWORD ?			; handle to current program</span><br><span class="line">	hIcon DWORD ?				; handle to icon</span><br><span class="line">	hCursor DWORD ?				; handle to cursor</span><br><span class="line">	hbrBackground DWORD ?		; handle to background brush</span><br><span class="line">	lpszMenuName DWORD ?		; pointer to menu name</span><br><span class="line">	lpszClassName DWORD ?		; pointer ro winclass name</span><br><span class="line">WNDCLASS ENDS</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://imgtu.com/i/HL52CT"><img src="https://s4.ax1x.com/2022/02/20/HL52CT.png" alt="HL52CT.png"></a></p>
-<h4 id="5-4-WinMain-Procedure"><a href="#5-4-WinMain-Procedure" class="headerlink" title="5.4    WinMain Procedure"></a>5.4    WinMain Procedure</h4><p>every windows application needs a startup procedure named WinMain</p>
-<p>Get a handle to the current program</p>
-<p>Load the program’s icon and mouse cursor</p>
-<p>Register the program’s main window class and identify the procedure that will process event messages for the window</p>
-<p>Create the main window</p>
-<p>Show and update the main window</p>
-<p>Begin a loop that receives and dispatches messages</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WindProc PROC,</span><br><span class="line">	hWnd:DWORD,			; handle to the window</span><br><span class="line">	localMsg:DWORD,     ; message ID</span><br><span class="line">	wParam:DWORD, 		; parameter 1</span><br><span class="line">	lParam:DWORD		; parameter 2</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-5-ErrorHandler-Procedure"><a href="#5-5-ErrorHandler-Procedure" class="headerlink" title="5.5    ErrorHandler Procedure"></a>5.5    ErrorHandler Procedure</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GetLastError: retrieve the system error number</span><br><span class="line">FormatMessage: retrieve the appropriate system-formatted error message string</span><br><span class="line">MessageBox: display a popup message box</span><br><span class="line">LocalFree: free the memory used by the error message string</span><br><span class="line"></span><br><span class="line">INVOKE GetLastError	; return message ID in eax</span><br><span class="line">mov messageID, eax</span><br><span class="line"></span><br><span class="line">INVOKE FormatMessage, FORMAT_MESSAGE_ALLOCATION_BUFFER + \</span><br><span class="line"> FORMAT_MESSAGE_FROM_SYSTEM, NULL, messageID, NULL, ADDR pErrorMsg, NULL, NULL</span><br><span class="line"></span><br><span class="line">INVOKE MessageBox, NULL, pErrorMsg, ADDR ErrorTitle, MB_ICONERROR + MB_OK</span><br><span class="line"></span><br><span class="line">INVOKE LocalFree, pErrorMsg</span><br><span class="line"></span><br><span class="line">Message_Loop:</span><br><span class="line">	INVOKE GetMessage, ADDR msg, NULL, NULL, NULL</span><br><span class="line">	.IF eax == 0</span><br><span class="line">		jmp Exit_Program</span><br><span class="line">	.ENDIF</span><br><span class="line">	INVOKE DispatchMessage, ADDR msg</span><br><span class="line">	jmp Message_Loop</span><br><span class="line"></span><br><span class="line">WinProc PROC, hWnd:DWORD, localMsg:DWORD,</span><br><span class="line">	wParam:WORD, lParam:DWORD</span><br><span class="line">	mov eax, localMsg</span><br><span class="line">	.IF eax == WM_LBUTTOMDOWN</span><br><span class="line">		INVOKE MessageBox, hWnd, ADDR PopupText, ADDR PopupTitle, MB_OK</span><br><span class="line">		jmp WinProcExit</span><br><span class="line">	.ELSEIF eax == WM_CREATE</span><br><span class="line">		INVOKE MessageBox, hWnd,ADDR AppLoadMsgText,ADDR AppLoadMsgTitle,MB_OK</span><br><span class="line">		jmp WinProcExit</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-Dynamic-Memory-Allocation"><a href="#6-Dynamic-Memory-Allocation" class="headerlink" title="6. Dynamic Memory Allocation"></a>6. Dynamic Memory Allocation</h2><p><a href="https://imgtu.com/i/HO9pc9"><img src="https://s4.ax1x.com/2022/02/20/HO9pc9.png" alt="HO9pc9.png"></a></p>
-<h4 id="6-1-sample-create"><a href="#6-1-sample-create" class="headerlink" title="6.1 sample create"></a>6.1 sample create</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HEAP_START = 2000000	; 2MB</span><br><span class="line">HEAP_MAX = 400000000	; 400MB</span><br><span class="line">.data</span><br><span class="line">hHeap HANDLE ?</span><br><span class="line">.code</span><br><span class="line">INVOKE HeapCreate, 0, HEAP_START, HEAP_MAX</span><br><span class="line">.IF eax == NULL</span><br><span class="line">	jmp quit</span><br><span class="line">.ELSE</span><br><span class="line">	mov hHeap, eax</span><br><span class="line">.ENDIF</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-2-sample-free"><a href="#6-2-sample-free" class="headerlink" title="6.2    sample free"></a>6.2    sample free</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">hHeap HANDLE ?</span><br><span class="line">pArray DWORD ?</span><br><span class="line">.code</span><br><span class="line">INVOKE HeapFree, hHeap, 0, pArray</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>汇编</category>
-      </categories>
-      <tags>
-        <tag>汇编</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>汇编第八天</title>
-    <url>/2022/02/20/%E6%B1%87%E7%BC%96_Day8/</url>
+    <url>/2022/02/20/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day8/</url>
     <content><![CDATA[<h2 id="1-MS-DOS-and-the-IBM-PC"><a href="#1-MS-DOS-and-the-IBM-PC" class="headerlink" title="1. MS-DOS and the IBM-PC"></a>1. MS-DOS and the IBM-PC</h2><h4 id="1-1-Real-Address-Mode"><a href="#1-1-Real-Address-Mode" class="headerlink" title="1.1    Real-Address Mode"></a>1.1    Real-Address Mode</h4><p><a href="https://imgtu.com/i/HOCUPO"><img src="https://s4.ax1x.com/2022/02/20/HOCUPO.png" alt="HOCUPO.png"></a></p>
 <span id="more"></span>
 
@@ -693,8 +655,111 @@
       </tags>
   </entry>
   <entry>
+    <title>汇编第七天</title>
+    <url>/2022/02/14/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day7/</url>
+    <content><![CDATA[<h2 id="1-Win32-Console-Programming"><a href="#1-Win32-Console-Programming" class="headerlink" title="1. Win32 Console Programming"></a>1. Win32 Console Programming</h2><h4 id="1-1-Translating-Windows-Data-Types"><a href="#1-1-Translating-Windows-Data-Types" class="headerlink" title="1.1    Translating Windows Data Types"></a>1.1    Translating Windows Data Types</h4><table>
+<thead>
+<tr>
+<th>Windows Types</th>
+<th>MASM Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BOOL</td>
+<td>DWORD</td>
+</tr>
+<tr>
+<td>LONG</td>
+<td>SWORD</td>
+</tr>
+<tr>
+<td>COLORREF, HANDLE, LPARAM, LPCTSTR, LPTSTR, LPVOID, LRESULT, UINT, WNDPROC, WPARAM</td>
+<td>DWORD</td>
+</tr>
+<tr>
+<td>BSTR, LPCSTR, LPSTR</td>
+<td>PTR BYTE</td>
+</tr>
+<tr>
+<td>WORD</td>
+<td>WORD</td>
+</tr>
+<tr>
+<td>LPCRECT</td>
+<td>PTR RECT</td>
+</tr>
+</tbody></table>
+<h4 id="1-2-Standard-Console-Handles"><a href="#1-2-Standard-Console-Handles" class="headerlink" title="1.2    Standard Console Handles"></a>1.2    Standard Console Handles</h4><p>A handle is an unsigned 32-bit integer.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">STD_INPUT_HANDLE</span><br><span class="line">	; standard input</span><br><span class="line">STD_OUTPUT_HANDLE</span><br><span class="line">	; standard output</span><br><span class="line">STD_ERROR_HANDLE</span><br><span class="line">	; standard error output</span><br><span class="line"></span><br><span class="line">; GetStdHandle, the handle is returned in eax</span><br><span class="line">GetStdHandle PROTO,</span><br><span class="line">	nStdHandle:DWORD</span><br><span class="line"></span><br><span class="line">INVOKE GetStdHandle, STD_OUTPUT_HANDLE</span><br><span class="line">mov myHandle, eax</span><br><span class="line"></span><br><span class="line">ReadConsole PROTO,</span><br><span class="line">	handle:DWORD					; input handle</span><br><span class="line">	pBuffer:PTR BYTE				; pointer to buffer</span><br><span class="line">	maxBytes:DWORD					; number of chars to read</span><br><span class="line">	pBytesRead:PTR DWORD			; ptr to num bytes read</span><br><span class="line">	notUsed:DWORD					; (not used)</span><br><span class="line"></span><br><span class="line">WriteConsole PROTO,</span><br><span class="line">	handle:DWORD					; output handle</span><br><span class="line">	pBuffer:PTR BYTE				; pointer to buffer</span><br><span class="line">	bufsize:DWORD					; size of buffer</span><br><span class="line">	pCount:PTR DWORD				; output count</span><br><span class="line">	lpReserved:DWORD				; (not used)</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-Example"><a href="#1-3-Example" class="headerlink" title="1.3    Example"></a>1.3    Example</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mainc1 PROC</span><br><span class="line">; get the console output handle</span><br><span class="line">	INVOKE GetStdHandle, STD_OUTPUT_HANDLE</span><br><span class="line">	mov consoleHandle, eax</span><br><span class="line">	mov ebx, messageSize</span><br><span class="line">	</span><br><span class="line">	INVOKE WriteConsole, consoleHandle, ADDR message, ebx, ADDR bytesWriiten,0</span><br><span class="line">	INVOKE ExitProcess, 0</span><br><span class="line">mainc1 ENDP</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Console-Window-Manipulation"><a href="#2-Console-Window-Manipulation" class="headerlink" title="2. Console Window Manipulation"></a>2. Console Window Manipulation</h2><h4 id="2-1-Screen-Buffer-and-Console-Window"><a href="#2-1-Screen-Buffer-and-Console-Window" class="headerlink" title="2.1    Screen Buffer and Console Window"></a>2.1    Screen Buffer and Console Window</h4><p>the active screen buffer includes data displayed by the console window</p>
+<p><a href="https://imgtu.com/i/HLU6SS"><img src="https://s4.ax1x.com/2022/02/20/HLU6SS.png" alt="HLU6SS.png"></a></p>
+<h4 id="2-2-SetConsoleTitle"><a href="#2-2-SetConsoleTitle" class="headerlink" title="2.2    SetConsoleTitle"></a>2.2    SetConsoleTitle</h4><p>SetConsoleTitle changes the console window’s title</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">titleStr BYTE &quot;Console title&quot;, 0</span><br><span class="line">.code</span><br><span class="line">INVOKE SetConsoleTitle, ADDR titleStr</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-GetConsoleScreenBufferInfo"><a href="#2-3-GetConsoleScreenBufferInfo" class="headerlink" title="2.3    GetConsoleScreenBufferInfo"></a>2.3    GetConsoleScreenBufferInfo</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">outHandlw DWORD ?</span><br><span class="line">consoleInfo CONSOLE_SCREEN_BUFFER_INFO &lt;&gt;</span><br><span class="line">.code</span><br><span class="line">	INVOKE GetConsoleScreenBufferInfo, outHandle, ADDR consoleInfo</span><br><span class="line"></span><br><span class="line">CONSOLE_SCREEN_BUFFER_INFO STRUCT</span><br><span class="line">	dwSize	COORD &lt;&gt;</span><br><span class="line">	dwCursorPos	COORD &lt;&gt;</span><br><span class="line">	wAttributes	WORD ?</span><br><span class="line">	srWindow	SMALL_RECT &lt;&gt;</span><br><span class="line">	maxWinSize	COORD &lt;&gt;</span><br><span class="line">CONSOLE_SCREEN_BUFFER_INFO ENDS</span><br><span class="line">; dwSize: size of the screen buffer(char columns and rows)</span><br><span class="line">; dwCursorPos: cursor location</span><br><span class="line">; wAttributes: colors of characters in console buffer</span><br><span class="line">; srWindow: coords of console window relative to screen buffer</span><br><span class="line">; maxWinSize: maximum size of the console window</span><br><span class="line">COORD STRUCT</span><br><span class="line">	X WORD ?</span><br><span class="line">	Y WORD ?</span><br><span class="line">COORD ENDS</span><br><span class="line">SMALL_RECT STRUCT</span><br><span class="line">	Left WORD ?</span><br><span class="line">	Top WORD ?</span><br><span class="line">	Right WORD ?</span><br><span class="line">	Bottom WORD ?</span><br><span class="line">SMALL_RECT ENDS</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-SetConsoleWindowInfo"><a href="#2-4-SetConsoleWindowInfo" class="headerlink" title="2.4    SetConsoleWindowInfo"></a>2.4    SetConsoleWindowInfo</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SetConsoleWindowInfo PROTO,</span><br><span class="line">	nStdHandle:DWORD,			; screen buffer handle</span><br><span class="line">	bAbsolute:DWORD,			; coordinate type</span><br><span class="line">	pConsoleRect:PTR SMALL_RECT ; window rectangle</span><br><span class="line"></span><br><span class="line">SetConsoleScreenBufferSize PROTO,</span><br><span class="line">	outHandle:DWORD,			; handle to screen buffer</span><br><span class="line">	dwSize:COORD 				; new screen buffer size</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Controlling-the-cursor"><a href="#3-Controlling-the-cursor" class="headerlink" title="3. Controlling the cursor"></a>3. Controlling the cursor</h2><h4 id="3-1-CONSOLE-CURSOR-INFO"><a href="#3-1-CONSOLE-CURSOR-INFO" class="headerlink" title="3.1    CONSOLE_CURSOR_INFO"></a>3.1    CONSOLE_CURSOR_INFO</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CONSOLE_CURSOR_INFO STRUCT</span><br><span class="line">	dwSize	DWORD ?		; percentage 1 to 100 of the char cell</span><br><span class="line">	bVisible DWORD ?	; true or false</span><br><span class="line">CONSOLE_CURSOR_INFO ENDS</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-SetConsoleTextAttribute"><a href="#3-2-SetConsoleTextAttribute" class="headerlink" title="3.2    SetConsoleTextAttribute"></a>3.2    SetConsoleTextAttribute</h4><p>sets the foreground and background colors of all subsequent text written to the console</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SetConsoleTextAttribute	PROTO,</span><br><span class="line">	hConsoleOutput:HANDLE,		; console output handle</span><br><span class="line">	wAttributes:WORD 			; color attribute</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-WriteConsoleOutputAttribute"><a href="#3-3-WriteConsoleOutputAttribute" class="headerlink" title="3.3    WriteConsoleOutputAttribute"></a>3.3    WriteConsoleOutputAttribute</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WriteConsoleOutputAttribute PROTO,</span><br><span class="line">	hConsoleOutput:DWORD,		; output handle</span><br><span class="line">	lpAttribute:PTR WORD,       ; write attributes</span><br><span class="line">	nLength:DWORD, 				; number of cells</span><br><span class="line">	dwWriteCoord:COORD,			; first cell coordinates</span><br><span class="line">	lpNumberOfAttrsWritten:PTR DWORD	; output count</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-WriteConsoleOutputCharacter"><a href="#3-4-WriteConsoleOutputCharacter" class="headerlink" title="3.4    WriteConsoleOutputCharacter"></a>3.4    WriteConsoleOutputCharacter</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WriteConsoleOutputCharacter PROTO,</span><br><span class="line">	hConsoleOutput:HANDLE,		; console output handle</span><br><span class="line">	lpCharacter:PTR BYTE,		; pointer to buffer</span><br><span class="line">	nLength:DWORD,				; size of buffer</span><br><span class="line">	dwWriteCoord:COORD,			; first cell coordinates</span><br><span class="line">	lpNumberOfCharsWritten:PTR DWORD	; output count</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-File-Manipulation"><a href="#4-File-Manipulation" class="headerlink" title="4. File Manipulation"></a>4. File Manipulation</h2><h4 id="4-1-CreateFile"><a href="#4-1-CreateFile" class="headerlink" title="4.1    CreateFile"></a>4.1    CreateFile</h4><p>either creates a new file or opens an existing file.</p>
+<p>if successful, returns a handle to the open file; otherwise, returns INVALID_HANDLE_VALUE</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CreateFile PROTO,</span><br><span class="line">	pFilename:PTR BYTE,			; ptr to filename</span><br><span class="line">	desireAccess:DWORD,			; access mod</span><br><span class="line">	shareMode:DWORD,			; share mode</span><br><span class="line">	lpSecurity:DWORD,			; ptr to security attribs</span><br><span class="line">	creationDisposition:DWORD,  ; file creation options</span><br><span class="line">	flagsAndAttributes:DWORD,	; file attributes</span><br><span class="line">	htemplate:DWORD				; handle to template file</span><br><span class="line"></span><br><span class="line">; opens an existing file for reading</span><br><span class="line">INVOKE CreateFile,</span><br><span class="line">	ADDR filename,				; ptr to filename</span><br><span class="line">	GENERIC_READ,				; access mode &quot;GENERIC_WRITE&quot;	</span><br><span class="line">	DO_NOT_SHARE,				; share mode</span><br><span class="line">	NULL,						; ptr to security attributes</span><br><span class="line">	OPEN_EXISTING,				; file creation options</span><br><span class="line">	FILE_ATTRIBUTE_NORMAL,		; file attributes</span><br><span class="line">	0							; handle to template file</span><br><span class="line"></span><br><span class="line">INVOKE CreateFile,</span><br><span class="line">	ADDR filename,				; ptr to filename</span><br><span class="line">	GENERIC_WRITE,				; access mode</span><br><span class="line">	DO_NOT_SHARE,				; share mode</span><br><span class="line">	NULL,						; ptr to security attributes</span><br><span class="line">	CREATE_ALWAYS,				; file creation options</span><br><span class="line">	FILE_ATTRIBUTE_NORMAL,		; file attributes</span><br><span class="line">	0							; handle to template file</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-ReadFile"><a href="#4-2-ReadFile" class="headerlink" title="4.2    ReadFile"></a>4.2    ReadFile</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ReadFile PROTO,</span><br><span class="line">	handle:DWORD,				; handle to file</span><br><span class="line">	pBuffer:PTR BYTE,			; ptr to buffer</span><br><span class="line">	nBufSize:DWORD,				; num bytes to read</span><br><span class="line">	pBytesRead:PTR DWORD,		; bytes actually read</span><br><span class="line">	pOverlapped:PTR DWORD		; ptr to asynch info</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-WriteFile"><a href="#4-3-WriteFile" class="headerlink" title="4.3    WriteFile"></a>4.3    WriteFile</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WriteFile PROTO</span><br><span class="line">	fileHandle:DWORD,			; output handle</span><br><span class="line">	pBuffer:PTR BYTE,			; pointer to buffer</span><br><span class="line">	nBufSize:DWORD,				; size of buffer</span><br><span class="line">	pBytesWritten:PTR DWORD,	; num bytes written</span><br><span class="line">	pOverlapped:PTR DWORD		; ptr to asynch info</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-SetFilePointer"><a href="#4-4-SetFilePointer" class="headerlink" title="4.4    SetFilePointer"></a>4.4    SetFilePointer</h4><p>SetFilePointer moves the position pointer of an open file. </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SetFilePointer PROTO,</span><br><span class="line">	handle:DWORD,				; file handle</span><br><span class="line">	nDistanceLo:SDWORD,			; bytes to move pointer</span><br><span class="line">	pDistanceHi:PTR SDWORD,		; ptr to bytes to move</span><br><span class="line">	moveMethod:DWORD			; starting point</span><br><span class="line">INVOKE SetFilePointer, fileHandle, 0,0, FILE_END</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-GetLocalTime-SetLocalTime"><a href="#4-5-GetLocalTime-SetLocalTime" class="headerlink" title="4.5    GetLocalTime, SetLocalTime"></a>4.5    GetLocalTime, SetLocalTime</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GetLocalTime PROTO,</span><br><span class="line">	pSystemTime:PTR SYSTEMTIME</span><br><span class="line">SetLocalTime PROTO,</span><br><span class="line">	pSystemTime:PTR SYSTEMTIME</span><br><span class="line"></span><br><span class="line">SYSTEMTIME STRUCT</span><br><span class="line">	wYear WORD ?</span><br><span class="line">	wMonth WORD ?</span><br><span class="line">	wDayOfWeek WORD ?</span><br><span class="line">	wDay WORD ?</span><br><span class="line">	wHour WORD ?</span><br><span class="line">	wMinute WORD ?</span><br><span class="line">	wSecond WORD ?</span><br><span class="line">	wMilliseconds ?</span><br><span class="line">SYSTEMTIME ENDS</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-6-GetTickCount-Sleep"><a href="#4-6-GetTickCount-Sleep" class="headerlink" title="4.6    GetTickCount, Sleep"></a>4.6    GetTickCount, Sleep</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GetTickCount PROTO, ; return value in eax</span><br><span class="line">Sleep PROTO,</span><br><span class="line">	dwMilliseconds:DWORD</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Writing-a-Graphic-Windows-Application"><a href="#5-Writing-a-Graphic-Windows-Application" class="headerlink" title="5. Writing a Graphic Windows Application"></a>5. Writing a Graphic Windows Application</h2><h4 id="5-1-MessageBox-Function"><a href="#5-1-MessageBox-Function" class="headerlink" title="5.1    MessageBox Function"></a>5.1    MessageBox Function</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MessageBox PROTO,</span><br><span class="line">	hWnd:DWORD,					; a handle to the current window</span><br><span class="line">	lpText:PTR BYTE,			; ptr to string inside the box</span><br><span class="line">    lpCaption:PTR BYTE,			; ptr to string	in caption&#x27;s bar</span><br><span class="line">	uTyle:DWORD					; describe icon</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">hMainWnd DWORD ?</span><br><span class="line">QuestionText BYTE &quot;Register this program now?&quot;, 0</span><br><span class="line">QuestionTitle BYTE &quot;Trial Period Has Expired&quot;, 0</span><br><span class="line">.code</span><br><span class="line">INVOKE MessageBox, hMainWnd, ADDR QuestionText, ADDR QuestionTitle,</span><br><span class="line">	MB_OK + MB_ICONQUESTION</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-Required-Files"><a href="#5-2-Required-Files" class="headerlink" title="5.2    Required Files"></a>5.2    Required Files</h4><p><a href="https://imgtu.com/i/HL4YpF"><img src="https://s4.ax1x.com/2022/02/20/HL4YpF.png" alt="HL4YpF.png"></a></p>
+<h4 id="5-3-Structures"><a href="#5-3-Structures" class="headerlink" title="5.3    Structures"></a>5.3    Structures</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MSGStruct STRUCT</span><br><span class="line">	msgWnd DWORD ?</span><br><span class="line">	msgMessage DWORD ?</span><br><span class="line">	msgWparam DWORD ?</span><br><span class="line">	msgLparam DWORD ?</span><br><span class="line">	msgTime DWORD ?</span><br><span class="line">	msgPt POINT &lt;&gt;</span><br><span class="line">MSGStruct ENDS</span><br><span class="line"></span><br><span class="line">; each window belongs to a class and each program defines a window class for its main window</span><br><span class="line">WNDCLASS STRUCT</span><br><span class="line">	style DWORD ?				; window style options	</span><br><span class="line">	lpfnWndProc DWORD ?			; winproc function pointer</span><br><span class="line">	cbClsExtra DWORD ?			; shared memory</span><br><span class="line">	cbWndExtra DWORD ?			; number of extra bytes</span><br><span class="line">	hInstance DWORD ?			; handle to current program</span><br><span class="line">	hIcon DWORD ?				; handle to icon</span><br><span class="line">	hCursor DWORD ?				; handle to cursor</span><br><span class="line">	hbrBackground DWORD ?		; handle to background brush</span><br><span class="line">	lpszMenuName DWORD ?		; pointer to menu name</span><br><span class="line">	lpszClassName DWORD ?		; pointer ro winclass name</span><br><span class="line">WNDCLASS ENDS</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgtu.com/i/HL52CT"><img src="https://s4.ax1x.com/2022/02/20/HL52CT.png" alt="HL52CT.png"></a></p>
+<h4 id="5-4-WinMain-Procedure"><a href="#5-4-WinMain-Procedure" class="headerlink" title="5.4    WinMain Procedure"></a>5.4    WinMain Procedure</h4><p>every windows application needs a startup procedure named WinMain</p>
+<p>Get a handle to the current program</p>
+<p>Load the program’s icon and mouse cursor</p>
+<p>Register the program’s main window class and identify the procedure that will process event messages for the window</p>
+<p>Create the main window</p>
+<p>Show and update the main window</p>
+<p>Begin a loop that receives and dispatches messages</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WindProc PROC,</span><br><span class="line">	hWnd:DWORD,			; handle to the window</span><br><span class="line">	localMsg:DWORD,     ; message ID</span><br><span class="line">	wParam:DWORD, 		; parameter 1</span><br><span class="line">	lParam:DWORD		; parameter 2</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-5-ErrorHandler-Procedure"><a href="#5-5-ErrorHandler-Procedure" class="headerlink" title="5.5    ErrorHandler Procedure"></a>5.5    ErrorHandler Procedure</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GetLastError: retrieve the system error number</span><br><span class="line">FormatMessage: retrieve the appropriate system-formatted error message string</span><br><span class="line">MessageBox: display a popup message box</span><br><span class="line">LocalFree: free the memory used by the error message string</span><br><span class="line"></span><br><span class="line">INVOKE GetLastError	; return message ID in eax</span><br><span class="line">mov messageID, eax</span><br><span class="line"></span><br><span class="line">INVOKE FormatMessage, FORMAT_MESSAGE_ALLOCATION_BUFFER + \</span><br><span class="line"> FORMAT_MESSAGE_FROM_SYSTEM, NULL, messageID, NULL, ADDR pErrorMsg, NULL, NULL</span><br><span class="line"></span><br><span class="line">INVOKE MessageBox, NULL, pErrorMsg, ADDR ErrorTitle, MB_ICONERROR + MB_OK</span><br><span class="line"></span><br><span class="line">INVOKE LocalFree, pErrorMsg</span><br><span class="line"></span><br><span class="line">Message_Loop:</span><br><span class="line">	INVOKE GetMessage, ADDR msg, NULL, NULL, NULL</span><br><span class="line">	.IF eax == 0</span><br><span class="line">		jmp Exit_Program</span><br><span class="line">	.ENDIF</span><br><span class="line">	INVOKE DispatchMessage, ADDR msg</span><br><span class="line">	jmp Message_Loop</span><br><span class="line"></span><br><span class="line">WinProc PROC, hWnd:DWORD, localMsg:DWORD,</span><br><span class="line">	wParam:WORD, lParam:DWORD</span><br><span class="line">	mov eax, localMsg</span><br><span class="line">	.IF eax == WM_LBUTTOMDOWN</span><br><span class="line">		INVOKE MessageBox, hWnd, ADDR PopupText, ADDR PopupTitle, MB_OK</span><br><span class="line">		jmp WinProcExit</span><br><span class="line">	.ELSEIF eax == WM_CREATE</span><br><span class="line">		INVOKE MessageBox, hWnd,ADDR AppLoadMsgText,ADDR AppLoadMsgTitle,MB_OK</span><br><span class="line">		jmp WinProcExit</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Dynamic-Memory-Allocation"><a href="#6-Dynamic-Memory-Allocation" class="headerlink" title="6. Dynamic Memory Allocation"></a>6. Dynamic Memory Allocation</h2><p><a href="https://imgtu.com/i/HO9pc9"><img src="https://s4.ax1x.com/2022/02/20/HO9pc9.png" alt="HO9pc9.png"></a></p>
+<h4 id="6-1-sample-create"><a href="#6-1-sample-create" class="headerlink" title="6.1 sample create"></a>6.1 sample create</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HEAP_START = 2000000	; 2MB</span><br><span class="line">HEAP_MAX = 400000000	; 400MB</span><br><span class="line">.data</span><br><span class="line">hHeap HANDLE ?</span><br><span class="line">.code</span><br><span class="line">INVOKE HeapCreate, 0, HEAP_START, HEAP_MAX</span><br><span class="line">.IF eax == NULL</span><br><span class="line">	jmp quit</span><br><span class="line">.ELSE</span><br><span class="line">	mov hHeap, eax</span><br><span class="line">.ENDIF</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-sample-free"><a href="#6-2-sample-free" class="headerlink" title="6.2    sample free"></a>6.2    sample free</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.data</span><br><span class="line">hHeap HANDLE ?</span><br><span class="line">pArray DWORD ?</span><br><span class="line">.code</span><br><span class="line">INVOKE HeapFree, hHeap, 0, pArray</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>汇编</category>
+      </categories>
+      <tags>
+        <tag>汇编</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>汇编第Ⅸ天</title>
-    <url>/2022/02/20/%E6%B1%87%E7%BC%96_Day9/</url>
+    <url>/2022/02/20/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day9/</url>
     <content><![CDATA[<h2 id="1-Defining-Segments"><a href="#1-Defining-Segments" class="headerlink" title="1.    Defining Segments"></a>1.    Defining Segments</h2><p><a href="https://imgtu.com/i/HjgpHx"><img src="https://s4.ax1x.com/2022/02/21/HjgpHx.png" alt="HjgpHx.png"></a></p>
 <span id="more"></span>
 
@@ -742,37 +807,6 @@
       </categories>
       <tags>
         <tag>汇编</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>租服务器的环境配置</title>
-    <url>/2022/01/12/%E7%A7%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h4 id="1-购买指南及前期操作"><a href="#1-购买指南及前期操作" class="headerlink" title="1.购买指南及前期操作"></a>1.购买指南及前期操作</h4><ul>
-<li><p>内存不需要买太大（1核2G），后期动态扩容</p>
-</li>
-<li><p>不用买最大带宽，按量付费更实惠</p>
-</li>
-<li><p>选择ubuntu20.04，支持后续docker</p>
-</li>
-<li><p>安全组控制能访问那些端口（起码要有22端口）ssh，在sshconfig修改允许登录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/ssh</span><br><span class="line">sudo vim sshd_config</span><br></pre></td></tr></table></figure></li>
-<li><p>创建非root用户，给予sudo权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adduser luohk</span><br><span class="line">usermod -aG sudo luohk</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装tmux, 根据自己的需求更改tmux.conf</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="2-在docker上配置"><a href="#2-在docker上配置" class="headerlink" title="2.在docker上配置"></a>2.在docker上配置</h4><h5 id="2-1-安装docker"><a href="#2-1-安装docker" class="headerlink" title="2.1 安装docker"></a>2.1 安装docker</h5><p><a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu | Docker Documentation</a></p>
-<p>到install Docker Engine第一步结束就可</p>
-<h5 id="2-2-加入docker用户组"><a href="#2-2-加入docker用户组" class="headerlink" title="2.2 加入docker用户组"></a>2.2 加入docker用户组</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不用每次都输入sudo</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>server</tag>
       </tags>
   </entry>
 </search>
