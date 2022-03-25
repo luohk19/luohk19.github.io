@@ -209,6 +209,127 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/11/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/author.jpg">
+      <meta itemprop="name" content="luohk">
+      <meta itemprop="description" content="今后本博客将会记载学习笔记、科研感想等">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="luohk19">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/11/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day5/" class="post-title-link" itemprop="url">汇编第五天</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-11 12:46:54" itemprop="dateCreated datePublished" datetime="2022-02-11T12:46:54+08:00">2022-02-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-13 12:44:36" itemprop="dateModified" datetime="2022-02-13T12:44:36+08:00">2022-02-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B1%87%E7%BC%96/" itemprop="url" rel="index"><span itemprop="name">汇编</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-String-Primitive-Instruction"><a href="#1-String-Primitive-Instruction" class="headerlink" title="1. String Primitive Instruction"></a>1. String Primitive Instruction</h2><h4 id="1-1-MOVSB-MOVSW-MOVSD"><a href="#1-1-MOVSB-MOVSW-MOVSD" class="headerlink" title="1.1.    MOVSB, MOVSW, MOVSD"></a>1.1.    MOVSB, MOVSW, MOVSD</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">; copy data from [esi] to [edi]</span><br><span class="line">.data</span><br><span class="line">source DWORD 0FFFFFFFFh</span><br><span class="line">target DWORD ?</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">movsd</span><br><span class="line">; esi and edi are automatically inc or dec depending on B,W,D</span><br><span class="line"></span><br><span class="line">; Direction Flag</span><br><span class="line">; DF = 0, inc esi and edi</span><br><span class="line">; DF = 1, dec esi and edi</span><br><span class="line">; that can be explicitly changed by cld and std</span><br><span class="line"></span><br><span class="line">; Using a Repeat Prefix</span><br><span class="line">.data</span><br><span class="line">source DWORD 20 DUP(&#x27;z&#x27;)</span><br><span class="line">target DWORD 20 DUP(?)</span><br><span class="line">.code</span><br><span class="line">cld</span><br><span class="line">mov ecx, LENGTHOF source</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">rep movsw</span><br><span class="line">; wait till ecx == 0</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-CMPSB-CMPSW-CMPSD"><a href="#1-2-CMPSB-CMPSW-CMPSD" class="headerlink" title="1.2.    CMPSB, CMPSW, CMPSD"></a>1.2.    CMPSB, CMPSW, CMPSD</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">; compare data from [esi] to [edi]</span><br><span class="line">; repeat prefix often used: repe(repz), repne(repnz)</span><br><span class="line">.data</span><br><span class="line">source DWORD 1234h</span><br><span class="line">target DWORD 5678h</span><br><span class="line">.code</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">CMPSD</span><br><span class="line">ja L1</span><br><span class="line">jmp L2</span><br><span class="line"></span><br><span class="line">; repeat</span><br><span class="line">.data</span><br><span class="line">source DWORD COUNT DUP(?)</span><br><span class="line">target DWORD COUNT DUP(?)</span><br><span class="line">.code</span><br><span class="line">mov ecx, COUNT</span><br><span class="line">mov esi, OFFSET source</span><br><span class="line">mov edi, OFFSET target</span><br><span class="line">cld</span><br><span class="line">repe cmpsd</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-SCASB-SCASW-SCASD"><a href="#1-3-SCASB-SCASW-SCASD" class="headerlink" title="1.3.    SCASB, SCASW, SCASD"></a>1.3.    SCASB, SCASW, SCASD</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">; compare a value in AL/AX/EAX to [edi]</span><br><span class="line">.data</span><br><span class="line">alpha BYTE &quot;ABCDEFGH&quot;, 0</span><br><span class="line">.code</span><br><span class="line">mov edi, OFFSET alpha</span><br><span class="line">mov al, &#x27;F&#x27;</span><br><span class="line">mov ecx, LENGTHOF alpha</span><br><span class="line">cld</span><br><span class="line">repne scasb</span><br><span class="line">jnz quit</span><br><span class="line">dec edi</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-STOSB-STOSW-STOSD"><a href="#1-4-STOSB-STOSW-STOSD" class="headerlink" title="1.4.    STOSB, STOSW, STOSD"></a>1.4.    STOSB, STOSW, STOSD</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">; store content of al/ax/eax to [edi]</span><br><span class="line">.data</span><br><span class="line">Count = 100</span><br><span class="line">string1 BYTE Count DUP(?)</span><br><span class="line">.code</span><br><span class="line">mov al, OFFh</span><br><span class="line">mov edi, OFFSET string1</span><br><span class="line">mov ecx, Count</span><br><span class="line">cld</span><br><span class="line">rep stosb</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-5-LODSB-LODSW-LODSD"><a href="#1-5-LODSB-LODSW-LODSD" class="headerlink" title="1.5.    LODSB, LODSW, LODSD"></a>1.5.    LODSB, LODSW, LODSD</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">; load from [esi] to al/ax/eax</span><br><span class="line">.data</span><br><span class="line">array BYTE 1,2,3,4,5,6,7,8,9</span><br><span class="line">.code</span><br><span class="line">	mov esi, OFFSET array</span><br><span class="line">	mov ecx, LENGTHOF array</span><br><span class="line">	cld</span><br><span class="line">L1:	lodsb</span><br><span class="line">	or al, 30h</span><br><span class="line">	call WriteChar</span><br><span class="line">	loop L1</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Selected-String-Procedures"><a href="#2-Selected-String-Procedures" class="headerlink" title="2. Selected String Procedures"></a>2. Selected String Procedures</h2><h4 id="2-1-Two-Dimensional-Arrays"><a href="#2-1-Two-Dimensional-Arrays" class="headerlink" title="2.1 Two-Dimensional Arrays"></a>2.1 Two-Dimensional Arrays</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">; Structure Application</span><br><span class="line">COORD STRUCT</span><br><span class="line">	X WORD ?</span><br><span class="line">	Y WORD ?</span><br><span class="line">COORD ENDS</span><br><span class="line">.data</span><br><span class="line">setOfCoordinates COORD 10 DUP(&lt;&gt;)</span><br><span class="line">.code</span><br><span class="line">	mov ebx, OFFSET setOfCoordinates</span><br><span class="line">	mov esi, 2</span><br><span class="line">	mov eax, 0</span><br><span class="line">	mov ecx, LENGTHOF setOfCoordinates</span><br><span class="line">L1: mov ax, [ebx + esi]</span><br><span class="line">	call WriteDec</span><br><span class="line">	add ebx, SIZEOF COORD</span><br><span class="line">	loop L1</span><br><span class="line">; common formats</span><br><span class="line">;	[base + index + displacement]</span><br><span class="line">;	displacement[base + index]</span><br><span class="line">table BYTE 10h, 20h, 30h, 40h, 50h</span><br><span class="line">	  BYTE 60h, 70h, 80h, 90h, 0A0h</span><br><span class="line">	  BYTE 0B0h, 0C0h, 0D0h, 0E0h, 0F0h</span><br><span class="line">NumCols = 5</span><br><span class="line">; alternate formats</span><br><span class="line">table BYTE 10h, 20h, 30h, 40h, 50h, 60h, 70h, 80h, 90h, 0A0h, OB0h, 0C0h, 0D0h, 0E0h, 0F0h</span><br><span class="line">NumCols = 5</span><br><span class="line"></span><br><span class="line">RowNumber = 1</span><br><span class="line">ColumnNumber = 2</span><br><span class="line"></span><br><span class="line">mov ebx, NumCols * RowNumber</span><br><span class="line">mov esi, ColumnNumber</span><br><span class="line">mov al, table[ebx + esi]</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-Searching-and-Sorting-Integer-Arrays"><a href="#2-2-Searching-and-Sorting-Integer-Arrays" class="headerlink" title="2.2.    Searching and Sorting Integer Arrays"></a>2.2.    Searching and Sorting Integer Arrays</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">; pseudocode</span><br><span class="line">cx1 = N - 1</span><br><span class="line">while(cx1 &gt; 0)&#123;</span><br><span class="line">	esi = addr(array)</span><br><span class="line">	cx2 = cx1</span><br><span class="line">	while(cx2 &gt; 0)&#123;</span><br><span class="line">		if(array[esi] &lt; array[esi + 4])&#123;</span><br><span class="line">			exchange(array[esi], array[esi + 4])</span><br><span class="line">		&#125;</span><br><span class="line">		add esi, 4</span><br><span class="line">		dec cx2</span><br><span class="line">	&#125;</span><br><span class="line">	dec cx2</span><br><span class="line">&#125;</span><br><span class="line">; assembly code</span><br><span class="line">BubbleSort PROC USES eax, ecx, esi, pArray:PTR DWORD, Count:DWORD</span><br><span class="line">	mov ecx, Count</span><br><span class="line">	dec ecx</span><br><span class="line">L1:</span><br><span class="line">	push ecx</span><br><span class="line">	mov esi, pArray</span><br><span class="line">L2:</span><br><span class="line">	mov eax, [esi]</span><br><span class="line">	cmp [esi + 4], eax</span><br><span class="line">	jge L3</span><br><span class="line">	xchg eax, [esi + 4]</span><br><span class="line">	mov [esi], eax</span><br><span class="line">L3:</span><br><span class="line">	add esi, 4</span><br><span class="line">	loop L2</span><br><span class="line">	pop ecx</span><br><span class="line">	loop L1</span><br><span class="line">L4:</span><br><span class="line">	ret</span><br><span class="line">BubbleSort ENDP</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Structure"><a href="#3-Structure" class="headerlink" title="3. Structure"></a>3. Structure</h2><h4 id="3-1-Structure-Definition-Syntax"><a href="#3-1-Structure-Definition-Syntax" class="headerlink" title="3.1    Structure Definition Syntax"></a>3.1    Structure Definition Syntax</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name STRUCT</span><br><span class="line">	field-declarations</span><br><span class="line">name ENDS</span><br><span class="line"></span><br><span class="line">Employee STRUCT</span><br><span class="line">	IdNum BYTE &quot;000000000&quot;</span><br><span class="line">	LastName BYTE 30 DUP(0)</span><br><span class="line">	Years WORD 0</span><br><span class="line">	SalaryHistory DWORD 0,0,0,0</span><br><span class="line">Employee ENDS</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-Declaring-Structure-Variables"><a href="#3-2-Declaring-Structure-Variables" class="headerlink" title="3.2    Declaring Structure Variables"></a>3.2    Declaring Structure Variables</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">point1 COORD &lt;5,10&gt;</span><br><span class="line">point2 COORD &lt;&gt;</span><br><span class="line">worker Employee &lt;&gt;</span><br><span class="line"></span><br><span class="line">; initializing Array Fields</span><br><span class="line">.data</span><br><span class="line">emp Employee &lt;,,,2 DUP(20000)&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-Array-of-Structure"><a href="#3-3-Array-of-Structure" class="headerlink" title="3.3    Array of Structure"></a>3.3    Array of Structure</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NumPoints = 3</span><br><span class="line">AllPoints COORD NumPoints DUP(&lt;0,0&gt;)</span><br><span class="line"></span><br><span class="line">RD_Dept Employee 20 DUP(&lt;&gt;)</span><br><span class="line"></span><br><span class="line">accounting Employee 10 DUP(&lt;,,,4 DUP(20000)&gt;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-Reference-Structure-Variables"><a href="#3-4-Reference-Structure-Variables" class="headerlink" title="3.4    Reference Structure Variables"></a>3.4    Reference Structure Variables</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Employee STRUCT								; BYTES</span><br><span class="line">	IdNum BYTE &quot;000000000&quot;					; 9</span><br><span class="line">	LastName BYTE 30 DUP(0)					; 30</span><br><span class="line">	Years WORD 0							; 2</span><br><span class="line">	SalaryHistory DWORD 0,0,0,0				; 16</span><br><span class="line">Employee ENDS								; 57</span><br><span class="line">.data</span><br><span class="line">worker Employee &lt;&gt;</span><br><span class="line"></span><br><span class="line">mov eax, TYPE Employee</span><br><span class="line">mov eax, SIZEOF Employee</span><br><span class="line">mov eax, SIZEOF worker</span><br><span class="line">mov eax, TYPE Employee.SalaryHistory</span><br><span class="line">mov eax, LENGTHOF Employee.SalaryHistory</span><br><span class="line">mov eax, SIZEOF Employee.SalaryHistory</span><br><span class="line">;</span><br><span class="line">mov dx, worker.Years</span><br><span class="line">mov worker.SalaryHistory, 20000</span><br><span class="line">mov worker.SalaryHistory+4, 30000</span><br><span class="line">mov edx, OFFSET worker.LastName</span><br><span class="line">;</span><br><span class="line">mov esi, OFFSET worker</span><br><span class="line">mov ax, (Employee PTR [esi]).Years</span><br><span class="line">;</span><br><span class="line">mov ax, [esi].Years	; invalid operand</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-Nested-Structure"><a href="#3-5-Nested-Structure" class="headerlink" title="3.5    Nested Structure"></a>3.5    Nested Structure</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Rectangle STRUCT</span><br><span class="line">	UpperLeft COORD &lt;&gt;</span><br><span class="line">	LowerRight COORD &lt;&gt;</span><br><span class="line">Rectangle ENDS</span><br><span class="line">.data</span><br><span class="line">rect1 Rectangle &#123;&#123;10,10&#125;,&#123;50,20&#125;&#125;</span><br><span class="line">rect2 Rectangle &lt; &lt;10,10&gt;, &lt;50,20&gt; &gt;</span><br><span class="line"></span><br><span class="line">mov rect1.UpperLeft.X, 10</span><br><span class="line">mov esi, OFFSET rect1</span><br><span class="line">mov (Rectangle PTR [esi]).UpperLeft.Y, 10</span><br><span class="line"></span><br><span class="line">mov edi, OFFSET rect2.LowerRight</span><br><span class="line">mov (COORD PTR [edi]).X, 50</span><br><span class="line">mov edi, OFFSET rect2.LowerRight</span><br><span class="line">mov WORD PTR [edi], 50</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Declaring-and-Using-Union"><a href="#4-Declaring-and-Using-Union" class="headerlink" title="4. Declaring and Using Union"></a>4. Declaring and Using Union</h2><h4 id="4-1-union-definition-syntax"><a href="#4-1-union-definition-syntax" class="headerlink" title="4.1    union definition syntax"></a>4.1    union definition syntax</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">name UNION</span><br><span class="line">	union-fields</span><br><span class="line">name ENDS</span><br><span class="line"></span><br><span class="line">; Integer Union Example</span><br><span class="line">Integer UNION</span><br><span class="line">	D DWORD 0</span><br><span class="line">	W WORD 0</span><br><span class="line">	B BYTE 0</span><br><span class="line">Integer ENDS</span><br><span class="line">.data</span><br><span class="line">val1 Integer &lt;12345678h&gt;</span><br><span class="line">val2 Integer &lt;100h&gt;</span><br><span class="line">val3 Integer &lt;&gt;</span><br><span class="line"></span><br><span class="line">mov val3.B, al</span><br><span class="line">mov ax, val3.W</span><br><span class="line">add val3.D, eax</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-Union-inside-a-structure"><a href="#4-2-Union-inside-a-structure" class="headerlink" title="4.2    Union inside a structure"></a>4.2    Union inside a structure</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Integer UNION</span><br><span class="line">	D DWORD 0</span><br><span class="line">	W WORD 0</span><br><span class="line">	B BYTE 0</span><br><span class="line">Integer ENDS</span><br><span class="line"></span><br><span class="line">FileInfo STRUCT</span><br><span class="line">	FileID Integer &lt;&gt;</span><br><span class="line">	FileName BYTE 64 DUP(?)</span><br><span class="line">FileInfo ENDS</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">myFile FileInfo &lt;&gt;</span><br><span class="line">.code</span><br><span class="line">mov myFile.FileID.W, ax</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Macro"><a href="#5-Macro" class="headerlink" title="5. Macro"></a>5. Macro</h2><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HDZwJH"><img src="https://s4.ax1x.com/2022/02/13/HDZwJH.png" alt="HDZwJH.png"></a></p>
+<h4 id="5-1-Defining-Macros"><a href="#5-1-Defining-Macros" class="headerlink" title="5.1    Defining Macros"></a>5.1    Defining Macros</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">macroname MACRO [param1, param2,...]</span><br><span class="line">	statement-list</span><br><span class="line">ENDM</span><br><span class="line"></span><br><span class="line">; example 1</span><br><span class="line">mNewLine MACRO</span><br><span class="line">	call Crlf</span><br><span class="line">ENDM</span><br><span class="line">.data</span><br><span class="line">.code</span><br><span class="line">mNewLine	; invoke the macro</span><br><span class="line"></span><br><span class="line">; example 2</span><br><span class="line">mPutChar MACRO char</span><br><span class="line">	push eax</span><br><span class="line">	mov al, char</span><br><span class="line">	call WriteChar</span><br><span class="line">	pop eax</span><br><span class="line">ENDM</span><br><span class="line">.code</span><br><span class="line">mPutChar &#x27;A&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-Invoking-Macros"><a href="#5-2-Invoking-Macros" class="headerlink" title="5.2    Invoking Macros"></a>5.2    Invoking Macros</h4><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HDekkD"><img src="https://s4.ax1x.com/2022/02/13/HDekkD.png" alt="HDekkD.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mWriteStr MACRO buffer</span><br><span class="line">	push edx</span><br><span class="line">	mov edx, OFFSET buffer</span><br><span class="line">	call WriteString</span><br><span class="line">	pop edx</span><br><span class="line">ENDM</span><br><span class="line">.data</span><br><span class="line">str1 BYTE &quot;welcome!&quot;, 0</span><br><span class="line">.code</span><br><span class="line">mWriteStr str1</span><br><span class="line"></span><br><span class="line">; if you pass a blank argument, the error is also caught</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/09/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1222,87 +1343,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/09/1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/author.jpg">
-      <meta itemprop="name" content="luohk">
-      <meta itemprop="description" content="今后本博客将会记载学习笔记、科研感想等">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="luohk19">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/09/1/" class="post-title-link" itemprop="url">firstOne</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-09 10:34:45 / 修改时间：10:42:53" itemprop="dateCreated datePublished" datetime="2022-01-09T10:34:45+08:00">2022-01-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1374,7 +1414,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1410,6 +1450,11 @@
 	</div>
 	<ul class="links-of-blogroll-list recent-posts-list">
 	        <li class="my-links-of-blogroll-item">
+		    <a href="/2022/03/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/os_day4/" title="os xv6源码解读(操作系统陷入机制)" target="">
+		    os xv6源码解读(操作系统陷入机制)
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
 		    <a href="/2022/03/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/os_day3/" title="os xv6源码解读(操作系统页表)" target="">
 		    os xv6源码解读(操作系统页表)
 		    </a>
@@ -1427,11 +1472,6 @@
 	        <li class="my-links-of-blogroll-item">
 		    <a href="/2022/02/22/%E6%B1%87%E7%BC%96/%E6%B1%87%E7%BC%96_Day10/" title="汇编第Ⅹ天" target="">
 		    汇编第Ⅹ天
-		    </a>
-		</li>
-	        <li class="my-links-of-blogroll-item">
-		    <a href="/2022/02/21/AI_Day1/" title="AI第一天" target="">
-		    AI第一天
 		    </a>
 		</li>
 	</ul>
@@ -1467,13 +1507,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">49k</span>
+    <span title="站点总字数">51k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">45 分钟</span>
+    <span title="站点阅读时长">46 分钟</span>
 </div>
 
         
