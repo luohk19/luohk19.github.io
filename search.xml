@@ -947,4 +947,407 @@
         <tag>汇编</tag>
       </tags>
   </entry>
+  <entry>
+    <title>计网学习</title>
+    <url>/2022/09/09/%E8%AE%A1%E7%BD%91/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="概论"><a href="#概论" class="headerlink" title="概论"></a>概论</h1><p>端系统通过<code>接入ISP</code>接入互联网。而<code>接入ISP</code>需要进一步互联，这样任意两个主机才能互相发送分组。可选方案，将<code>接入ISP</code>接入到<code>国家或全球ISP</code>。</p>
+<p>而国家ISP直接可以使用peering link互联，也可使用IXP（internet exchange point）。可能出现区域网络，接入运行运营商isp（国家）和接入isp。最近还有content provider network 内容提供商网络，例如google，运行自己的网络。</p>
+<h2 id="网络核心"><a href="#网络核心" class="headerlink" title="网络核心"></a>网络核心</h2><p>网络核心的关键功能：路由(routing)+转发(forwarding)。</p>
+<h3 id="数据交换"><a href="#数据交换" class="headerlink" title="数据交换"></a>数据交换</h3><p>电路交换、报文交换、分组交换。</p>
+<h5 id="电路交换-circuit-switching"><a href="#电路交换-circuit-switching" class="headerlink" title="电路交换(circuit switching)"></a>电路交换(circuit switching)</h5><p>建立连接（呼叫），通信，释放连接</p>
+<p>独占资源！！如何解决？多路复用Multiplexing</p>
+<h6 id="频分多路复用-FDM"><a href="#频分多路复用-FDM" class="headerlink" title="频分多路复用 FDM"></a>频分多路复用 FDM</h6><p>用户占用不同的频率带宽。</p>
+<h6 id="时分多路复用-TDM"><a href="#时分多路复用-TDM" class="headerlink" title="时分多路复用 TDM"></a>时分多路复用 TDM</h6><p>将时间按TDM帧划分，每个TDM帧内划分各用户的帧。在不同的时间占用相同的频率带宽。</p>
+<h6 id="波分多路复用-WDM"><a href="#波分多路复用-WDM" class="headerlink" title="波分多路复用 WDM"></a>波分多路复用 WDM</h6><p>光的频分复用。</p>
+<h6 id="码分多路复用-CDM"><a href="#码分多路复用-CDM" class="headerlink" title="码分多路复用 CDM"></a>码分多路复用 CDM</h6><p>广泛用于无线链路共享。每个用户分配唯一的m bit码片序列，0用-1表示，-1用+1表示。</p>
+<p>用户使用相同频率波段，编码信号=原始数据*码片序列。若发送1，发送自己的m码序列。</p>
+<p>各用户码片序列相互正交。</p>
+<h5 id="报文交换"><a href="#报文交换" class="headerlink" title="报文交换"></a>报文交换</h5><p>源发送信息整体，比如一个文件。</p>
+<h5 id="分组交换-package-switching"><a href="#分组交换-package-switching" class="headerlink" title="分组交换(package switching)"></a>分组交换(package switching)</h5><p>报文分拆的一系列相对较小的数据包。需要报文的拆分与重组。产生额外开销。</p>
+<h6 id="统计多路复用"><a href="#统计多路复用" class="headerlink" title="统计多路复用"></a>统计多路复用</h6><p>报文交换与分组交换均采用存储-转发交换方式。缓存？</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220829192710129.png" alt="image-20220829192710129"></p>
+<p>传输延迟：比较报文交换与分组交换</p>
+<p>分组传输延迟（时延）= $\frac{L}{R}$</p>
+<p>分组交换的报文交付时间$T=M/R+nL/R$，M为报文大小，R为链路带宽，分组大小为L，路由器数为n。</p>
+<p>比较分组交换与电路交换：</p>
+<p>对于同一带宽链路，电路交换能容纳的用户小于分组交换。</p>
+<p>适用于突发数据传输网络，资源充分共享、简单无需呼叫建立。</p>
+<p>但分组交换可能产生拥塞，分组延迟和丢失。需要协议处理可靠数据传输和拥塞控制。</p>
+<h3 id="计算机网络性能："><a href="#计算机网络性能：" class="headerlink" title="计算机网络性能："></a>计算机网络性能：</h3><h4 id="速率"><a href="#速率" class="headerlink" title="速率"></a>速率</h4><p>数据率或数据传输速率或比特率。额定速率或标称速率。</p>
+<h4 id="带宽"><a href="#带宽" class="headerlink" title="带宽"></a>带宽</h4><p>bandwidth，数据信道能够传送的最高数据率bps</p>
+<h4 id="延迟-时延delay-latency"><a href="#延迟-时延delay-latency" class="headerlink" title="延迟/时延delay latency"></a>延迟/时延delay latency</h4><p>分组交换为什么会发生丢包和时延？</p>
+<p>分组在路由器缓存中排队，分组到达速率超出输出链路的速率。</p>
+<p>四种分组延迟：</p>
+<p>$d_{proc}$节点处理延迟，差错检测，确定输出链路，通常小于ms单位</p>
+<p>$d_{queue}$排队延迟，等待输出链路可用，取决于路由器拥塞程度。</p>
+<p>流量强度 $La/R$，a为平均分组到达速率，若强度-&gt;0，则平均排队延迟很小。</p>
+<p>-&gt;1，平均排队延迟很大，&gt;1，超出服务能力，平均排队延迟无限大。</p>
+<p>$d_{trans}$传输延迟，$d=L/R$</p>
+<p>$d_{prop}$传播延迟，$d=l/s$，l为物理链路长度，信号传播速度s</p>
+<p>$d_{nodal}=d_{proc}+d_{queue}+d_{trans}+d_{prop}$</p>
+<h4 id="时延带宽积-传播时延-带宽"><a href="#时延带宽积-传播时延-带宽" class="headerlink" title="时延带宽积=传播时延*带宽"></a>时延带宽积=传播时延*带宽</h4><p>以bit为单位的链路长度。</p>
+<h4 id="丢包率-丢包数-已发分组总数"><a href="#丢包率-丢包数-已发分组总数" class="headerlink" title="丢包率=丢包数/已发分组总数"></a>丢包率=丢包数/已发分组总数</h4><h4 id="吞吐量-率"><a href="#吞吐量-率" class="headerlink" title="吞吐量/率"></a>吞吐量/率</h4><p>吞吐量表示在发送端与接收端之间传送数据速率（即时、平均）</p>
+<p>min(R_c, R_s, R/10)</p>
+<h2 id="计算机分层结构"><a href="#计算机分层结构" class="headerlink" title="计算机分层结构"></a>计算机分层结构</h2><p>为什么？模块化的分层易于系统更新、维护，有利于标准化。</p>
+<p>任一层实体需要使用下层服务，遵循本层协议，实现本层功能，向上层提供服务，服务是垂直的。</p>
+<p>下层协议的实现对上层的服务用户是透明的。同系统的相邻层实体间通过接口进行交互，通过服务访问点SAP，交换原语，指定请求的特定服务。</p>
+<h3 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h3><p>支持异构网络系统的互联互通，理论成功，市场失败。</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220829233609053.png" alt="image-20220829233609053"></p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220829234000938.png" alt="image-20220829234000938"></p>
+<h4 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h4><p>增加控制信息，构造协议数据单元（PDU）</p>
+<p>内容包括：</p>
+<p>地址（标识发送端/接收端）、差错检测编码（用于差错检测或纠正），协议控制（优先级，服务质量，安全控制）</p>
+<h4 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h4><p>接口特性：机械特性、电气特性、功能特性、规格特性</p>
+<p>比特编码、数据率、比特同步（时钟同步）、传输模式（单工、半双工、全双工）</p>
+<h4 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h4><p>组帧（Framing），负责节点-节点数据传输、物理寻址。</p>
+<p>在帧头增加发送端或接收端的物理地址表示数据帧的发送端或接收端。</p>
+<p>流量控制，避免淹没接收端。差错控制，检测并重传损坏或丢失帧，并避免重复帧。</p>
+<p>访问控制，任意给定时刻决定哪个设备拥有链路控制使用权。</p>
+<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><p>负责源主机到目的主机数据分组(packet)交付。可能穿越多个网络，需要逻辑寻址，ip</p>
+<h5 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h5><h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><p>负责源-目的的完整报文传输，分段与重组，SAP寻址（端到端）。</p>
+<p>流量控制、连接控制、差错控制。</p>
+<h4 id="会话层"><a href="#会话层" class="headerlink" title="会话层"></a>会话层</h4><p>对话控制，在数据流中插入同步点。</p>
+<h4 id="表示层"><a href="#表示层" class="headerlink" title="表示层"></a>表示层</h4><p>处理两个系统间交换信息的语法与语义问题。</p>
+<p>数据表示转化，转化为主机独立的编码，加密解密，压缩解压缩。</p>
+<h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><p>支持用户通过用户代理或网络接口使用网络服务，FTP. SMTP, HTTP</p>
+<h3 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h3><p>应用层，传输层，网络层，网络接口层</p>
+<h3 id="5层参考模型"><a href="#5层参考模型" class="headerlink" title="5层参考模型"></a>5层参考模型</h3><p>应用层、传输层、网络层、数据链路层、物理层</p>
+<h4 id="应用层-1"><a href="#应用层-1" class="headerlink" title="应用层"></a>应用层</h4><p>FTP, SMTP, HTTP</p>
+<h4 id="传输层-1"><a href="#传输层-1" class="headerlink" title="传输层"></a>传输层</h4><p>TCP, UDP</p>
+<h4 id="网络层-1"><a href="#网络层-1" class="headerlink" title="网络层"></a>网络层</h4><p>IP、路由</p>
+<h4 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h4><p>以太网、wifi，ppp</p>
+<h4 id="物理层-1"><a href="#物理层-1" class="headerlink" title="物理层"></a>物理层</h4><p>比特传输</p>
+<h2 id="网络应用的体系结构"><a href="#网络应用的体系结构" class="headerlink" title="网络应用的体系结构"></a>网络应用的体系结构</h2><p>C/S，P2P，Hybrid</p>
+<h4 id="C-S"><a href="#C-S" class="headerlink" title="C/S"></a>C/S</h4><p>服务器24小时提供服务，永久性访问的地址，利用大量服务器实现可拓展性</p>
+<p>客户机则间歇性接入网络，可能使用动态ip，不会与其他客户通信。</p>
+<h4 id="P2P"><a href="#P2P" class="headerlink" title="P2P"></a>P2P</h4><p>没有永远在线的服务器，任意节点之间可以直接通信，间隙性接入网络，可能改变ip地址。</p>
+<p>优点：高度可伸缩；缺点：难以管理。</p>
+<h4 id="混合"><a href="#混合" class="headerlink" title="混合"></a>混合</h4><p>例如Napster，传输使用P2P，搜索采用C/S</p>
+<h2 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h2><p>发起通信的进程等待通信请求的进程，需要进程之间的通信机制。</p>
+<h3 id="套接字：socket"><a href="#套接字：socket" class="headerlink" title="套接字：socket"></a>套接字：socket</h3><p>类似寄信。如何寻址进程？</p>
+<p>每个进程需要拥有标识符，首先标识主机（ip），进程端口号。</p>
+<p>需要遵守应用层协议，公开协议RFC，允许互操作；私有协议。</p>
+<h3 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h3><p>消息的类型：请求？响应？</p>
+<p>消息的语法格式：有哪些字段？每个字段如何描述。</p>
+<p>字段的语义：字段信息的含义</p>
+<p>规则：何时、如何发送/接收消息。</p>
+<h3 id="网络应用对传输服务的需求"><a href="#网络应用对传输服务的需求" class="headerlink" title="网络应用对传输服务的需求"></a>网络应用对传输服务的需求</h3><p>数据丢失和可靠性：容忍一定（网络电话），100%可靠（文件传输）</p>
+<p>时间/延迟：网络电话、网络游戏</p>
+<p>带宽：网络视频，某些应用可以适应任何带宽，email</p>
+<h3 id="传输层提供的传输服务"><a href="#传输层提供的传输服务" class="headerlink" title="传输层提供的传输服务"></a>传输层提供的传输服务</h3><h4 id="tcp"><a href="#tcp" class="headerlink" title="tcp"></a>tcp</h4><p>面向连接，需要建立连接，全双工。可靠的数据传输，流量控制；拥塞控制，不提供时间/延迟保障，不提供最小带宽保障。</p>
+<h4 id="udp"><a href="#udp" class="headerlink" title="udp"></a>udp</h4><p>无连接，不可靠的数据传输，</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><p>包含多个对象，包括文件，图片，脚本等</p>
+<p>基本的html文件：包含对其他对象引用的链接。</p>
+<p>对象的寻址：URL，Scheme://host:port/path</p>
+<p>遵循http协议</p>
+<h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p>C/S结构，使用tcp传输服务，无状态应用协议。</p>
+<h5 id="http链接"><a href="#http链接" class="headerlink" title="http链接"></a>http链接</h5><p>非持久性链接：每个tcp连接的最多允许传输一个对象。HTTP1.0</p>
+<p>传输后http服务器会主动关闭tcp连接。</p>
+<p>RTT（Round Trip Time）从客户端发送一个很小的数据包到服务器并返回所需要的时间。</p>
+<p>响应时间：</p>
+<p>发起、建立tcp连接：1个RTT</p>
+<p>发送http请求消息到http响应消息的前几个字节到达：1个RTT</p>
+<p>响应消息中所含的文件对象传输时间。</p>
+<p>总共时间：2RTT+文件发送时间</p>
+<p>问题：</p>
+<p>每个对象需要2个RTT，操作系统需要为每个tcp连接开销资源。</p>
+<p>持久性连接：每个tcp连续允许传输多个对象。HTTP1.1</p>
+<p>发送响应后，服务器保持tcp连接。同时还可分为无流水线的持久性连接和流水线的。</p>
+<p>即无流水线的，客户端只有收到前一个响应后才发送新的请求，每个对象耗时一个RTT</p>
+<p>流水线的，只要遇到一个引用对象就尽快发出请求，只需耗时1个RTT，所有引用。</p>
+<h5 id="http信息"><a href="#http信息" class="headerlink" title="http信息"></a>http信息</h5><h6 id="请求信息"><a href="#请求信息" class="headerlink" title="请求信息"></a>请求信息</h6><p>ASCII: 人直接可读。</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220901002040746.png" alt="image-20220901002040746"></p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220901002323758.png" alt="image-20220901002323758"></p>
+<h5 id="Cookie技术"><a href="#Cookie技术" class="headerlink" title="Cookie技术"></a>Cookie技术</h5><p>http无状态的，为了辨别用户身份，进行session跟踪而储存在用户本地终端上的数据</p>
+<p>cookie组件：</p>
+<p>http响应消息的cookie头部行，请求也有。</p>
+<p>保存在客户端主机的cookie文件，由浏览器管理。</p>
+<p>web服务器端的后台数据库。</p>
+<h4 id="web缓存-代理服务器技术"><a href="#web缓存-代理服务器技术" class="headerlink" title="web缓存/代理服务器技术"></a>web缓存/代理服务器技术</h4><p>缩短客服请求的响应时间、减少机构组织的流量、在大范围内实现有效的内容分发。</p>
+<p>缓存即充当客户端也充当服务端，一般由ISP架设。</p>
+<p>缓存过期？使用条件性GET，加入if-modified-since</p>
+<h2 id="Email"><a href="#Email" class="headerlink" title="Email"></a>Email</h2><p>组成构件：</p>
+<p>邮件客户端（agent），邮件服务器，SMTP协议（Simple Mail Transfer Protocol）</p>
+<p>服务器：</p>
+<p>存储发给该用户的email，消息队列：存储等待发送的email</p>
+<p>使用tcp进行email消息的可靠传输，端口25。使用持久性连接。</p>
+<h4 id="与http对比"><a href="#与http对比" class="headerlink" title="与http对比"></a>与http对比</h4><p>http：拉式pull</p>
+<p>smtp：推式push</p>
+<p>都是用命令/响应交互模式，命令和状态代码都是ASCII码。</p>
+<p>http：每个对象封装在独立的响应信息中</p>
+<p>SMTP：每个对象在由多个部分构成的消息中发送。</p>
+<h4 id="email的消息格式"><a href="#email的消息格式" class="headerlink" title="email的消息格式"></a>email的消息格式</h4><p>头部行：to，from，subject。</p>
+<p>中间有空白行</p>
+<p>消息体：消息本身，只能是ascii符号。</p>
+<p>MIME：头部增加额外的行声明MIME的内容类型。</p>
+<p>POP：下载并删除模式（如果换了客户端软件，无法重读该邮件），无状态</p>
+<p>客户端命令User，Pass</p>
+<p>服务器响应：+ok，-err</p>
+<p>事务阶段：list，retr，dele，quit</p>
+<p>IMAP：所有消息统一存放在一个地方：服务器</p>
+<p>允许用户利用文件夹组织消息，支持跨会话的用户状态。</p>
+<h2 id="DNS-Domain-Name-System"><a href="#DNS-Domain-Name-System" class="headerlink" title="DNS(Domain Name System)"></a>DNS(Domain Name System)</h2><p>域名向ip地址的翻译，主机别名，邮件服务器别名，负载均衡：web服务器（翻译成多个ip地址，轮流访问，实现负载均衡）</p>
+<p>为什么不适用集中的DNS？</p>
+<p>单点失败问题，流量问题，距离问题，维护性问题</p>
+<p>分层：</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220901155856096.png" alt="image-20220901155856096"></p>
+<p>根域名服务器：</p>
+<p>本地域名解析服务器无法解析域名时，访问根域名服务器。</p>
+<p>如果不知道映射，访问权威域名服务器。获得映射后向本地域名服务器返回映射。</p>
+<p>TLD：顶级域名服务器</p>
+<p>本地域名解析服务器，不严格属于层级体系；每个isp有一个本地域名服务器</p>
+<p>DNS查询：迭代查询，递归查询</p>
+<p>DNS缓存：</p>
+<p>本地域名服务器一般会缓存顶级域名服务器的映射，因此根服务器不经常被访问。</p>
+<p>DNS记录：</p>
+<p>RR（resource records）（name，value，type，ttl）</p>
+<p>type=A  name=主机域名，value=ip地址</p>
+<p>type=B name=域，value=该域权威域名解析服务器的主机域名</p>
+<p>type=CNAME，name=某一真实域名的别名，value=真实域名</p>
+<p>type=MX，value时与name相对应的邮件服务器</p>
+<p>DNS协议：</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220902104214033.png" alt="image-20220902104214033"></p>
+<p>flags：</p>
+<p>查询或恢复；期望递归；递归可用；权威回答；</p>
+<h2 id="P2P-1"><a href="#P2P-1" class="headerlink" title="P2P"></a>P2P</h2><p>对于文件分发，当文件N变大时，最小分发时间趋于不变。</p>
+<h3 id="bitorrent"><a href="#bitorrent" class="headerlink" title="bitorrent"></a>bitorrent</h3><p>文件划分为256KB的chunk，节点加入torrent，向traker注册获得节点静丹，建立连接。下载的同时，节点需要向其他节点上传chunk。节点可能加入或离开，一旦节点获得完整的文件，它可能留下或离开。</p>
+<p>获取chunk，不同的节点持有文件的不同chunk集合，定期查询每个邻居所持有的chunk列表，节点发送请求，请求稀缺的chunk，稀缺优先。</p>
+<p>发送chunk，tit-for-tat</p>
+<p>alice向4个邻居发送chunk，速率最快的四个。每隔30s，随机选择一个节点，发送chunk。</p>
+<h4 id="索引技术"><a href="#索引技术" class="headerlink" title="索引技术"></a>索引技术</h4><p>信息到节点位置（ip+端口）的映射。</p>
+<h5 id="集中式索引"><a href="#集中式索引" class="headerlink" title="集中式索引"></a>集中式索引</h5><p>节点加入时，通知中央服务器，ip加内容</p>
+<p>单点失效、性能瓶颈、版权问题</p>
+<h5 id="洪泛式查询"><a href="#洪泛式查询" class="headerlink" title="洪泛式查询"></a>洪泛式查询</h5><p>完全分布式架构，每个节点对它共享的文件进行索引，且只对它共享的文件进行索引。</p>
+<p>覆盖网络</p>
+<p>类似BFS</p>
+<h5 id="层次式覆盖网络"><a href="#层次式覆盖网络" class="headerlink" title="层次式覆盖网络"></a>层次式覆盖网络</h5><p>划分为两类节点，超级节点。超级节点负责洪泛式。</p>
+<h2 id="Socket编程"><a href="#Socket编程" class="headerlink" title="Socket编程"></a>Socket编程</h2><p>表示通信端点：ip+端口号</p>
+<p>如何管理？套接字描述符socket descriptor。</p>
+<p>地址接口</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220904143959203.png" alt="image-20220904143959203"></p>
+<p>winsock 需要建立与cleanup</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><h5 id="创建套接字："><a href="#创建套接字：" class="headerlink" title="创建套接字："></a>创建套接字：</h5><p>sd = socket(protofamily, type, proto)</p>
+<p>第一个参数protofamily = PF_INET</p>
+<p>第二个套接字类型</p>
+<p>第三个为协议号</p>
+<h5 id="关闭套接字"><a href="#关闭套接字" class="headerlink" title="关闭套接字"></a>关闭套接字</h5><p>closesocket(sd)，如果多个进程共享一个套接字时，需要将引用计数减一。多线程对套接字的使用无计数。</p>
+<h5 id="绑定套接字"><a href="#绑定套接字" class="headerlink" title="绑定套接字"></a>绑定套接字</h5><p>bind(sd, localaddr, addrlen)，绑定套接字的本地端口地址，ip+port</p>
+<p>客户端一般不用调用bind函数，服务器端需要。</p>
+<p>但若本地有多网卡，需要采用地址通配符的方式</p>
+<h5 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h5><p>listen(sd, queuesize)，设置请求大小</p>
+<h5 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h5><p>connect(sd, saddr, saddrlen)</p>
+<p>客户端，tcp/udp。</p>
+<h5 id="接受"><a href="#接受" class="headerlink" title="接受"></a>接受</h5><p>accept(sd, caddr, caddrlen)，调用函数从处于监听状态的流套接字sd客户链接请求队列除去排在最前的一个客户请求。</p>
+<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><h5 id="解析服务器ip地址"><a href="#解析服务器ip地址" class="headerlink" title="解析服务器ip地址"></a>解析服务器ip地址</h5><p>客户端可能使用域名或者ip地址标识服务器，IP协议许哟啊32位ip地址</p>
+<p>可以inet_addr 10-&gt;32，gethostbyname 域名-&gt;32，满足网络字节顺序</p>
+<h5 id="解析熟知端口号"><a href="#解析熟知端口号" class="headerlink" title="解析熟知端口号"></a>解析熟知端口号</h5><p>可以使用服务名标识，getservbyname()</p>
+<h5 id="解析协议号"><a href="#解析协议号" class="headerlink" title="解析协议号"></a>解析协议号</h5><p>实现协议名到协议号的转换，getprotobyname</p>
+<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220904165610055.png" alt="image-20220904165610055"></p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220904165739253.png" alt="image-20220904165739253"></p>
+<h3 id="Socket服务器"><a href="#Socket服务器" class="headerlink" title="Socket服务器"></a>Socket服务器</h3><h4 id="循环无连接"><a href="#循环无连接" class="headerlink" title="循环无连接"></a>循环无连接</h4><p>一次只处理一个客户请求</p>
+<h5 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h5><p>创建线程，处理用户的请求。</p>
+<h2 id="传输层-2"><a href="#传输层-2" class="headerlink" title="传输层"></a>传输层</h2><p>提供了一种逻辑通信机制。发送方将消息分成多个segment，并传递到网络层。而接收方负责组装成消息传给应用层。</p>
+<h4 id="与网络层的区别"><a href="#与网络层的区别" class="headerlink" title="与网络层的区别"></a>与网络层的区别</h4><p>网络层负责主机之间的逻辑通信机制，而传输层提供应用进程之间的逻辑通信机制。</p>
+<p>传输层依赖于网络层拂去，对网络层服务进行可能的增强。位于网络层之上。</p>
+<h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><h5 id="tcp-1"><a href="#tcp-1" class="headerlink" title="tcp"></a>tcp</h5><p>可靠、按序的交付服务，拥塞控制，流量控制，连接建立</p>
+<h5 id="udp-1"><a href="#udp-1" class="headerlink" title="udp"></a>udp</h5><p>best-effort。</p>
+<p>两种服务均不保证延迟和带宽上面的保障。</p>
+<h3 id="多路复用-分用"><a href="#多路复用-分用" class="headerlink" title="多路复用/分用"></a>多路复用/分用</h3><p>若一个协议对应上层的多个协议，则需要复用/分用。</p>
+<p>接收端进行多路分用，发送端进行多路复用。</p>
+<h4 id="分用"><a href="#分用" class="headerlink" title="分用"></a>分用</h4><p>每个数据报会携带地址，段，端口号和目的端口号。根据对应的端口号导入对应的socket</p>
+<p>tcp会做更多的处理</p>
+<h5 id="无连接分用"><a href="#无连接分用" class="headerlink" title="无连接分用"></a>无连接分用</h5><p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220905191128780.png" alt="image-20220905191128780"></p>
+<h5 id="面向连接的"><a href="#面向连接的" class="headerlink" title="面向连接的"></a>面向连接的</h5><p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220905191657230.png" alt="image-20220905191657230"></p>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>多路复用多路分用，简单的错误校验。udp段可能丢失，非按序到达。</p>
+<p>无连接，不需要握手，每个udp的报文段的处理独立。</p>
+<p>减少延迟，实现简单，头部开销少，没有拥塞控制，应用可以更好的控制发送时间和速率。</p>
+<p>用于流媒体，可靠性靠应用层增加可靠性，应用特定的错误恢复机制。</p>
+<h4 id="checksum"><a href="#checksum" class="headerlink" title="checksum"></a>checksum</h4><p>检测udp在传输中是否发生错误。</p>
+<p>发送方计算checksum，将段的内容视作16bit，将所有整数求和，进位放在和的后面，将得到的值按位求反，得到校验和。</p>
+<p>接收方，计算接收到的校验和，不相等说明检测出错误，但相等仍然有可能产生错误。</p>
+<h4 id="可靠数据传输"><a href="#可靠数据传输" class="headerlink" title="可靠数据传输"></a>可靠数据传输</h4><p>不错，不丢，不乱</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220905193514600.png" alt="image-20220905193514600"></p>
+<p>数据单向流动，控制信息双向流动。</p>
+<h4 id="Rdt1-0"><a href="#Rdt1-0" class="headerlink" title="Rdt1.0"></a>Rdt1.0</h4><p>可靠信道上的可靠数据传输，底层信道完全可靠。</p>
+<h4 id="Rdt2-0"><a href="#Rdt2-0" class="headerlink" title="Rdt2.0"></a>Rdt2.0</h4><p>产生位错误的信道，利用校验和检测位错误。</p>
+<p>如何从错误中恢复，确认机制，NAK，重传</p>
+<p>ARQ（automatic repeat request）</p>
+<p>引入了差错检测，接受方反馈控制消息：ACK/NAK，重传</p>
+<p>但是如果ACK, NAK发生错误了会怎么样，为ACK/NAK也增加校验和并纠错</p>
+<p>或者收到被破坏的数据不知道接收方发送了什么，添加额外的控制消息。</p>
+<p>如果ACK/NAK坏掉，发送方重传，不能简单的重传，会产生重复的分组。</p>
+<h4 id="Rdt2-1-2-2"><a href="#Rdt2-1-2-2" class="headerlink" title="Rdt2.1 2.2"></a>Rdt2.1 2.2</h4><p>添加序列号，丢弃重复分组。</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220905233735040.png" alt="image-20220905233735040"></p>
+<p>接收方通过ack告知最后一个被正确接受的分组。若发送方收到重复ACK，重传。</p>
+<h4 id="Rdt3-0"><a href="#Rdt3-0" class="headerlink" title="Rdt3.0"></a>Rdt3.0</h4><p>如果信道即可能发生错误，也可能丢失分组，怎么办？</p>
+<p>解决方法：发送方等待合理时间，定时器</p>
+<h4 id="流水线协议"><a href="#流水线协议" class="headerlink" title="流水线协议"></a>流水线协议</h4><p>需要更大的序列号范围，需要更大的存储空间以缓存分组。</p>
+<h4 id="滑动窗口协议"><a href="#滑动窗口协议" class="headerlink" title="滑动窗口协议"></a>滑动窗口协议</h4><h6 id="GBN"><a href="#GBN" class="headerlink" title="GBN"></a>GBN</h6><p>ACK(n)为累计确认机制，需要为空中的分组设置计时器，即重传序列号大于等于n，还未收到ACK的所有分组。</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220906104719516.png" alt="image-20220906104719516"></p>
+<h6 id="Selective-repeat"><a href="#Selective-repeat" class="headerlink" title="Selective repeat"></a>Selective repeat</h6><p>重传过多，对每个分组单独确认，设置缓存机制，缓存乱序到达的分组。</p>
+<p>发送方只重传没收到ACK的分组，需要为每个分组设置定时器。 </p>
+<p>$N_s+N_r\le 2^k$</p>
+<h2 id="tcp-2"><a href="#tcp-2" class="headerlink" title="tcp"></a>tcp</h2><p>序列号指的是segment第一个字节的编号而不是segment的编号。</p>
+<p>在建立tcp连接时，随机选择序列号。</p>
+<p>acks：希望接收到的下一个字节的序列号，累计确认机制。</p>
+<h3 id="tcp的可靠数据传输"><a href="#tcp的可靠数据传输" class="headerlink" title="tcp的可靠数据传输"></a>tcp的可靠数据传输</h3><h4 id="超时时间"><a href="#超时时间" class="headerlink" title="超时时间"></a>超时时间</h4><p>起码大于RTT，多次测量，丘指数加权移动平均</p>
+<p>timeoutinterval = estimate RTT + 4*devrtt</p>
+<h4 id="快速重传机制"><a href="#快速重传机制" class="headerlink" title="快速重传机制"></a>快速重传机制</h4><p>如果收到对同一数据的3个ack，则假定之后的段已经丢失</p>
+<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>接收方为tcp连接提供buffer，计算可用空间返回给发送方。</p>
+<p>若剩余空间为0，发送方仍然能够发送很小的一个段。否则不会再返回信息。</p>
+<h3 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h3><p>三次握手，第一次客户主机向服务器发送SYN，返回SYNACK，服务器分配缓存，选择自己的序列号。</p>
+<p>当收到SYNACK，会答复ACK，包含data</p>
+<p>四次挥手，<img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220906172743550.png" alt="image-20220906172743550"></p>
+<h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><p>发送速率太快以至于网络无法处理（排队时间）</p>
+<p>拥塞的代价：<img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220906174136232.png" alt="image-20220906174136232"></p>
+<h4 id="端到端的拥塞控制"><a href="#端到端的拥塞控制" class="headerlink" title="端到端的拥塞控制"></a>端到端的拥塞控制</h4><p>网络层不需要显示的提供支持</p>
+<p>通过观察loss，delay等网络行为判断是否发生拥塞。tcp</p>
+<h5 id="LastByteSent-LastByteAcked-lt-congwin"><a href="#LastByteSent-LastByteAcked-lt-congwin" class="headerlink" title="LastByteSent - LastByteAcked &lt;= congwin"></a>LastByteSent - LastByteAcked &lt;= congwin</h5><p>rate = Congwin / RTT</p>
+<p>如何感知网络拥塞：timeout或三个重复ack</p>
+<p>如何合理的调整发送速率：</p>
+<h5 id="加性增-乘性减"><a href="#加性增-乘性减" class="headerlink" title="加性增-乘性减"></a>加性增-乘性减</h5><p>逐渐增加发送速率，谨慎探测可用带宽</p>
+<p>每个RTT将Congwin增加一个MSS，当发生loss时将congwin减半</p>
+<h5 id="慢启动"><a href="#慢启动" class="headerlink" title="慢启动"></a>慢启动</h5><p>刚开始时希望快速增长，即连接开始时，指数型增长。</p>
+<h5 id="threshold"><a href="#threshold" class="headerlink" title="threshold"></a>threshold</h5><p>当超过threshold之后，应切换成线性增长。</p>
+<h5 id="loss处理"><a href="#loss处理" class="headerlink" title="loss处理"></a>loss处理</h5><p>3个重复ack，采用reno</p>
+<p>timeout，congwin设为1个mss，然后指数增长。</p>
+<h4 id="网络辅助的拥塞控制"><a href="#网络辅助的拥塞控制" class="headerlink" title="网络辅助的拥塞控制"></a>网络辅助的拥塞控制</h4><h5 id="ABR"><a href="#ABR" class="headerlink" title="ABR"></a>ABR</h5><p>如果发送方路径拥塞，将发送速率降到最低保障速率</p>
+<h5 id="RM"><a href="#RM" class="headerlink" title="RM"></a>RM</h5><p>交换机设置RMcell位，发送给接收方，再由接收方返回给发送方</p>
+<h3 id="tcp性能分析"><a href="#tcp性能分析" class="headerlink" title="tcp性能分析"></a>tcp性能分析</h3><h4 id="吞吐率"><a href="#吞吐率" class="headerlink" title="吞吐率"></a>吞吐率</h4><p>要求高带宽，则要求非常低的丢包率。</p>
+<h4 id="公平性"><a href="#公平性" class="headerlink" title="公平性"></a>公平性</h4><p>tcp之间是具有公平性的；</p>
+<h2 id="网络层-2"><a href="#网络层-2" class="headerlink" title="网络层"></a>网络层</h2><p>转发和路由</p>
+<h3 id="服务模型"><a href="#服务模型" class="headerlink" title="服务模型"></a>服务模型</h3><h5 id="无连接服务（数据包网络）"><a href="#无连接服务（数据包网络）" class="headerlink" title="无连接服务（数据包网络）"></a>无连接服务（数据包网络）</h5><p>不事先为系列分组的传输确定传输路径，不同分组独立确定传输路径。</p>
+<p>转发时采用最长前缀匹配优先原则。</p>
+<h5 id="连接服务（虚电路网络）"><a href="#连接服务（虚电路网络）" class="headerlink" title="连接服务（虚电路网络）"></a>连接服务（虚电路网络）</h5><p>需要实现确定路径，所有分组沿着相同路径。</p>
+<p>分组交换，每个分组的传输利用链路的全部带宽。由于路由器的大小不同，虚电路号也会有所不同。转发表如下：</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220907004528918.png" alt="image-20220907004528918"></p>
+<h4 id="虚电路信令协议"><a href="#虚电路信令协议" class="headerlink" title="虚电路信令协议"></a>虚电路信令协议</h4><p>目前的internet不采用</p>
+<h3 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h3><p> 版本号：ipv4，ipv6</p>
+<p>首部长度：以4个字节为单位，相当于几行</p>
+<p>服务类型：指示期望获得那种类型的服务</p>
+<p>总长度：16位，可以封装的最大数据为65535-20B</p>
+<p>标识：16位，标识一个ip分组</p>
+<p>标志位：占3位，DF=1禁止分片，MF=1，不是最后一片</p>
+<p>片偏移：数据的相对偏移量，以8个bit为单位</p>
+<p>ttl：ip分组在网络中可以通过的路由器数，每转发一次ttl-1；若ttl=0，丢弃该分组</p>
+<p>协议：tcp or udp</p>
+<p>首部校验和：对首部进行查出错检测，逐跳计算，逐跳校验</p>
+<p>源ip，目的ip：各32位</p>
+<p>选项字段：1~40B，很少被使用</p>
+<p>填充：补齐32位</p>
+<h4 id="mtu"><a href="#mtu" class="headerlink" title="mtu"></a>mtu</h4><p>分片与重组，分片过程：</p>
+<p>若原ip分组总长度为L，且待转发链路的MTU为M，若L&gt;M，且DF=0，则可以/需要分片；</p>
+<p>分片时，每个分片的表示复制原ip分组的标识。除了最后一片，其余均分为MTU允许的最大分片。</p>
+<p>由于片偏移的单位，因此最大可封装数据应该是8的倍数，因此最大可封装的数据为$n=\lfloor(m-20)/8\rfloor*8$，需要的总片数$N=\lceil (L-20)/n\rceil$</p>
+<p>每片的片偏移字段取值为，$F_i=\frac{d}{8}(i-1)$</p>
+<p>每片的总长度字段：<img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220907145521762.png" alt="image-20220907145521762"></p>
+<h4 id="ip编址"><a href="#ip编址" class="headerlink" title="ip编址"></a>ip编址</h4><p>ipv4，32bit；ip地址与每个接口关联</p>
+<p>如何为接口分配ip地址？</p>
+<p>ip地址=网络号+主机号，ip子网具有相同网络号的设备接口，不跨越路由器可以彼此物理联通的接口。</p>
+<h4 id="CIDR"><a href="#CIDR" class="headerlink" title="CIDR"></a>CIDR</h4><p>消除了传统的A类、B类、C类地址界限</p>
+<p>融合子网地址和子网掩码，方便子网划分；无类地址：a.b.c.d/x，x为前缀长度</p>
+<p>提高了ipv4地址空间分配效率，提高路由效率，构造超网。</p>
+<p>路由聚合：</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220907193009340.png" alt="image-20220907193009340"></p>
+<h4 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h4><p>在应用层实现，使用广播的方式</p>
+<p>从服务器动态获取：ip协议、子网掩码、默认网关地址、DNS服务器名称与ip地址</p>
+<p>首先，主机广播DHCP discover，服务器利用DHCP offer进行响应。</p>
+<p>主机请求ip地址：DHCP request，DHCP服务器分配ip地址 DHCP ack</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220907233338677.png" alt="image-20220907233338677"></p>
+<h4 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h4><p>只需向isp申请一个ip地址，本地网络设备的ip地址变更无需通告外界网络；</p>
+<p>变更isp时，无需修改内部网络设备ip地址；内部设备对外界不可见。</p>
+<p>16bit端口号字段，可以同时支持60000多并行连接。</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220907234402588.png" alt="image-20220907234402588"></p>
+<h2 id="icmp"><a href="#icmp" class="headerlink" title="icmp"></a>icmp</h2><p>差错报告，网络探寻。</p>
+<h3 id="差错报告报文"><a href="#差错报告报文" class="headerlink" title="差错报告报文"></a>差错报告报文</h3><p>目的不可达，源抑制，超时/超期，参数问题，重定向</p>
+<h3 id="网络探寻报文"><a href="#网络探寻报文" class="headerlink" title="网络探寻报文"></a>网络探寻报文</h3><p>echo，reply</p>
+<p>时间戳请求与应答报文</p>
+<h2 id="ipv6"><a href="#ipv6" class="headerlink" title="ipv6"></a>ipv6</h2><p>固定基本首部为40字节，不允许分片</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220908001617913.png" alt="image-20220908001617913"></p>
+<p>移除了校验和，允许选项但是从基本首部一处。</p>
+<p>ipv6-&gt;ipv4：隧道，将ipv6包放在ipv4的数据段</p>
+<h3 id="路由算法"><a href="#路由算法" class="headerlink" title="路由算法"></a>路由算法</h3><h4 id="链路状态路由算法"><a href="#链路状态路由算法" class="headerlink" title="链路状态路由算法"></a>链路状态路由算法</h4><p>dijkstra，O(n^2)，更高效的实现O(nlg n)</p>
+<p>存在震荡可能。</p>
+<h4 id="距离向量路由算法"><a href="#距离向量路由算法" class="headerlink" title="距离向量路由算法"></a>距离向量路由算法</h4><p>每个节点不定时地将自身的$D_v$发送给邻居，当接收到邻居的$D_v$时，更新其自身的距离向量估计。</p>
+<p>异步迭代，局部链路的费用改变，来自邻居的$D_v$更新。</p>
+<p>分布式，每个节点只当$D_v$改变时才通告给邻居，因此是分布式的。</p>
+<h5 id="存在无限计数问题"><a href="#存在无限计数问题" class="headerlink" title="存在无限计数问题"></a>存在无限计数问题</h5><p>可以采用毒性逆转，或者定义最大度量</p>
+<h4 id="层次路由"><a href="#层次路由" class="headerlink" title="层次路由"></a>层次路由</h4><p>聚合路由器为一个区域：自治系统（AS）</p>
+<p>同一AS内的路由器运行相同的路由算法（intra-AS)</p>
+<p>AS之间，建立网关路由器，位于AS边缘，连接其他AS的网关路由器</p>
+<h2 id="AS内协议"><a href="#AS内协议" class="headerlink" title="AS内协议"></a>AS内协议</h2><h3 id="RIP协议-ROUTING-INFORMATION-PROTOCOL"><a href="#RIP协议-ROUTING-INFORMATION-PROTOCOL" class="headerlink" title="RIP协议 ROUTING INFORMATION PROTOCOL"></a>RIP协议 ROUTING INFORMATION PROTOCOL</h3><p>距离向量路由算法。距离的度量采用跳步数，且最大度量为15.</p>
+<p>每个30s，邻居之间交换一次DV，称为通告；最多25个目的子网。</p>
+<p>如果180s没有收到通告，另据/链路失效</p>
+<h3 id="OSPF-open-shortest-path-first"><a href="#OSPF-open-shortest-path-first" class="headerlink" title="OSPF open shortest path first"></a>OSPF open shortest path first</h3><p>链路状态路由算法，在整个AS范围洪泛。</p>
+<p>优点：安全，可以被认证；允许使用多条相同费用的路径。集成单播路由与多播路由。</p>
+<h2 id="AS间协议"><a href="#AS间协议" class="headerlink" title="AS间协议"></a>AS间协议</h2><h3 id="BGP协议"><a href="#BGP协议" class="headerlink" title="BGP协议"></a>BGP协议</h3><p>bgp会话：两个路由器交换bgp报文。open ，update（通告新路径）、keepalive，保活连接，notification，报告先前报文的差错，也可用于关闭连接。</p>
+<p>通告去往不同目的的前缀的路径，基于半永久的tcp连接。</p>
+<p>eBGP外部会话，iBGP内部会话。需要增加属性：AS-PATH，NEXT-HOP</p>
+<p>路由器可能获知到达某目的AS的多条路由，策略决策；最短AS-PATH路径，最近NEXT-HOP</p>
+<h2 id="数据链路层-1"><a href="#数据链路层-1" class="headerlink" title="数据链路层"></a>数据链路层</h2><p>组帧：封装数据报构成数据帧，加首部和尾部，帧同步</p>
+<p>链路接入：如果是共享介质，需要解决信道接入</p>
+<p>可靠交付：无线链路需要可靠交付</p>
+<p>流量控制，差错检测，差错纠正</p>
+<h3 id="差错编码"><a href="#差错编码" class="headerlink" title="差错编码"></a>差错编码</h3><p>检错码和纠错码，如果hamming距离$d_s=r+1$，可以检测r位的差错。  </p>
+<p>如果编码集的hamming距离$d_s=2r+1$，则可以纠正r位的差错</p>
+<h4 id="奇偶校验位"><a href="#奇偶校验位" class="headerlink" title="奇偶校验位"></a>奇偶校验位</h4><h4 id="checksum-1"><a href="#checksum-1" class="headerlink" title="checksum"></a>checksum</h4><h4 id="CRC"><a href="#CRC" class="headerlink" title="CRC"></a>CRC</h4><h2 id="mac地址"><a href="#mac地址" class="headerlink" title="mac地址"></a>mac地址</h2><p>两类链路：</p>
+<p>点对点链路，拨号接入的ppp，以太网交换机与主机之间的点对点链路</p>
+<p>广播链路：共享介质，早期的总线以太网，HFC的上行链路，wifi无线局域网</p>
+<h4 id="单一共享广播信道"><a href="#单一共享广播信道" class="headerlink" title="单一共享广播信道"></a>单一共享广播信道</h4><p>两个或者两个以上节点同时传输：干扰</p>
+<h4 id="多路访问控制协议"><a href="#多路访问控制协议" class="headerlink" title="多路访问控制协议"></a>多路访问控制协议</h4><p>三大类</p>
+<h5 id="信道划分MAC协议"><a href="#信道划分MAC协议" class="headerlink" title="信道划分MAC协议"></a>信道划分MAC协议</h5><p>多路复用技术，TDMA,FDMA,CDMA,WDMA</p>
+<h5 id="随机访问MAC协议"><a href="#随机访问MAC协议" class="headerlink" title="随机访问MAC协议"></a>随机访问MAC协议</h5><p>信道不划分，允许冲突，采用冲突恢复机制</p>
+<h6 id="时隙ALOHA协议"><a href="#时隙ALOHA协议" class="headerlink" title="时隙ALOHA协议"></a>时隙ALOHA协议</h6><p>所有帧大小相同，时间被划分为等长的时隙，节点只能在时隙开始时刻发送帧。节点间始终同步。</p>
+<p>如果有两个或两个以上节点同一时隙发送，则存在冲突；如果发生冲突，在下一个时隙以概率p重传，直至成功。</p>
+<p>缺点，冲突时浪费时隙。且需要时间同步</p>
+<p>效率低，最大效率时0.37</p>
+<h6 id="ALOHA"><a href="#ALOHA" class="headerlink" title="ALOHA"></a>ALOHA</h6><p>当有新的帧生成，立即发送。冲突的可能性增大。效率更低。</p>
+<h6 id="CSMA"><a href="#CSMA" class="headerlink" title="CSMA"></a>CSMA</h6><p>发送帧之前，监听信道；如果信道忙，</p>
+<p>1-坚持CSMA</p>
+<p>尽管这样冲突可能仍然发生：信号传播延迟；如果继续发送冲突帧，浪费信道资源</p>
+<h6 id="CSMA-CD"><a href="#CSMA-CD" class="headerlink" title="CSMA/CD"></a>CSMA/CD</h6><p>带冲突检测的，短时间内可以检测到冲突；冲突后传输终止，减少信道浪费。</p>
+<p>冲突检测：边发边听，不发不听。</p>
+<p>有线容易实现，测量信号强度，比较发射信号和接收信号；无线很难实现</p>
+<h5 id="轮转MAC协议"><a href="#轮转MAC协议" class="headerlink" title="轮转MAC协议"></a>轮转MAC协议</h5><p>节点轮流使用信道</p>
+<p>轮询：主节点轮流邀请从属节点发送数据。具有轮询开销，等待延迟，单点故障。</p>
+<p>令牌传递：令牌从一个节点传递到下一个节点。令牌开销，等待延迟，单点故障</p>
+<h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><h3 id="MAC地址-物理地址"><a href="#MAC地址-物理地址" class="headerlink" title="MAC地址 物理地址"></a>MAC地址 物理地址</h3><p>用于区别帧从哪个接口发出，到达哪个物理相连的其他接口</p>
+<p>48位MAC地址，固化在网卡的ROM中，有时也可以软件设置。</p>
+<p>mac地址：身份证号；ip地址：邮政地址</p>
+<p>mac地址是平面地址，可以携带，从一个LAN到另一个LAN；</p>
+<p>ip地址是层次结构，依赖于节点连接到哪个子网</p>
+<h3 id="arp"><a href="#arp" class="headerlink" title="arp"></a>arp</h3><p>ARP表：<img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220909003630768.png" alt="image-20220909003630768"></p>
+<p>若不在arp表中，广播查询分组，FF-FF-FF-FF-FF-FF，随后利用单播帧应答。</p>
+<h2 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h2><p>不可靠，无连接服务；MAC协议，采用二进制指数退避算法的CSMA/CDC协议</p>
+<p>第m次连续冲突后，$n=Min(m,10)$，随机选取${0,1,2,…,2^n-1}$中随机选数，等待512*该数的传输延迟时间。</p>
+<p>如果连续冲突次数越多，平均等待时间越长。</p>
+<h4 id="以太网帧结构"><a href="#以太网帧结构" class="headerlink" title="以太网帧结构"></a>以太网帧结构</h4><p>前导码8B，七个字节的10101010，第八个字节为10101011用于时钟同步。</p>
+<p>目的mac地址、源mac地址，各6B</p>
+<p>type：封装的是哪种高层协议的而分组；</p>
+<p>数据：指上层协议载荷。CRC:循环冗余校验码</p>
+<p>不同的以太网</p>
+<h3 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h3><p>链路层设备，存储转发以太网帧，检测到达帧的目的MAC地址，选择性向一个或多个输出链路转发帧。透明</p>
+<p>交换机有交换表，存放(主机的MAC地址，到达主机的接口，时间戳)</p>
+<p>若不在交换表中，采取洪泛。</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220909110416525.png" alt="image-20220909110416525"></p>
+<h3 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h3><h4 id="基于端口的VLAN"><a href="#基于端口的VLAN" class="headerlink" title="基于端口的VLAN"></a>基于端口的VLAN</h4><p>流量隔离，动态成员，使用路由器，完成VLAN转发。</p>
+<p>去往端口1-8的帧指到达端口1-8</p>
+<h3 id="PPP"><a href="#PPP" class="headerlink" title="PPP"></a>PPP</h3><p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220909112513873.png" alt="image-20220909112513873"></p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220909112928820.png" alt="image-20220909112928820"></p>
+<h2 id="WIFI"><a href="#WIFI" class="headerlink" title="WIFI"></a>WIFI</h2><p>802.11b：</p>
+<p>将频谱划分为11个不同频率的信道，每个accesspoint选择一个频率，存在干扰的可能。</p>
+<p>主机必须与某个AP关联。扫描信道，监听包含ap名称和mac地址的信标帧。选择一个ap关联。</p>
+<p>被动扫描和主动扫描</p>
+<h3 id="多路访问控制"><a href="#多路访问控制" class="headerlink" title="多路访问控制"></a>多路访问控制</h3><p>CSMA，但不能像CSMA/CD边发送边检测从冲突，无线信道很难实现。</p>
+<p>CSMA/CA</p>
+<p>sender：检测信道空闲了DIFS时间，发送整个帧；如果信道忙，随机退避计时。</p>
+<p>receiver：SIFS</p>
+<p>允许预约信道，发送端，利用CSMA向BS发送一个很短的RTS帧，仍然可能发生冲突。</p>
+<p>随后BS广播一个CTS帧作为响应，消除隐藏站的影响。接收到数据后，广播ACK</p>
+<p><img src="C:\Users\23960\AppData\Roaming\Typora\typora-user-images\image-20220909133949083.png" alt="image-20220909133949083"></p>
+]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+  </entry>
 </search>
